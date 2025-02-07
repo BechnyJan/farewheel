@@ -8,8 +8,6 @@
   background-color: #f8f9fa;
   min-height: 100vh;
   box-sizing: border-box;
-
-  
 }
 
 .confirmation-page h1 {
@@ -34,7 +32,8 @@
   color: #28a745;
 }
 
- .confirm-btn, .cancel-btn {
+.confirm-btn,
+.cancel-btn {
   display: inline-block;
   padding: 10px 20px;
   margin: 10px;
@@ -56,13 +55,13 @@
   background-color: #0056b3;
 }
 
- .cancel-btn {
+.cancel-btn {
   background-color: #dc3545;
   color: white;
   transition: background-color 0.3s ease;
 }
 
- .cancel-btn:hover {
+.cancel-btn:hover {
   background-color: #a71d2a;
 }
 

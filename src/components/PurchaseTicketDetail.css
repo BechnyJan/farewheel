@@ -1,0 +1,93 @@
+.ticket-detail {
+  padding: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.purchase-input_range {
+  padding-left: 0.5rem;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.header {
+  text-align: center;
+}
+
+.ticket-info {
+  margin: 20px 0;
+}
+
+.info-section {
+  margin-bottom: 16px;
+}
+
+.info-section label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.payment-section {
+  text-align: center;
+}
+
+.buy-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.buy-btn:hover {
+  background-color: #0056b3;
+}
+
+.radio-group {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 10px;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 80%;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 0.6875rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #007bff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-option:hover {
+  background-color: #e6f2ff;
+  border-color: #007bff;
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-option span {
+  margin-left: 10px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.radio-option input[type="radio"]:checked + span {
+  color: #007bff;
+}
+
+.radio-option input[type="radio"]:checked + span::before {
+  content: "✔";
+  color: #007bff;
+  margin-right: 10px;
+  font-weight: bold;
+}

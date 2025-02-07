@@ -1,0 +1,13 @@
+.route-detail-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.route-detail-container h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.route-detail-container p {
+  margin: 10px 0;
+}

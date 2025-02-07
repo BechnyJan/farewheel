@@ -1,0 +1,263 @@
+[
+    {
+        "route_id":"L991",
+        "route_short_name":"A",
+        "route_long_name":"Nemocnice Motol - Pet\u0159iny - Skalka - Depo Hostiva\u0159",
+        "route_url":"https:\/\/pid.cz\/linka\/A",
+        "route_color":"#00A562",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L992",
+        "route_short_name":"B",
+        "route_long_name":"Zli\u010d\u00edn - \u010cern\u00fd Most",
+        "route_url":"https:\/\/pid.cz\/linka\/B",
+        "route_color":"#F8B322",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L993",
+        "route_short_name":"C",
+        "route_long_name":"Let\u0148any - L\u00e1dv\u00ed - H\u00e1je",
+        "route_url":"https:\/\/pid.cz\/linka\/C",
+        "route_color":"#CF003D",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L1",
+        "route_short_name":"1",
+        "route_long_name":"S\u00eddli\u0161t\u011b Pet\u0159iny - V\u00fdstavi\u0161t\u011b",
+        "route_url":"https:\/\/pid.cz\/linka\/1",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L2",
+        "route_short_name":"2",
+        "route_long_name":"S\u00eddli\u0161t\u011b Pet\u0159iny - N\u00e1dra\u017e\u00ed Bran\u00edk",
+        "route_url":"https:\/\/pid.cz\/linka\/2",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L3",
+        "route_short_name":"3",
+        "route_long_name":"B\u0159ezin\u011bvesk\u00e1 - N\u00e1dra\u017e\u00ed Bran\u00edk - S\u00eddli\u0161t\u011b Mod\u0159any",
+        "route_url":"https:\/\/pid.cz\/linka\/3",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L4",
+        "route_short_name":"4",
+        "route_long_name":"Slivenec - Kub\u00e1nsk\u00e9 n\u00e1m\u011bst\u00ed",
+        "route_url":"https:\/\/pid.cz\/linka\/4",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L5",
+        "route_short_name":"5",
+        "route_long_name":"Slivenec - Vozovna \u017di\u017ekov",
+        "route_url":"https:\/\/pid.cz\/linka\/5",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L6",
+        "route_short_name":"6",
+        "route_long_name":"N\u00e1dra\u017e\u00ed Hole\u0161ovice - Kub\u00e1nsk\u00e9 n\u00e1m\u011bst\u00ed",
+        "route_url":"https:\/\/pid.cz\/linka\/6",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L7",
+        "route_short_name":"7",
+        "route_long_name":"Radlick\u00e1 - Lehovec",
+        "route_url":"https:\/\/pid.cz\/linka\/7",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L8",
+        "route_short_name":"8",
+        "route_long_name":"N\u00e1dra\u017e\u00ed Podbaba - Star\u00fd Hloub\u011bt\u00edn",
+        "route_url":"https:\/\/pid.cz\/linka\/8",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L9",
+        "route_short_name":"9",
+        "route_long_name":"S\u00eddli\u0161t\u011b \u0158epy - Spojovac\u00ed",
+        "route_url":"https:\/\/pid.cz\/linka\/9",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L10",
+        "route_short_name":"10",
+        "route_long_name":"S\u00eddli\u0161t\u011b \u0158epy - S\u00eddli\u0161t\u011b \u010e\u00e1blice",
+        "route_url":"https:\/\/pid.cz\/linka\/10",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L11",
+        "route_short_name":"11",
+        "route_long_name":"Spojovac\u00ed - Spo\u0159ilov",
+        "route_url":"https:\/\/pid.cz\/linka\/11",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L12",
+        "route_short_name":"12",
+        "route_long_name":"Lehovec - S\u00eddli\u0161t\u011b Barrandov",
+        "route_url":"https:\/\/pid.cz\/linka\/12",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L13",
+        "route_short_name":"13",
+        "route_long_name":"\u010cechovo n\u00e1m\u011bst\u00ed - Ol\u0161ansk\u00e9 h\u0159bitovy",
+        "route_url":"https:\/\/pid.cz\/linka\/13",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L14",
+        "route_short_name":"14",
+        "route_long_name":"N\u00e1dra\u017e\u00ed Hole\u0161ovice - Spo\u0159ilov",
+        "route_url":"https:\/\/pid.cz\/linka\/14",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L15",
+        "route_short_name":"15",
+        "route_long_name":"Kotl\u00e1\u0159ka - Ol\u0161ansk\u00e9 h\u0159bitovy",
+        "route_url":"https:\/\/pid.cz\/linka\/15",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L16",
+        "route_short_name":"16",
+        "route_long_name":"S\u00eddli\u0161t\u011b \u0158epy - Kotl\u00e1\u0159ka - \u00dast\u0159edn\u00ed d\u00edlny Dopravn\u00edho podniku",
+        "route_url":"https:\/\/pid.cz\/linka\/16",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L17",
+        "route_short_name":"17",
+        "route_long_name":"Vozovna Kobylisy - B\u0159ezin\u011bvesk\u00e1 - S\u00eddli\u0161t\u011b Mod\u0159any - Libu\u0161",
+        "route_url":"https:\/\/pid.cz\/linka\/17",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L18",
+        "route_short_name":"18",
+        "route_long_name":"N\u00e1dra\u017e\u00ed Podbaba - Vozovna Pankr\u00e1c",
+        "route_url":"https:\/\/pid.cz\/linka\/18",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L19",
+        "route_short_name":"19",
+        "route_long_name":"Depo Hostiva\u0159 - Pankr\u00e1c",
+        "route_url":"https:\/\/pid.cz\/linka\/19",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L20",
+        "route_short_name":"20",
+        "route_long_name":"D\u011bdina - S\u00eddli\u0161t\u011b Barrandov",
+        "route_url":"https:\/\/pid.cz\/linka\/20",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L21",
+        "route_short_name":"21",
+        "route_long_name":"Radlick\u00e1 - S\u00eddli\u0161t\u011b Mod\u0159any",
+        "route_url":"https:\/\/pid.cz\/linka\/21",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L22",
+        "route_short_name":"22",
+        "route_long_name":"B\u00edl\u00e1 Hora - Vypich - Zahradn\u00ed M\u011bsto - N\u00e1dra\u017e\u00ed Hostiva\u0159",
+        "route_url":"https:\/\/pid.cz\/linka\/22",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L23",
+        "route_short_name":"23",
+        "route_long_name":"Kr\u00e1lovka - Zvona\u0159ka",
+        "route_url":"https:\/\/pid.cz\/linka\/23",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L24",
+        "route_short_name":"24",
+        "route_long_name":"Vozovna Kobylisy - N\u00e1m\u011bst\u00ed brat\u0159\u00ed Synk\u016f",
+        "route_url":"https:\/\/pid.cz\/linka\/24",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L25",
+        "route_short_name":"25",
+        "route_long_name":"B\u00edl\u00e1 Hora - V\u00fdstavi\u0161t\u011b",
+        "route_url":"https:\/\/pid.cz\/linka\/25",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    },
+    {
+        "route_id":"L26",
+        "route_short_name":"26",
+        "route_long_name":"D\u011bdina - N\u00e1dra\u017e\u00ed Hostiva\u0159",
+        "route_url":"https:\/\/pid.cz\/linka\/26",
+        "route_color":"#7A0603",
+        "route_text_color":"#FFFFFF",
+        "frequency":"10 min"
+    }
+]

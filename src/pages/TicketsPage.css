@@ -1,0 +1,51 @@
+.tickets-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.tickets-page > h1 {
+  margin-top: 8px;
+  font-size: 24px;
+  /* text-align: center; */
+  color: #007bff;
+}
+
+.tickets-navigation {
+  display: flex;
+  margin-bottom: 1rem;
+  justify-content: space-around;
+}
+
+.tickets-navigation_link,
+.tickets-navigation_link-purchase {
+  background-color: #007bff;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.6875rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tickets-navigation_link-purchase {
+  position: fixed;
+  z-index: 100;
+  top: 83%;
+  width: 80%;
+}
+
+.tickets-navigation_link.active {
+  /* font-weight: 600; */
+  color: #ffd700;
+}
+
+.info-box {
+  background-color: #e7f3ff;
+  color: #0056b3;
+  padding: 15px;
+  /* margin-bottom: 20px; */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

@@ -8,8 +8,12 @@ export default function SearchBar() {
 
   const [fromQuery, setFromQuery] = useState("");
   const [toQuery, setToQuery] = useState("");
+  const [meansOfTransport, setMeansOfTransport] = useState({
+    metro: false,
+    tram: false,
+    accessibleOnly: false,
+  });
   const [excludedStations, setExcludedStations] = useState([]);
-  const [accessibleOnly, setAccessibleOnly] = useState(false);
   const [timeHour, setTimeHour] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [modalType, setModalType] = useState(null);
@@ -33,6 +37,11 @@ export default function SearchBar() {
     },
   ];
 
+  const handleTransportChange = (e) => {
+    const { id, checked } = e.target;
+    setMeansOfTransport((prev) => ({ ...prev, [id]: checked }));
+  };
+
   const handleSearch = () => {
     if (!fromQuery || !toQuery) {
       console.error("Please select both starting and destination stations.");
@@ -43,7 +52,7 @@ export default function SearchBar() {
         from: fromQuery,
         to: toQuery,
         excluded: excludedStations,
-        accessibleOnly,
+        accessibleOnly: meansOfTransport,
         time: timeHour,
         results: mockResults,
       },
@@ -97,34 +106,47 @@ export default function SearchBar() {
         </div>
         {showFilters && (
           <div className="filters">
-            <div><p>Excluded means of transport</p>
-              <label>
-                Metro
-                <input
-                  type="checkbox"
-                  checked={accessibleOnly}
-                  // onChange={(e) => setAccessibleOnly(e.target.checked)}
-                />
-              </label>
-              <label>
-                Tram
-                <input
-                  type="checkbox"
-                  checked={accessibleOnly}
-                  // onChange={(e) => setAccessibleOnly(e.target.checked)}
-                />
-              </label>
-            </div>
             <div>
-              <label>
-                <input
-                  type="checkbox"
-                  checked={accessibleOnly}
-                  onChange={(e) => setAccessibleOnly(e.target.checked)}
-                />
-                Pouze bezbariérové stanice
-              </label>
+              <h2>Extended Filter</h2>
+              <div className="filter-transport_types">
+                <h3>Select Means of Transport</h3>
+                <div className="filter-container">
+                  <div className="filter-item_container">
+                    <label htmlFor="metro">Metro</label>
+                    <input
+                      id="metro"
+                      type="checkbox"
+                      checked={meansOfTransport.metro}
+                      onChange={handleTransportChange}
+                    />
+                  </div>
+                  <div className="filter-item_container">
+                    <label htmlFor="tram">Tram</label>
+
+                    <input
+                      id="tram"
+                      type="checkbox"
+                      checked={meansOfTransport.tram}
+                      onChange={handleTransportChange}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
+            {/* <div> */}
+            <div
+              className="filter-item_container"
+              id="filter-container-accessible"
+            >
+              <label htmlFor="accessibleOnly">Pouze bezbariérové stanice</label>
+              <input
+                id="accessibleOnly"
+                type="checkbox"
+                checked={meansOfTransport.accessibleOnly}
+                onChange={handleTransportChange}
+              />
+            </div>
+            {/* </div> */}
             <div>
               <label>Vyloučené stanice:</label>
               <input
@@ -140,7 +162,7 @@ export default function SearchBar() {
               <button onClick={() => setExcludedStations([])}>Reset</button>
             )}
             <div className="filter-section_time">
-              <label>Čas odjezdu:</label>
+              <label htmlFor="time">Čas odjezdu:</label>
               <input
                 id="time"
                 type="time"

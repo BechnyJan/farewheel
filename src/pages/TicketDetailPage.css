@@ -1,0 +1,24 @@
+.ticket-detail-page {
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+}
+
+.ticket-info {
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #007bff;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  max-width: 400px;
+}
+
+.verification-code {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 1.5rem;
+}

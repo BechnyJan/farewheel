@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import AccountSetting from "./components/AccountSetting";
 import PurchaseTicketDetail from "./components/PurchaseTicketDetail";
 import RouteExtraDetailPage from "./components/RouteExtraDetailPage";
 import RouteResultPage from "./components/RouteResultPage";
@@ -12,6 +13,7 @@ import PassesPage from "./pages/PassesPage";
 import SignUpSignInPage from "./pages/SignIn";
 import TicketsPage from "./pages/TicketsPage";
 import TouristPage from "./pages/TouristPage";
+import TicketDetailPage from "./pages/TicketDetailPage";
 
 function App() {
   const [processPurchase, setProcessPurchase] = useState(false);
@@ -80,6 +82,8 @@ function App() {
         <Route path="/extras" element={<Extras />} />
         <Route path="extras/route-detail" element={<RouteExtraDetailPage />} />
         <Route path="/tickets/details/:id" element={<PurchaseTicketDetail />} />
+        <Route path="/ticket/:id" element={<TicketDetailPage />} />
+
         <Route path="/confirmation" element={<ConfirmationPage />} />
         <Route
           path="/more"
@@ -87,6 +91,7 @@ function App() {
             <MorePage setIsSignedIn={logoutHandler} isSignedIn={isSignedIn} />
           }
         />
+        <Route path="/account" element={<AccountSetting />} />
         <Route
           path="/signin"
           element={<SignUpSignInPage setIsSignedIn={loginHandler} />}

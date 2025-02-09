@@ -52,7 +52,7 @@ export default function SearchBar() {
         from: fromQuery,
         to: toQuery,
         excluded: excludedStations,
-        accessibleOnly: meansOfTransport,
+        means: meansOfTransport,
         time: timeHour,
         results: mockResults,
       },
@@ -133,7 +133,6 @@ export default function SearchBar() {
                 </div>
               </div>
             </div>
-            {/* <div> */}
             <div
               className="filter-item_container"
               id="filter-container-accessible"
@@ -146,7 +145,7 @@ export default function SearchBar() {
                 onChange={handleTransportChange}
               />
             </div>
-            {/* </div> */}
+            
             <div>
               <label>Vyloučené stanice:</label>
               <input

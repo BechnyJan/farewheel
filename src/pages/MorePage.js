@@ -1,7 +1,7 @@
 import BottomNavBar from "../components/BottomNavBar";
 
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./MorePage.css";
 
 export default function MorePage({ isSignedIn, setIsSignedIn }) {
@@ -42,6 +42,7 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
           <h2>Account</h2>
           {isSignedIn ? (
             <div className="account-actions">
+              <NavLink to='/account' >👤 Detail</NavLink>
               <p>Welcome, User!</p>
               <div className="account-btn_cotainer">
                 <button className="account-btn" onClick={handleSignOut}>

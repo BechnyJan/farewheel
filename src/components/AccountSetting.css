@@ -1,0 +1,72 @@
+.account-settings {
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.account-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.account-options {
+  list-style: none;
+  padding: 0;
+}
+
+.option-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background-color: #f1f9ff;
+  font-size: 1rem;
+  color: #007bff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.option-item:hover {
+  background-color: #d6ebff;
+}
+
+.icon {
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.toggle {
+  margin-left: auto;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 15px;
+  font-size: 1rem;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #0056b3;
+}
+
+.logout-btn .icon {
+  margin-right: 10px;
+}

@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function TicketItem({activated,name,price, duration,id,index, onActivate}) {
   return (
-    <div key={`${id}-${index}`} className="ticket-item">
+    <Link to={`/ticket/${id}`}  key={`${id}-${index}`} className="ticket-item">
       <div className="ticket-info">
         <h2>{name}</h2>
         <p>Price: {price} CZK</p>
@@ -22,6 +23,6 @@ export default function TicketItem({activated,name,price, duration,id,index, onA
           </button>
         )}
       </div>
-    </div>
+    </Link>
   );
 }

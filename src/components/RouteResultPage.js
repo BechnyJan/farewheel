@@ -6,13 +6,16 @@ import "./RouteResultPage.css";
 export default function RouteResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { from, to, results } = location.state || {};
+  const { from, to, results,means } = location.state || {};
   console.log(location.state.results,results);
   useEffect(() => {
 
       
   }, [location.state, results]);
 // && results.length > 0
+
+console.log(means);
+
   return (
     <div className="route-results-modal">
       <button className="back-btn" onClick={() => navigate(-1)}>

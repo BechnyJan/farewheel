@@ -40,10 +40,6 @@ export default function PurchaseTicketDetail({}) {
     <div className="purchase-ticket_detail">
       <header className="purchase-header">
         <BackButton title={name} />
-        <p>
-          {duration}
-          {/* {ticket.zone} */}
-        </p>
       </header>
       <div className="ticket-info">
         <div className="info-section">

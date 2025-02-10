@@ -6,11 +6,12 @@
 
 .ticket-info {
   margin: 20px auto;
-  padding: 20px;
+  padding: 20px 10px;
   border: 1px solid #007bff;
   border-radius: 10px;
   background-color: #f9f9f9;
   max-width: 400px;
+  width: 90%;
 }
 
 .verification-code {

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import TicketDetail from "../pages/TicketDetailPage";
 import TicketItem from "./TicketItem";
 import "./TicketsList.css";
 export default function TicketsList({ process }) {
@@ -12,23 +13,20 @@ export default function TicketsList({ process }) {
   }, []);
   console.log(tickets);
   const handleActivate = (instanceId) => {
-    // console.log(instanceId);
-
-    // Aktualizace stavu jízdenky
-    // const updatedTickets = tickets.map((ticket) =>
-    //   ticket.id === ticketId ? { ...ticket, activated: true } : ticket
-    // );
+    
     const updatedTickets = tickets.map((ticket) => {
       // Check if the instance ID matches the current ticket
       if (instanceId.startsWith(ticket.id)) {
         const instanceIndex = instanceId.split("-").pop(); // Get the index from the ID
         if (instanceIndex < ticket.quantity) {
-          // Activate the specific instance
+          const val = ticket.duration ? ticket.duration * 60 * 1000 : 60;
+          console.log(val);
+
           return {
             ...ticket,
             activated: true,
             activationTime: Date.now(),
-            validUntil: Date.now() + `${ticket.duration ? ticket.duration * 60*1000 : 60}`,
+            validUntil: Date.now() + +val,
           };
         }
       }
@@ -58,8 +56,10 @@ export default function TicketsList({ process }) {
               price={ticket.price}
               key={`${ticket.id}-${index}`}
               activated={ticket.activated}
+              activationTime={ticket.activationTime}
               onActivate={handleActivate}
             />
+            // <TicketDetail />
           ))
         )
       )}

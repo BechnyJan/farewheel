@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./RouteExtraDetailPage.css";
+import BackButton from "./BackButton";
 
 export default function RouteExtraDetailPage() {
   const navigate = useNavigate();
@@ -8,10 +9,7 @@ export default function RouteExtraDetailPage() {
 
   return (
     <div className="route-detail-container">
-      <button className="back-btn" onClick={() => navigate(-1)}>
-        ←
-      </button>
-      <h1>Detail linky: {route.route_short_name}</h1>
+      <BackButton title={`Detail linky: ${route.route_short_name}`} />
       <p>
         <strong>Název linky:</strong> {route.route_long_name}
       </p>

@@ -9,8 +9,8 @@ export default function SearchBar() {
   const [fromQuery, setFromQuery] = useState("");
   const [toQuery, setToQuery] = useState("");
   const [meansOfTransport, setMeansOfTransport] = useState({
-    metro: false,
-    tram: false,
+    metro: true,
+    tram: true,
     accessibleOnly: false,
   });
   const [excludedStations, setExcludedStations] = useState([]);
@@ -20,20 +20,37 @@ export default function SearchBar() {
 
   const mockResults = [
     {
+      id: 1,
       duration: "8",
       departure: "10:33",
       arrival: "10:41",
       line: "Tram 22",
       walkTime: "1",
       accessibility: true,
+      from: "Hlavní nádraží",
+      to: "Malostranská",
     },
     {
+      id: 2,
       duration: "23",
       departure: "10:38",
       arrival: "11:01",
-      line: "Bus 119",
+      line: "Tram 9",
       walkTime: "5",
       accessibility: false,
+      from: "Hlavní nádraží",
+      to: "Malostranská",
+    },
+    {
+      id: 3,
+      duration: "15",
+      departure: "11:10",
+      arrival: "11:25",
+      line: "Metro A",
+      walkTime: "2",
+      accessibility: true,
+      from: "Staroměstská",
+      to: "Karlův most",
     },
   ];
 
@@ -42,11 +59,34 @@ export default function SearchBar() {
     setMeansOfTransport((prev) => ({ ...prev, [id]: checked }));
   };
 
+  const filterResults = () => {
+    return mockResults.filter((result) => {
+      const { metro, tram, accessibleOnly } = meansOfTransport;
+
+      if (!metro && result.line.toLowerCase().includes("metro")) return false;
+      if (!tram && result.line.toLowerCase().includes("tram")) return false;
+      if (accessibleOnly && !result.accessibility) return false;
+      if (
+        excludedStations.includes(result.from) ||
+        excludedStations.includes(result.to)
+      ) {
+        return false;
+      }
+      if (timeHour && result.departure < timeHour) return false;
+
+      return true;
+    });
+  };
+
   const handleSearch = () => {
     if (!fromQuery || !toQuery) {
+      alert("Please select both starting and final destination.");
       console.error("Please select both starting and destination stations.");
       return;
     }
+
+    const filteredResults = filterResults();
+
     navigate("/route-results", {
       state: {
         from: fromQuery,
@@ -54,7 +94,7 @@ export default function SearchBar() {
         excluded: excludedStations,
         means: meansOfTransport,
         time: timeHour,
-        results: mockResults,
+        results: filteredResults,
       },
     });
   };
@@ -109,7 +149,7 @@ export default function SearchBar() {
             <div>
               <h2>Extended Filter</h2>
               <div className="filter-transport_types">
-                <h3>Select Means of Transport</h3>
+                <h3>Selected Means of Transport</h3>
                 <div className="filter-container">
                   <div className="filter-item_container">
                     <label htmlFor="metro">Metro</label>
@@ -137,7 +177,7 @@ export default function SearchBar() {
               className="filter-item_container"
               id="filter-container-accessible"
             >
-              <label htmlFor="accessibleOnly">Pouze bezbariérové stanice</label>
+              <label htmlFor="accessibleOnly">Bezbariérový vstup</label>
               <input
                 id="accessibleOnly"
                 type="checkbox"
@@ -145,7 +185,6 @@ export default function SearchBar() {
                 onChange={handleTransportChange}
               />
             </div>
-            
             <div>
               <label>Vyloučené stanice:</label>
               <input
@@ -176,6 +215,7 @@ export default function SearchBar() {
 
       {modalType && (
         <StationSelectModal
+          // modal={setModalType}
           onClose={() => setModalType(null)}
           onSelect={handleModalSelect}
           onExclude={modalType === "exclude" ? excludedStations : undefined}

@@ -1,8 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { stations } from "./../data";
+import BackButton from "./BackButton";
 import "./StationSelectModal.css";
 
-export default function StationSelectModal({ onClose, onSelect, onExclude }) {
+export default function StationSelectModal({ onClose, onSelect, onExclude, modal }) {
   const [query, setQuery] = useState("");
   const inputRef = useRef(null);
 
@@ -26,13 +27,11 @@ export default function StationSelectModal({ onClose, onSelect, onExclude }) {
     <div className="station-modal-overlay">
       <div className="station-modal">
         <div className="station-top">
-          <button className="station-btn" onClick={onClose}>
-            ←
-          </button>
-          <h1>{onExclude ? "Excluded Stations" : "Journey Trip"}</h1>
-          {/* <span /> */}
+          <BackButton onPress={onClose}
+            title={onExclude ? "Excluded Stations" : "Journey Trip"}
+          />
         </div>
-        <p>
+        <p className="station-question">
           {onExclude
             ? "Where wouldn't you travel?"
             : "Where would you like to travel?"}

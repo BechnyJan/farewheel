@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./BackButton.css";
 
@@ -7,15 +7,20 @@ export default function BackButton({
   setProcessPurchase,
   ticketPage,
   returnNum = -1,
+  onPress,
 }) {
   const navigate = useNavigate();
 
   const actionHandler = () => {
     if (ticketPage) {
       console.log("assd", setProcessPurchase);
-      // setProcessPurchase();
     }
-    navigate(returnNum);
+    if (onPress) {
+      onPress();
+    }
+    if (!onPress) {
+      navigate(returnNum);
+    }
   };
 
   return (

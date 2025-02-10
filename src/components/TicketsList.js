@@ -13,20 +13,19 @@ export default function TicketsList({ process }) {
   }, []);
   console.log(tickets);
   const handleActivate = (instanceId) => {
-    
     const updatedTickets = tickets.map((ticket) => {
       // Check if the instance ID matches the current ticket
       if (instanceId.startsWith(ticket.id)) {
         const instanceIndex = instanceId.split("-").pop(); // Get the index from the ID
         if (instanceIndex < ticket.quantity) {
-          const val = ticket.duration ? ticket.duration * 60 * 1000 : 60;
-          console.log(val);
+          const val = ticket.duration ? +ticket.duration * 60 * 1000 : 60;
+          const delayTime = 60 * 1000;
 
           return {
             ...ticket,
             activated: true,
-            activationTime: Date.now(),
-            validUntil: Date.now() + +val,
+            activationTime: Date.now() + delayTime,
+            validUntil: Date.now() + val + delayTime,
           };
         }
       }
@@ -57,6 +56,7 @@ export default function TicketsList({ process }) {
               key={`${ticket.id}-${index}`}
               activated={ticket.activated}
               activationTime={ticket.activationTime}
+              validTime={ticket.validUntil}
               onActivate={handleActivate}
             />
             // <TicketDetail />

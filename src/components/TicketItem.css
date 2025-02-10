@@ -1,0 +1,105 @@
+.ticket-activation_desc {
+  text-align: right;
+}
+
+.ticket-activation_desc .ticket-active {
+  padding: 0.25rem 0.5rem;
+  color: #00a0f0;
+}
+
+.ticket-pending {
+  color: red;
+  padding: 0.25rem 0.5rem;
+  background-color: rgba(255, 165, 0, 0.2);
+}
+
+
+
+/* export default function TicketItem({
+  activated,
+  name,
+  price,
+  duration,
+  id,
+  index,
+  onActivate,
+  validTime,
+  activationStartTime,
+}) {
+  const [remainingTime, setRemainingTime] = useState(null);
+  const [protectionTime, setProtectionTime] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+
+  useEffect(() => {
+    if (validTime && activationStartTime) {
+      const checkPendingStatus = activationStartTime - Date.now();
+      setIsPending(checkPendingStatus > 0);
+
+      if (checkPendingStatus > 0) {
+        // If still in protection period, start countdown from 59s
+        setProtectionTime(59000);
+      } else {
+        // If protection is over, start showing remaining duration
+        setRemainingTime(validTime - Date.now());
+      }
+
+      const interval = setInterval(() => {
+        const now = Date.now();
+        if (activationStartTime > now) {
+          // Still in protection mode
+          setProtectionTime((prev) => (prev > 0 ? prev - 1000 : 0));
+        } else {
+          // Switch to remaining duration
+          setIsPending(false);
+          setRemainingTime(validTime - now);
+        }
+
+        if (validTime - now <= 0) clearInterval(interval);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, [validTime, activationStartTime]);
+
+  const formatTime = (ms) => {
+    if (ms <= 0) return "Expired";
+    const minutes = Math.floor(ms / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000);
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
+
+  // Determine class based on status
+  const ticketClass = isPending ? "ticket-item pending" : activated ? "ticket-item activated" : "ticket-item";
+
+  return (
+    <Link to={`/ticket/${id}`} key={`${id}-${index}`} className={ticketClass}>
+      <div className="ticket-info">
+        <h2>{name}</h2>
+        <p>Price: {price} CZK</p>
+        <p>{!duration ? "One way ticket" : `Duration: ${duration} min`}</p>
+
+        {activated ? (
+          <div>
+            {isPending ? (
+              <p className="pending">Pending Activation...</p>
+            ) : (
+              <p className="activated">Activated</p>
+            )}
+            <p>Starts at: {dayjs(activationStartTime).format("HH:mm DD-MM-YYYY")}</p>
+            <p>Valid Until: {dayjs(validTime).format("HH:mm DD-MM-YYYY")}</p>
+            <p style={{ color: isPending ? "orange" : "red" }}>
+              {isPending ? formatTime(protectionTime) : formatTime(remainingTime)}
+            </p>
+          </div>
+        ) : (
+          <button
+            className="activate-btn"
+            onClick={() => onActivate(`${id}-${index}`)}
+          >
+            Activate
+          </button>
+        )}
+      </div>
+    </Link>
+  );
+} */

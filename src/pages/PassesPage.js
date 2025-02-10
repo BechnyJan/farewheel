@@ -45,7 +45,7 @@ export default function PassesPage({ process, setProcessPurchase }) {
   };
 
   const ticketOptions = [
-    { name: "Single ticket", price: "15", icon: "🚌", duration: "" },
+    { name: "Single ticket", price: "15", icon: "🚌", duration: "1" },
     // { name: "Heritage service single ticket", price: "500 CZK", icon: "🏛️" },
     { name: "30minutes ticket", price: "20", icon: "⏱️", duration: "30" },
     { name: "90minutes ticket", price: "30", icon: "⏳", duration: "90" },

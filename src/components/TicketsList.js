@@ -4,8 +4,7 @@ import "./TicketsList.css";
 export default function TicketsList({ process }) {
   const [tickets, setTickets] = useState([]);
 
-
-  console.log(tickets)
+  console.log(tickets);
 
   useEffect(() => {
     const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
@@ -13,7 +12,7 @@ export default function TicketsList({ process }) {
   }, []);
   console.log(tickets);
   const handleActivate = (instanceId) => {
-    console.log(instanceId);
+    // console.log(instanceId);
 
     // Aktualizace stavu jízdenky
     // const updatedTickets = tickets.map((ticket) =>
@@ -28,6 +27,8 @@ export default function TicketsList({ process }) {
           return {
             ...ticket,
             activated: true,
+            activationTime: Date.now(),
+            validUntil: Date.now() + `${ticket.duration ? ticket.duration * 60*1000 : 60}`,
           };
         }
       }

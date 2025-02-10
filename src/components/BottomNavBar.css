@@ -18,6 +18,10 @@
   flex: 1;
 }
 
+.nav-item h4 {
+  margin: 0;
+}
+
 .nav-item:hover {
   color: #ffd700;
 }

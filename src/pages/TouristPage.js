@@ -1,10 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
+import castle from "../icons/prague_cas.png";
 import {
   mockResults,
   recommendedTickets,
-  touristSpots
+  touristSpots,
 } from "../data/textData";
 import "./TouristPage.css";
 
@@ -25,18 +26,20 @@ function TouristPage() {
 
   return (
     <>
-      {" "}
       <div className="tourist-page">
         <h1>Tourist Spots</h1>
         <div className="tourist-spots-list">
           {touristSpots.map((spot) => (
-            <div
-              key={spot.id}
-              className="tourist-spot-card"
-              onClick={() => handleNavigate(spot.destination)}
-            >
-              <h2>{spot.name}</h2>
-              <p>Destination: {spot.destination}</p>
+            <div className="tourist-spot-card">
+              <img className="tourist-spot-img" alt={spot.name} src={castle} />
+              <div
+                key={spot.id}
+                className="tourist-spot-info"
+                onClick={() => handleNavigate(spot.destination)}
+              >
+                <h2>{spot.name}</h2>
+                <p>Destination: {spot.destination}</p>
+              </div>
             </div>
           ))}
         </div>

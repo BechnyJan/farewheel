@@ -12,17 +12,45 @@
   gap: 10px;
 }
 
-.tourist-spot-card {
+.tourist-spot-card,
+.tourist-spot-info {
   padding: 15px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-bottom-right-radius:  5px;
+   border-bottom-left-radius:  5px;
   cursor: pointer;
   transition: transform 0.2s;
+  border-top: none;
 }
 
-.tourist-spot-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+.tourist-spot-card {
+  padding: 0;
+  border: 0;
+}
+
+.tourist-spot-img {
+  width: 100%;
+  /* height: auto;  */
+  height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.tourist-spot-info h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.tourist-spot-info p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 0;
+}
+
+.tourist-spot-img:hover {
+  transform: scale(1.02);
 }
 
 /* .recommended-tickets-list {

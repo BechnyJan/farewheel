@@ -10,6 +10,8 @@ function TrafficLines({ tram, metro }) {
     return colors[index % colors.length]; // Cyklování barev
   };
 
+  // console.log(metro);
+  
   const handleRouteClick = (route) => {
     navigate("/extras/route-detail", { state: { route } });
   };

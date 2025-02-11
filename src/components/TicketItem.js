@@ -17,7 +17,7 @@ export default function TicketItem({
   // jsem pridat descrease time
   // console.log(activationTime, validTime);
   const [ticket, setTicket] = useState([]);
-  // const [verificationCode, setVerificationCode] = useState("");
+  const [protectionTime, setProtectionTime] = useState(null);
   const [remainingTime, setRemainingTime] = useState(null);
   const [isPending, setIsPending] = useState(false);
 
@@ -26,14 +26,6 @@ export default function TicketItem({
     const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
     const selectedTicket = savedTickets.find((ticket) => ticket.id === id);
     setTicket(selectedTicket);
-
-    // if (selectedTicket) {
-    //   // Generate a random verification code
-    //   const randomCode = Math.random()
-    //     .toString(36)
-    //     .substring(2, 10)
-    //     .toUpperCase();
-    //   setVerificationCode(randomCode);
 
     //   // Set initial remaining time
     //   if (selectedTicket.validUntil) {
@@ -47,19 +39,35 @@ export default function TicketItem({
       const checkPendingStatus = activationTime - Date.now();
       setIsPending(checkPendingStatus > 0);
 
-      // if (ticket?.validUntil) {
+      if (checkPendingStatus > 0) {
+        setProtectionTime(60000); // Start at 60s
+      } else {
+        setRemainingTime(validTime - Date.now());
+      }
+
       const interval = setInterval(() => {
-        const timeLeft = validTime - Date.now();
-        setRemainingTime(timeLeft);
-        setIsPending(activationTime > Date.now());
-        if (timeLeft <= 0) {
+        setProtectionTime((prev) => {
+          if (prev > 0) {
+            return prev - 1000; // Decrease protection time
+          } else {
+            setIsPending(false); // Protection is over
+            return 0;
+          }
+        });
+
+        setRemainingTime((prev) => {
+          const timeLeft = validTime - Date.now();
+          return isPending ? prev : Math.max(timeLeft, 0); // Prevent state reset during pending
+        });
+
+        if (validTime - Date.now() <= 0) {
           clearInterval(interval);
         }
       }, 1000);
 
       return () => clearInterval(interval);
     }
-  }, [activationTime, validTime]);
+  }, [activationTime, validTime, isPending]);
 
   const formatTime = (ms) => {
     if (ms <= 0) return "Expired";
@@ -75,6 +83,8 @@ export default function TicketItem({
   const activationFormattedTime = activationTime
     ? dayjs(activationTime).format("HH:mm DD-MM-YYYY")
     : null;
+
+  const ticketClass = isPending ? "ticket-pending" : "ticket-active";
 
   return (
     <Link to={`/ticket/${id}`} key={`${id}-${index}`} className="ticket-item">
@@ -92,7 +102,11 @@ export default function TicketItem({
             <p>Starts at: {activationFormattedTime}</p>
             <p>Valid Until: {validFormattedTime}</p>
             <div className="ticket-activation_desc">
-              <p className={isPending ? 'ticket-pending' : 'ticket-active'}>{formatTime(remainingTime)}</p>
+              <p className={ticketClass}>
+                {isPending
+                  ? formatTime(protectionTime)
+                  : formatTime(remainingTime)}
+              </p>
             </div>
           </div>
         ) : (

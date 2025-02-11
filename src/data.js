@@ -1,10 +1,167 @@
 export const stations = [
-  { name: 'Hlavní nádraží' },
-  { name: 'Karlův most' },
-  { name: 'Letiště Václava Havla' },
-  { name: 'Muzeum' },
-  { name: 'Florenc' },
-  { name: 'Anděl' },
+  { name: "Anděl" },
+  { name: "Arbesovo náměstí" },
+  { name: "Belárie" },
+  { name: "Bertramka" },
+  { name: "Bohemians" },
+  { name: "Bořislavka" },
+  { name: "Braunova" },
+  { name: "Bruselská" },
+  { name: "Budějovická" },
+  { name: "Bílá Hora" },
+  { name: "Bílá labuť" },
+  { name: "Břevnovský klášter" },
+  { name: "Chodov" },
+  { name: "Ciolkovského" },
+  { name: "Dejvická" },
+  { name: "Depo Hostivař" },
+  { name: "Divoká Šárka" },
+  { name: "Dlouhá třída" },
+  { name: "Drinopol" },
+  { name: "Dubečská" },
+  { name: "Dvorce" },
+  { name: "Dědina" },
+  { name: "Dělnická" },
+  { name: "Flora" },
+  { name: "Florenc" },
+  { name: "Hadovka" },
+  { name: "Hasičská stanice Modřany" },
+  { name: "Hellichova" },
+  { name: "Hercovka" },
+  { name: "Hlavní nádraží" },
+  { name: "Hloubětín" },
+  { name: "Holešovická tržnice" },
+  { name: "Hostivařská" },
+  { name: "Hradčanská" },
+  { name: "Háje" },
+  { name: "Hůrka" },
+  { name: "I. P. Pavlova" },
+  { name: "Invalidovna" },
+  { name: "Italská" },
+  { name: "Jana Masaryka" },
+  { name: "Jinonice" },
+  { name: "Jiřího z Poděbrad" },
+  { name: "Kamenická" },
+  { name: "Karlovo náměstí" },
+  { name: "Kavalírka" },
+  { name: "Kačerov" },
+  { name: "Ke Stírce" },
+  { name: "Klamovka" },
+  { name: "Kobylisy" },
+  { name: "Koh-i-noor" },
+  { name: "Kolbenova" },
+  { name: "Kotlářka" },
+  { name: "Krematorium Strašnice" },
+  { name: "Krymská" },
+  { name: "Kublov" },
+  { name: "Kubánské náměstí" },
+  { name: "Křižíkova" },
+  { name: "Křížová" },
+  { name: "Laurová" },
+  { name: "Letenské náměstí" },
+  { name: "Letňany" },
+  { name: "Levského" },
+  { name: "Libuš" },
+  { name: "Lipanská" },
+  { name: "Luka" },
+  { name: "Lužiny" },
+  { name: "Ládví" },
+  { name: "Malostranská" },
+  { name: "Malostranské náměstí" },
+  { name: "Malovanka" },
+  { name: "Malý Břevnov" },
+  { name: "Marjánka" },
+  { name: "Masarykovo nádraží" },
+  { name: "Mezi Hřbitovy" },
+  { name: "Modřanská rokle" },
+  { name: "Modřanská škola" },
+  { name: "Muzeum" },
+  { name: "Můstek" },
+  { name: "Na Groši" },
+  { name: "Na Hroudě" },
+  { name: "Na Pískách" },
+  { name: "Nad Džbánem" },
+  { name: "Nad Trojou" },
+  { name: "Nemocnice Motol" },
+  { name: "Nové Butovice" },
+  { name: "Nuselská radnice" },
+  { name: "Nábřeží Kapitána Jaroše" },
+  { name: "Nádraží Braník" },
+  { name: "Nádraží Holešovice" },
+  { name: "Nádraží Hostivař" },
+  { name: "Nádraží Modřany" },
+  { name: "Nádraží Veleslavín" },
+  { name: "Nádraží Vršovice" },
+  { name: "Nádraží Zahradní Město" },
+  { name: "Nákladové nádraží Žižkov" },
+  { name: "Náměstí Míru" },
+  { name: "Náměstí Republiky" },
+  { name: "Národní třída" },
+  { name: "Obchodní centrum Hostivař" },
+  { name: "Obora Hvězda" },
+  { name: "Observatoř Libuš" },
+  { name: "Olšanské hřbitovy" },
+  { name: "Olšanské náměstí" },
+  { name: "Opatov" },
+  { name: "Ortenovo náměstí" },
+  { name: "Otakarova" },
+  { name: "Palackého náměstí" },
+  { name: "Palmovka" },
+  { name: "Park Maxe van der Stoela" },
+  { name: "Petřiny" },
+  { name: "Pobřežní cesta" },
+  { name: "Podolská vodárna" },
+  { name: "Poliklinika Modřany" },
+  { name: "Prašný most" },
+  { name: "Pražského povstání" },
+  { name: "Prosek" },
+  { name: "Průběžná" },
+  { name: "Přístaviště" },
+  { name: "Radhošťská" },
+  { name: "Radlická" },
+  { name: "Radošovická" },
+  { name: "Rajská zahrada" },
+  { name: "Roztyly" },
+  { name: "Ruská" },
+  { name: "Skalka" },
+  { name: "Slavia - Nádraží Eden" },
+  { name: "Smíchovské nádraží" },
+  { name: "Sparta" },
+  { name: "Staroměstská" },
+  { name: "Staré Strašnice" },
+  { name: "Stodůlky" },
+  { name: "Strašnická" },
+  { name: "Střížkov" },
+  { name: "Sídliště Libuš" },
+  { name: "Sídliště Modřany" },
+  { name: "Sídliště Na Dědině" },
+  { name: "Sídliště Zahradní Město" },
+  { name: "Sídliště Červený Vrch" },
+  { name: "Thákurova" },
+  { name: "Trojská" },
+  { name: "U Kaštanu" },
+  { name: "U Libušského potoka" },
+  { name: "U Průhonu" },
+  { name: "U Zvonu" },
+  { name: "Viktoria Žižkov" },
+  { name: "Vinohradská tržnice" },
+  { name: "Vinohradské hřbitovy" },
+  { name: "Vlastina" },
+  { name: "Vltavská" },
+  { name: "Vozovna Strašnice" },
+  { name: "Vozovna Střešovice" },
+  { name: "Vozovna Vokovice" },
+  { name: "Vršovické náměstí" },
+  { name: "Vypich" },
+  { name: "Vysočanská" },
+  { name: "Vyšehrad" },
+  { name: "Vítězné náměstí" },
+  { name: "Výtoň" },
+  { name: "Zahradní Město" },
+  { name: "Zborovská" },
+  { name: "Zličín" },
+  { name: "Zvonařka" },
+  { name: "Újezd" },
 ];
 
 // 1
@@ -32,70 +189,4 @@ export const stations = [
 // Trojská
 // Nad Trojou
 // Hercovka
-// Ke Stírce 
-
-// A
-
-// Depo Hostivař
-// Skalka
-// Strašnická
-// Želivského
-// Flora
-// Jiřího z Poděbrad
-// Náměstí Míru
-// Muzeum
-// Můstek
-// Staroměstská
-// Malostranská
-// Hradčanská
-// Dejvická
-// Bořislavka
-// Nádraží Veleslavín
-// Petřiny 
-// Nemocnice Motol
-
-// B
-
-// Zličín
-// Stodůlky
-// Luka
-// Lužiny
-// Hůrka
-// Nové Butovice
-// Jinonice
-// Smíchovské nádraží
-// Anděl
-// Karlovo náměstí
-// Národní třída
-// Můstek
-// Náměstí Republiky
-// Florenc
-// Křižíkova
-// Invalidovna
-// Palmovka
-// Vysočanská
-// Kolbenova
-// Hloubětín
-// Rajská zahrada 
-// Černý Most
-
-// C 
-
-// Prosek
-// Střížkov
-// Ládví
-// Kobylisy
-// Nádraží Holešovice
-// Vltavská
-// Florenc
-// Hlavní nádraží
-// Muzeum
-// I. P. Pavlova
-// Vyšehrad
-// Pražského povstání
-// Budějovická
-// Kačerov
-// Roztyly
-// Chodov
-// Opatov 
-// Letňany
+// Ke Stírce

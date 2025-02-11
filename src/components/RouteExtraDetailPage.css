@@ -1,11 +1,35 @@
 .route-detail-container {
   padding: 20px;
-  font-family: Arial, sans-serif;
+  padding-bottom: 10px;
 }
 
-/* .route-detail-container h1 {
-  margin-bottom: 20px;
-} */
+.route-direction_container {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding-bottom:3rem;
+}
+
+.route-direction_item {
+  width: 35%;
+}
+
+.route-direction_item h2 {
+  font-size: 1.15rem;
+  color: #007bff;
+  margin: 0.25rem 0;
+}
+
+.route-direction_item ul {
+  width: 80%;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  margin: 0 auto;
+}
+
+.route-direction_item ul li {
+  margin-bottom: 1rem;
+}
 
 .route-detail-container p {
   margin: 10px 0;

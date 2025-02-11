@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
-import SingleTicketDetail from "../components/SingleTicketDetail";
 import TicketsList from "../components/TicketsList";
 import "./TicketsPage.css";
 
@@ -10,7 +9,6 @@ export default function TicketsPage({ process, setProcessPurchase }) {
   const navigate = useNavigate();
 
   const tickets = localStorage.getItem("tickets");
-  // console.log(tickets === "[]");
 
   const handleNavigation = (category) => {
     navigate(`/tickets/${category}`);
@@ -40,20 +38,14 @@ export default function TicketsPage({ process, setProcessPurchase }) {
           Passes
         </NavLink>
       </div>
-
-      {/* {ticketOptions.map((option, index) => (
-            <SingleTicketDetail
-              key={index}
-              name={option.name}
-              price={option.price}
-              icon={option.icon}
-              duration={option.duration}
-            />
-          ))} */}
-
+      <div className="info-box">
+        <span>ℹ️</span>
+        <p>
+          Those tickets are neccessary to be activated before the usage. There
+          is a minute of protection during that time the ticket is invalid.
+        </p>
+      </div>
       <TicketsList process={process} />
-      {/* tickets == "[]" || tickets || */}
-
       <NavLink
         className="tickets-navigation_link-purchase"
         onClick={handlePurchase}
@@ -61,7 +53,6 @@ export default function TicketsPage({ process, setProcessPurchase }) {
       >
         Purchase
       </NavLink>
-
       <BottomNavBar />
     </div>
   );

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import BackButton from "./BackButton";
 import ResultDetail from "./ResultDetail";
 import "./RouteResultPage.css";
 
@@ -12,22 +13,18 @@ export default function RouteResultPage() {
 
       
   }, [location.state, results]);
-// && results.length > 0
 
 console.log(means);
 
   return (
     <div className="route-results-modal">
-      <button className="back-btn" onClick={() => navigate(-1)}>
-        ←
-      </button>
-      <h1>Spojení</h1>
+      <BackButton title={'Spojení'} /> 
       <p className="route-results-description">
         {from} → {to}
       </p>
       <div className="results-list">{results  ? (
         results.map((route, index) => (
-          <ResultDetail key={index} route={route} />
+          <ResultDetail key={index} route={route} from={from} to={to}/>
         ))
       ) : (
         <p>Žádné dostupné spojení.</p>

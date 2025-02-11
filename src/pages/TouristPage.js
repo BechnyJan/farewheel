@@ -24,6 +24,26 @@ function TouristPage() {
     });
   };
 
+    console.log('zde');
+
+
+  const handleTouristTicket = (ticket, index) => {
+    //  navigate("/confirmation", {
+
+    // state: { id, icon, name, price, duration, quantity, total: price })
+    
+    navigate(`/confirmation`, {
+      state: {
+        id: ticket.id,
+        name: ticket.name,
+        price: ticket.price,
+        duration: ticket.duration,
+        quantity: 1,
+        total: ticket.price,
+      },
+    });
+  };
+
   return (
     <>
       <div className="tourist-page">
@@ -31,7 +51,7 @@ function TouristPage() {
         <div className="tourist-spots-list">
           {touristSpots.map((spot) => (
             <div className="tourist-spot-card">
-              <img className="tourist-spot-img" alt={spot.name} src={castle} />
+              <img className="tourist-spot-img" alt={spot.name} src={castle} onClick={() => handleNavigate(spot.destination)} />
               <div
                 key={spot.id}
                 className="tourist-spot-info"
@@ -46,14 +66,14 @@ function TouristPage() {
         {/* tourist-tickets-container */}
         <h2>Recommended Tickets for Tourists</h2>
         <div className="tourist-tickets-container">
-          {recommendedTickets.map((ticket) => (
+          {recommendedTickets.map((ticket, index) => (
             <div key={ticket.id} className="tourist-ticket-card">
               <h3 className="tourist-ticket-header">{ticket.name}</h3>
               <p className="tourist-ticket-price">Price: {ticket.price} CZK</p>
               <p className="tourist-ticket-description">{ticket.description}</p>
               <button
                 className="buy-ticket-btn"
-                onClick={() => navigate("/confirmation", { state: ticket })}
+                onClick={() => handleTouristTicket(ticket, index)}
               >
                 Buy {ticket.name}
               </button>

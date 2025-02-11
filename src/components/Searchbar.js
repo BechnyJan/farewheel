@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Searchbar.css";
+import classes from "./Searchbar.module.css";
 import StationSelectModal from "./StationSelectModal";
 
 export default function SearchBar() {
@@ -53,6 +53,7 @@ export default function SearchBar() {
       to: "Karlův most",
     },
   ];
+  console.log(classes);
 
   const handleTransportChange = (e) => {
     const { id, checked } = e.target;
@@ -111,8 +112,8 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="search-bar">
-      <div className="search-container">
+    <div className={classes["search-bar"]}>
+      <div className={classes["search-container"]}>
         <label>Nástupní stanice:</label>
         <input
           type="text"
@@ -120,11 +121,11 @@ export default function SearchBar() {
           readOnly
           onClick={() => setModalType("from")}
           placeholder="Vyberte nástupní stanici..."
-          className="search-input"
+          className={classes["search-input"]}
         />
       </div>
 
-      <div className="search-container">
+      <div className={classes["search-container"]}>
         <label>Výstupní stanice:</label>
         <input
           type="text"
@@ -132,26 +133,30 @@ export default function SearchBar() {
           readOnly
           onClick={() => setModalType("to")}
           placeholder="Vyberte výstupní stanici..."
-          className="search-input"
+          className={classes["search-input"]}
         />
       </div>
 
-      <div className="filter-section">
+      <div className={classes["filter-section"]}>
         <div
-          className="filter-toggle"
+          className={
+            !showFilters
+              ? classes["filter-toggle"]
+              : classes["filter-active"]
+          }
           onClick={() => setShowFilters(!showFilters)}
         >
           <p>Extended Filter</p>
           <span>{showFilters ? "▲" : "▼"}</span>
         </div>
         {showFilters && (
-          <div className="filters">
+          <div className={classes.filters}>
             <div>
               <h2>Extended Filter</h2>
-              <div className="filter-transport_types">
+              <div className={classes["filter-transport_types"]}>
                 <h3>Selected Means of Transport</h3>
-                <div className="filter-container">
-                  <div className="filter-item_container">
+                <div className={classes["filter-container"]}>
+                  <div className={classes["filter-item_container"]}>
                     <label htmlFor="metro">Metro</label>
                     <input
                       id="metro"
@@ -174,8 +179,8 @@ export default function SearchBar() {
               </div>
             </div>
             <div
-              className="filter-item_container"
-              id="filter-container-accessible"
+              className={classes["filter-item_container"]}
+              // id="filter-container-accessible"
             >
               <label htmlFor="accessibleOnly">Bezbariérový vstup</label>
               <input
@@ -193,20 +198,20 @@ export default function SearchBar() {
                 readOnly
                 onClick={() => setModalType("exclude")}
                 placeholder="Vyberte vyloučené stanice..."
-                className="search-input"
+                className={classes["search-input"]}
               />
             </div>
             {excludedStations.length > 0 && (
               <button onClick={() => setExcludedStations([])}>Reset</button>
             )}
-            <div className="filter-section_time">
+            <div className={classes["filter-section_time"]}>
               <label htmlFor="time">Čas odjezdu:</label>
               <input
                 id="time"
                 type="time"
                 value={timeHour}
                 onChange={(e) => setTimeHour(e.target.value)}
-                className="search-input"
+                className={classes["search-input"]}
               />
             </div>
           </div>
@@ -215,14 +220,13 @@ export default function SearchBar() {
 
       {modalType && (
         <StationSelectModal
-          // modal={setModalType}
           onClose={() => setModalType(null)}
           onSelect={handleModalSelect}
           onExclude={modalType === "exclude" ? excludedStations : undefined}
         />
       )}
 
-      <button className="searchbar-btn" onClick={handleSearch}>
+      <button className={classes["searchbar-btn"]} onClick={handleSearch}>
         Hledat spojení
       </button>
     </div>

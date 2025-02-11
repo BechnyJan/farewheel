@@ -6,7 +6,6 @@
 .tickets-page > h1 {
   margin-top: 8px;
   font-size: 24px;
-  /* text-align: center; */
   color: #007bff;
 }
 
@@ -34,15 +33,18 @@
   width: 80%;
 }
 
+.tickets-navigation_link-purchase:hover, .tickets-navigation_link:hover {
+  background-color: #0b417c;
+}
+
 .tickets-navigation_link.active {
-  /* font-weight: 600; */
   color: #ffd700;
 }
 
 .info-box {
   background-color: #e7f3ff;
   color: #0056b3;
-  padding: 15px;
+  padding: 1rem;
   /* margin-bottom: 20px; */
   border-radius: 8px;
   display: flex;

@@ -6,16 +6,23 @@
   background: #007bff;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
+  padding: 10px 0px;
+  gap: 0.5rem;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .nav-item {
   color: white;
+  padding: 5px 0;
+  border-radius: 0.25rem;
   text-decoration: none;
   font-size: 14px;
   text-align: center;
   flex: 1;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -ms-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
 }
 
 .nav-item h4 {
@@ -24,9 +31,11 @@
 
 .nav-item:hover {
   color: #ffd700;
+  background-color: #0b417c;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .nav-item.active {
-  font-weight: bold;
   color: #ffd700;
 }
+

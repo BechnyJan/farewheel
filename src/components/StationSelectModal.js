@@ -23,6 +23,8 @@ export default function StationSelectModal({ onClose, onSelect, onExclude, modal
     }
   }, []);
 
+  
+
   return (
     <div className="station-modal-overlay">
       <div className="station-modal">
@@ -53,7 +55,7 @@ export default function StationSelectModal({ onClose, onSelect, onExclude, modal
             <button>Saved</button>
           </div>
         )}
-        {/* {query && query.length > 0 && ( */}
+         {query && query.length > 0 && ( 
         <div className="station-results">
           {filteredStations.map((station, index) => (
             <button
@@ -68,7 +70,7 @@ export default function StationSelectModal({ onClose, onSelect, onExclude, modal
             </button>
           ))}
         </div>
-        {/* )} */}
+       )} 
         {filteredStations.length === 0 && query && (
           <p className="no-results">No results found.</p>
         )}

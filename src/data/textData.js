@@ -31,14 +31,13 @@ export const recommendedTickets = [
   },
 ];
 
-// const ticketOptions = [
-//   { name: "Single ticket", price: "15", icon: "🚌", duration: "" },
-//   // { name: "Heritage service single ticket", price: "500 CZK", icon: "🏛️" },
-//   { name: "30minutes ticket", price: "20", icon: "⏱️", duration: "30" },
-//   { name: "90minutes ticket", price: "30", icon: "⏳", duration: "90" },
-//   { name: "Airport shuttle", price: "100", icon: "✈️", duration: "" },
-//   { name: "Block of 10 tickets", price: "130", icon: "🔟", duration: "" },
-// ];
+export const ticketOptions = [
+  { name: "Single ticket", price: "15", icon: "🚌", duration: "" },
+  { name: "30minutes ticket", price: "20", icon: "⏱️", duration: "30" },
+  { name: "90minutes ticket", price: "30", icon: "⏳", duration: "90" },
+  { name: "Airport shuttle", price: "100", icon: "✈️", duration: "" },
+  { name: "Block of 10 tickets", price: "130", icon: "🔟", duration: "" },
+];
 
 export const mockResults = [
   {

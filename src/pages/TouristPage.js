@@ -6,6 +6,7 @@ import castle from "../icons/prague_cas.png";
 import {
   mockResults,
   recommendedTickets,
+  ticketOptions,
   touristSpots,
 } from "../data/textData";
 import "./TouristPage.css";
@@ -15,17 +16,19 @@ function TouristPage() {
   const currentLocation = "Hlavní nádraží"; // Hardcoded current location for prototype
 
   const handleNavigate = (destination) => {
+    // details/1
     navigate("/route-results", {
       state: {
         from: currentLocation,
         to: destination,
         results: mockResults,
         time: new Date().getTime(),
+        data: ticketOptions
       },
     });
   };
 
-  console.log("zde");
+  // console.log("zde");
 
   const handleTouristTicket = (ticket, index) => {
     //  navigate("/confirmation", {

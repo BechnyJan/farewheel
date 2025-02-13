@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./Searchbar.module.css";
 import StationSelectModal from "./StationSelectModal";
+import { ticketOptions } from "../data/textData";
 
 export default function SearchBar() {
   const navigate = useNavigate();
@@ -96,6 +97,7 @@ export default function SearchBar() {
         means: meansOfTransport,
         time: timeHour,
         results: filteredResults,
+        data: ticketOptions,
       },
     });
   };
@@ -140,9 +142,7 @@ export default function SearchBar() {
       <div className={classes["filter-section"]}>
         <div
           className={
-            !showFilters
-              ? classes["filter-toggle"]
-              : classes["filter-active"]
+            !showFilters ? classes["filter-toggle"] : classes["filter-active"]
           }
           onClick={() => setShowFilters(!showFilters)}
         >

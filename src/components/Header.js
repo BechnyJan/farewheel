@@ -11,14 +11,16 @@ export default function Header() {
   };
 
   const homeHandler = () => {
-    navigate('/')
-  }
+    navigate("/");
+  };
   return (
     <header>
       <h1 onClick={homeHandler}>FareWheel</h1>
-      <label onClick={accountHandler} htmlFor="auth">
-        <img src={Tourist} id="auth" alt="account" />
-      </label>
+      {/* <div> */}
+        <label onClick={accountHandler} htmlFor="auth">
+          <img src={Tourist} id="auth" alt="account" />
+        </label>
+      {/* </div> */}
     </header>
   );
 }

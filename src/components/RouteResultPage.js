@@ -7,14 +7,14 @@ import "./RouteResultPage.css";
 export default function RouteResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { from, to, results,means } = location.state || {};
-  console.log(location.state.results,results);
+  const { from, to, results,means, data } = location.state || {};
+  // console.log(location.state.results,results);
   useEffect(() => {
 
       
   }, [location.state, results]);
 
-console.log(means);
+console.log( data);
 
   return (
     <div className="route-results-modal">
@@ -24,7 +24,7 @@ console.log(means);
       </p>
       <div className="results-list">{results  ? (
         results.map((route, index) => (
-          <ResultDetail key={index} route={route} from={from} to={to}/>
+          <ResultDetail key={index} index={index} data={data}route={route} from={from} to={to}/>
         ))
       ) : (
         <p>Žádné dostupné spojení.</p>

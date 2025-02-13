@@ -2,9 +2,15 @@ header {
   display: flex;
   justify-content: space-between;
   background-color: #0b417c;
+  align-items: center;
   padding: 1rem 2rem;
 }
 
 header h1 {
   color: white;
+  cursor: pointer;
+}
+
+header label {
+  cursor: pointer;
 }

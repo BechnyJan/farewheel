@@ -3,7 +3,7 @@ import "./TicketControle.css";
 
 function TicketControle() {
   return (
-    <section class="ticket-control">
+    <section className="ticket-control">
       <h2>Ticket controle</h2>
       <p>
         Ticket inspectors check the validity of tickets both inside vehicles and

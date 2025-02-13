@@ -79,14 +79,21 @@ export default function SearchBar() {
       return true;
     });
   };
-
+  let errText = "";
+  let err = <p>{errText}</p>;
   const handleSearch = () => {
+    if (fromQuery === toQuery) {
+      alert("Please select different starting and final destination.");
+      // errText = "Please select both starting and destination stations.";
+      return;
+    }
     if (!fromQuery || !toQuery) {
       alert("Please select both starting and final destination.");
-      console.error("Please select both starting and destination stations.");
+      // errText = "Please select both starting and destination stations.";
       return;
     }
 
+    // errText = "";
     const filteredResults = filterResults();
 
     navigate("/route-results", {
@@ -178,10 +185,7 @@ export default function SearchBar() {
                 </div>
               </div>
             </div>
-            <div
-              className={classes["filter-item_container"]}
-              // id="filter-container-accessible"
-            >
+            <div className={classes["filter-item_container"]}>
               <label htmlFor="accessibleOnly">Bezbariérový vstup</label>
               <input
                 id="accessibleOnly"
@@ -229,6 +233,7 @@ export default function SearchBar() {
       <button className={classes["searchbar-btn"]} onClick={handleSearch}>
         Hledat spojení
       </button>
+      {/* {err} */}
     </div>
   );
 }

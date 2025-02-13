@@ -3,7 +3,12 @@ import { stations } from "./../data";
 import BackButton from "./BackButton";
 import "./StationSelectModal.css";
 
-export default function StationSelectModal({ onClose, onSelect, onExclude, modal }) {
+export default function StationSelectModal({
+  onClose,
+  onSelect,
+  onExclude,
+  modal,
+}) {
   const [query, setQuery] = useState("");
   const inputRef = useRef(null);
 
@@ -23,13 +28,12 @@ export default function StationSelectModal({ onClose, onSelect, onExclude, modal
     }
   }, []);
 
-  
-
   return (
     <div className="station-modal-overlay">
       <div className="station-modal">
         <div className="station-top">
-          <BackButton onPress={onClose}
+          <BackButton
+            onPress={onClose}
             title={onExclude ? "Excluded Stations" : "Journey Trip"}
           />
         </div>
@@ -48,29 +52,43 @@ export default function StationSelectModal({ onClose, onSelect, onExclude, modal
         />
         {!onExclude && (
           <div className="station-tabs">
-            <button>Location</button>
-            <button>Home</button>
+            <button
+              onClick={() => {
+                setQuery("Hlavní nádraží");
+                inputRef.current.focus();
+              }}
+            >
+              Location
+            </button>
+            <button
+              onClick={() => {
+                setQuery("Hlavní nádraží");
+                inputRef.current.focus();
+              }}
+            >
+              Home
+            </button>
             <button>Work</button>
             <button>Tourist</button>
             <button>Saved</button>
           </div>
         )}
-         {query && query.length > 0 && ( 
-        <div className="station-results">
-          {filteredStations.map((station, index) => (
-            <button
-              key={index}
-              className="result-btn"
-              onClick={() => {
-                onSelect(station.name);
-                onClose();
-              }}
-            >
-              {station.name}
-            </button>
-          ))}
-        </div>
-       )} 
+        {query && query.length > 0 && (
+          <div className="station-results">
+            {filteredStations.map((station, index) => (
+              <button
+                key={index}
+                className="result-btn"
+                onClick={() => {
+                  onSelect(station.name);
+                  onClose();
+                }}
+              >
+                {station.name}
+              </button>
+            ))}
+          </div>
+        )}
         {filteredStations.length === 0 && query && (
           <p className="no-results">No results found.</p>
         )}

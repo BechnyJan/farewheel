@@ -1,5 +1,16 @@
+/* header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #0b417c;
+  padding: 1rem 2rem;
+} */
+
+header h1 {
+  color: white;
+}
+
 .tickets-page {
-  padding: 20px;
+  padding: 0.25rem 20px;
   font-family: Arial, sans-serif;
 }
 
@@ -26,6 +37,27 @@
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.tickets-content {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.tickets-content-btn {
+  color: #0b417c;
+  background-color: white;
+  border: 2px solid #0b417c;
+}
+
+.tickets-content-btn_active {
+  border: 2px solid #0b417c;
+  background-color: #0b417c;
+}
+
+.tickets-content-btn_active:hover,
+.tickets-content-btn:hover {
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .tickets-navigation_link-purchase {
   position: fixed;
   z-index: 100;
@@ -33,7 +65,8 @@
   width: 80%;
 }
 
-.tickets-navigation_link-purchase:hover, .tickets-navigation_link:hover {
+.tickets-navigation_link-purchase:hover,
+.tickets-navigation_link:hover {
   background-color: #0b417c;
 }
 
@@ -44,10 +77,10 @@
 .info-box {
   background-color: #e7f3ff;
   color: #0056b3;
-  padding: 1rem;
-  /* margin-bottom: 20px; */
+  padding: 0 1rem;
   border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 10px;
+  font-size: 0.75rem;
 }

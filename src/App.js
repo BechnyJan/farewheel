@@ -32,7 +32,7 @@ function App() {
         const account = JSON.parse(storedAccount);
         console.log(account); // Zde bude načtený objekt, pokud je JSON validní
       } else {
-        console.log("Žádná data v localStorage.");
+        // console.log("Žádná data v localStorage.");
       }
     } catch (error) {
       console.error("Chyba při parsování JSON:", error);

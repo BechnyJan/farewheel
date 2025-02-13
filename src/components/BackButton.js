@@ -24,7 +24,7 @@ export default function BackButton({
   };
 
   return (
-    <div className="header">
+    <div className="back">
       <button className="back-btn" onClick={actionHandler}>
         ←
       </button>

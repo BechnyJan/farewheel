@@ -5,17 +5,13 @@ import "./PurchaseTicketDetail.css";
 
 export default function PurchaseTicketDetail({}) {
   const location = useLocation();
-  const { id, icon, name, price, duration } = location.state || {};
+  const { id, icon, name, price, duration, type } = location.state || {};
   const [quantity, setQuantity] = useState(1);
   const [activationType, setActivationType] = useState("manual");
   const navigate = useNavigate();
+  console.log(type);
 
   const handlePayment = () => {
-    // if (
-    //   duration === ''
-    // ) {
-    //     duration = '1'
-    // }
     let result = price * quantity;
     console.log(
       "Payment processed for:",
@@ -26,9 +22,38 @@ export default function PurchaseTicketDetail({}) {
       duration,
       result
     );
-    navigate(`/confirmation`, {
-      state: { id, icon, name, price, duration, quantity, total: result },
-    });
+    const activationState = activationType === "manual" ? false : true;
+    // activated: true,
+    //         activationTime: Date.now() + delayTime,
+    //         validUntil: Date.now() + val + delayTime
+    if (!type) {
+      navigate(`/confirmation`, {
+        state: {
+          id,
+          icon,
+          name,
+          price,
+          duration,
+          quantity,
+          activated: activationState,
+          total: result,
+        },
+      });
+    } else {
+      navigate(`/confirmation`, {
+        state: {
+          id,
+          icon,
+          name,
+          price,
+          duration,
+          quantity,
+          activated: activationState,
+          total: result,
+          type: true,
+        },
+      });
+    }
   }; // Přesměrování na potvrzovací stránku
 
   const btn = `Purchase ${quantity > 1 ? "tickets" : "ticket"} (${
@@ -38,21 +63,25 @@ export default function PurchaseTicketDetail({}) {
 
   return (
     <div className="purchase-ticket_detail">
-      <header className="purchase-header">
+      <div className="purchase-header">
         <BackButton title={name} />
-      </header>
+      </div>
       <div className="ticket-info">
         <div className="info-section">
-          <label htmlFor="quantity">Number of tickets:</label>
-          <input
-            className="purchase-input_range"
-            type="range"
-            id="quantity"
-            min="1"
-            max="10"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
-          />
+          {/* {!type &&(  */}
+          <>
+            <label htmlFor="quantity">Number of tickets:</label>
+            <input
+              className="purchase-input_range"
+              type="range"
+              id="quantity"
+              min="1"
+              max="10"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+            />
+          </>
+          {/* )} */}
           <p>
             {quantity} piece{quantity > 1 ? "s" : ""}
           </p>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import "./TicketItem.css";
 
@@ -20,12 +20,16 @@ export default function TicketItem({
   const [protectionTime, setProtectionTime] = useState(null);
   const [remainingTime, setRemainingTime] = useState(null);
   const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch ticket details from localStorage
     const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
     const selectedTicket = savedTickets.find((ticket) => ticket.id === id);
     setTicket(selectedTicket);
+    // const savedPasses = JSON.parse(localStorage.getItem("passes")) || [];
+    // const selectedPass = savedTickets.find((ticket) => ticket.id === id);
+    // setTicket(selectedTicket);
 
     //   // Set initial remaining time
     //   if (selectedTicket.validUntil) {
@@ -34,45 +38,60 @@ export default function TicketItem({
     // }
   }, [id]);
 
+  // console.log(duration / 60, id, index);
+
+  const detainHandler = () => {
+    navigate(`/ticket/${id}`);
+  };
+
   useEffect(() => {
-    if (validTime && activationTime) {
-      const checkPendingStatus = activationTime - Date.now();
-      setIsPending(checkPendingStatus > 0);
+    if (!activationTime || !validTime) return;
 
-      if (checkPendingStatus > 0) {
-        setProtectionTime(60000); // Start at 60s
-      } else {
-        setRemainingTime(validTime - Date.now());
-      }
+    // Calculate pending status
+    const checkPendingStatus = activationTime - Date.now();
+    setIsPending(checkPendingStatus > 0);
 
-      const interval = setInterval(() => {
-        setProtectionTime((prev) => {
-          if (prev > 0) {
-            return prev - 1000; // Decrease protection time
-          } else {
-            setIsPending(false); // Protection is over
-            return 0;
-          }
-        });
-
-        setRemainingTime((prev) => {
-          const timeLeft = validTime - Date.now();
-          return isPending ? prev : Math.max(timeLeft, 0); // Prevent state reset during pending
-        });
-
-        if (validTime - Date.now() <= 0) {
-          clearInterval(interval);
-        }
-      }, 1000);
-
-      return () => clearInterval(interval);
+    // If the ticket is pending, set the protection timer
+    if (checkPendingStatus > 0) {
+      setProtectionTime(checkPendingStatus);
+    } else {
+      setRemainingTime(Math.max(validTime - Date.now(), 0));
     }
-  }, [activationTime, validTime, isPending]);
+
+    // Create a countdown interval
+    const interval = setInterval(() => {
+      setProtectionTime((prev) => Math.max(prev - 1000, 0)); // Decrease protection time
+
+      setRemainingTime((prev) => {
+        const timeLeft = validTime - Date.now();
+        // return isPending ? prev : Math.max(timeLeft, 0);
+        return isPending ? protectionTime : Math.max(timeLeft, 0);
+      });
+
+      if (validTime - Date.now() <= 0) {
+        clearInterval(interval);
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [activationTime, validTime, isPending, protectionTime]);
 
   const formatTime = (ms) => {
     if (ms <= 0) return "Expired";
-    const minutes = Math.floor(ms / 60000);
+
+    const totalSeconds = Math.floor(ms / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = Math.floor((ms % 60000) / 1000);
+
+    if (days > 1) {
+      return `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    if (hours > 1) {
+      return `${hours}h ${minutes}m ${seconds}s`;
+    }
+
     return `${minutes}m ${seconds}s`;
   };
 
@@ -84,14 +103,29 @@ export default function TicketItem({
     ? dayjs(activationTime).format("HH:mm DD-MM-YYYY")
     : null;
 
+  const formatDuration = (minutes) => {
+    if (!minutes) return "One way ticket";
+    const days = Math.floor(minutes / 1440);
+    const hours = Math.floor((minutes % 1440) / 60);
+    const mins = minutes % 60;
+
+    let formatted = [];
+    if (days > 0) formatted.push(`${days}d`);
+    if (hours > 0) formatted.push(`${hours}h`);
+    if (mins > 0) formatted.push(`${mins}m`);
+
+    return `Duration: ${formatted.join(" ")}`;
+  };
+
   const ticketClass = isPending ? "ticket-pending" : "ticket-active";
 
   return (
-    <Link to={`/ticket/${id}`} key={`${id}-${index}`} className="ticket-item">
+    <div key={`${id}-${index}`} className="ticket-item">
       <div className="ticket-info">
         <h2>{name}</h2>
         <p>Price: {price} CZK</p>
-        <p>{!duration ? "One way ticket" : `Duration: ${duration} min`}</p>
+        <p>{formatDuration(duration)}</p>
+        {/* <p>{!duration ? "One way ticket" : `Duration: ${duration} min`}</p> */}
         {activated ? (
           <div>
             {isPending ? (
@@ -117,7 +151,14 @@ export default function TicketItem({
             Activate
           </button>
         )}
+        {activated && (
+          <div className="ticket-detail_container">
+            <button className="ticket-detail" onClick={detainHandler}>
+              Detail
+            </button>
+          </div>
+        )}
       </div>
-    </Link>
+    </div>
   );
 }

@@ -16,8 +16,8 @@
 .tourist-spot-info {
   padding: 15px;
   border: 1px solid #ccc;
-  border-bottom-right-radius:  5px;
-   border-bottom-left-radius:  5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
   cursor: pointer;
   transition: transform 0.2s;
   border-top: none;
@@ -50,7 +50,8 @@
 }
 
 .tourist-spot-img:hover {
-  transform: scale(1.02);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  /* transform: scale(1.02); */
 }
 
 /* .recommended-tickets-list {
@@ -134,3 +135,10 @@
 .tourist-ticket-btn:hover {
   background-color: #0056b3;
 }
+
+@media screen and (min-width: 700px) {
+  .tourist-spots-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+/* pridat pro tablet do gridu  */

@@ -6,20 +6,65 @@ export default function ConfirmationPage({ ticket, onClose }) {
 
   console.log(state);
   const saveToStorage = () => {
-
     const savedTickets = JSON.parse(localStorage.getItem("tickets")) || []; //tady
+    const savedPasses = JSON.parse(localStorage.getItem("passes")) || [];
+    if (!state.type) {
+      let val = 0;
+      let delayTime = 0;
+      let newTickets;
+      if (state.activated) {
+        val = state.duration ? +state.duration * 60 * 1000 : 60;
+        delayTime = 60 * 1000;
 
-    // Vytvoříme nové jízdenky na základě množství
-    const newTickets = Array.from({ length: state.quantity }).map((_, i) => ({
-      ...state,
-      id: `${state.name}-${Date.now()}-${i}`, // Unikátní ID
-      quantity: 1, 
-    }));
+        newTickets = Array.from({ length: state.quantity }).map((_, i) => ({
+          ...state,
+          id: `${state.name}-${Date.now()}-${i}`,
+          quantity: 1,
+          activationTime: Date.now() + delayTime,
+          validUntil: Date.now() + val + delayTime,
+        }));
+      } else {
+        newTickets = Array.from({ length: state.quantity }).map((_, i) => ({
+          ...state,
+          id: `${state.name}-${Date.now()}-${i}`,
+          quantity: 1,
+          // activationTime: Date.now() + delayTime,
+          // validUntil: Date.now() + val + delayTime,
+        }));
+      }
 
-    const updatedTickets = [...savedTickets, ...newTickets];
+      const updatedTickets = [...savedTickets, ...newTickets];
 
-    localStorage.setItem("tickets", JSON.stringify(updatedTickets));
+      localStorage.setItem("tickets", JSON.stringify(updatedTickets));
+    } else {
+      let val = 0;
+      let delayTime = 0;
+      let newPasses;
+      if (state.activated) {
+        val = state.duration ? +state.duration * 60 * 1000 : 60;
+        delayTime = 60 * 1000;
 
+        newPasses = Array.from({ length: state.quantity }).map((_, i) => ({
+          ...state,
+          id: `${state.name}-${Date.now()}-${i}`,
+          quantity: 1,
+          activationTime: Date.now() + delayTime,
+          validUntil: Date.now() + val + delayTime,
+        }));
+      } 
+      else {
+        newPasses = Array.from({ length: state.quantity }).map((_, i) => ({
+          ...state,
+          id: `${state.name}-${Date.now()}-${i}`,
+          quantity: 1,
+          activationTime: Date.now() + delayTime,
+          validUntil: Date.now() + val + delayTime,
+        }));
+      }
+
+      const updatedTickets = [...savedPasses, ...newPasses];
+      localStorage.setItem("passes", JSON.stringify(updatedTickets));
+    }
     navigate("/tickets");
   };
 

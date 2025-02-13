@@ -1,15 +1,19 @@
-import React from 'react'
-import BottomNavBar from '../components/BottomNavBar'
-import SearchBar from '../components/Searchbar'
+import React from "react";
+import BottomNavBar from "../components/BottomNavBar";
+import Header from "../components/Header";
+import SearchBar from "../components/Searchbar";
 
 function HomePage() {
   return (
-    <div className="homepage">
-      <h1>Vyhledávání spojení</h1>
-      <SearchBar />
-      <BottomNavBar />
-    </div>
-  )
+    <>
+      <Header />
+      <div className="homepage">
+        <h1>Vyhledávání spojení</h1>
+        <SearchBar />
+        <BottomNavBar />
+      </div>
+    </>
+  );
 }
 
-export default HomePage
+export default HomePage;

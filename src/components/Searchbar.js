@@ -53,7 +53,7 @@ export default function SearchBar() {
       to: "Karlův most",
     },
   ];
-  console.log(classes);
+  // console.log(classes);
 
   const handleTransportChange = (e) => {
     const { id, checked } = e.target;

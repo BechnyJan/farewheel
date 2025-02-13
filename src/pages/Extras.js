@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "../components/Header";
 import TicketControle from "../components/TicketControle";
 import TrafficLines from "../components/TrafficLines";
 import routesData from "../data/pid_routes.json";
@@ -10,7 +11,6 @@ export default function Extras() {
   // {
   const [routes, setRoutes] = useState(routesData);
 
-
   const metroRoutes = routes.filter((route) =>
     ["A", "B", "C"].includes(route.route_short_name)
   );
@@ -21,15 +21,18 @@ export default function Extras() {
   });
 
   return (
-    <div className="extras-container">
-      <h1>Extras</h1>
-      <article>
-        <TrafficLines metro={metroRoutes} tram={tramRoutes} />
-      </article>
-      <article>
-        <TicketControle />
-      </article>
-      <BottomNavBar />
-    </div>
+    <>
+      <Header />
+      <div className="extras-container">
+        <h1>Extras</h1>
+        <article className="extras-container">
+          <TrafficLines metro={metroRoutes} tram={tramRoutes} />
+        </article>
+        <article className="extras-container">
+          <TicketControle />
+        </article>
+        <BottomNavBar />
+      </div>
+    </>
   );
 }

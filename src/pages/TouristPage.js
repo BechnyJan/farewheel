@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Tourist from "../icons/tourist.svg";
 import BottomNavBar from "../components/BottomNavBar";
 import castle from "../icons/prague_cas.png";
 import {
@@ -24,15 +25,14 @@ function TouristPage() {
     });
   };
 
-    console.log('zde');
-
+  console.log("zde");
 
   const handleTouristTicket = (ticket, index) => {
     //  navigate("/confirmation", {
 
     // state: { id, icon, name, price, duration, quantity, total: price })
-    
-    navigate(`/confirmation`, {
+
+    navigate(`/tickets/details/${ticket.id}${index}`, {
       state: {
         id: ticket.id,
         name: ticket.name,
@@ -46,12 +46,25 @@ function TouristPage() {
 
   return (
     <>
+      <>
+        <header>
+          <h1>FareWheel</h1>
+          <>
+            <img src={Tourist} alt="account" />
+          </>
+        </header>
+      </>
       <div className="tourist-page">
         <h1>Tourist Spots</h1>
         <div className="tourist-spots-list">
           {touristSpots.map((spot) => (
             <div className="tourist-spot-card">
-              <img className="tourist-spot-img" alt={spot.name} src={castle} onClick={() => handleNavigate(spot.destination)} />
+              <img
+                className="tourist-spot-img"
+                alt={spot.name}
+                src={castle}
+                onClick={() => handleNavigate(spot.destination)}
+              />
               <div
                 key={spot.id}
                 className="tourist-spot-info"

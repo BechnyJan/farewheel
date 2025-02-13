@@ -11,6 +11,9 @@
   margin-top: 20px;
 }
 
+.extras-container_item {
+  /* padding-bottom: 4rem; */
+}
 
 
 .route-card:hover {

@@ -12,5 +12,20 @@
   padding: 0.25rem 0.5rem;
 }
 
+.ticket-detail_container {
+  text-align: right;
+}
 
+.ticket-detail {
+  padding: 0.6875rem;
+  border-radius: 0.25rem;
+  color: #007bff;
+  background-color: white;
+  border: 2px solid #007bff;
+}
 
+.ticket-detail:hover {
+  background-color: #0b417c;
+  color: white;
+  border:2px solid transparent;
+}

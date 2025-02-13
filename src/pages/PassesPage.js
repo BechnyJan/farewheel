@@ -13,27 +13,27 @@ export default function PassesPage({ process, setProcessPurchase }) {
   const passesData = {
     individual: [
       {
-        name: "15-day Budapest pass",
+        name: "15-day pass",
         price: "500",
         icon: "🕒",
         duration: "360",
       },
       {
-        name: "Monthly Prague-pass",
+        name: "Monthly pass",
         price: "950",
         icon: "📅",
         duration: "720",
       },
       {
-        name: "Prague County Pass (full-price)",
+        name: "Central County",
         price: "1 450",
         icon: "📍",
         duration: "168",
       },
-      { name: "Czech Pass Adult", price: "3 000", icon: "🇭🇺" },
+      { name: "Czech Pass", price: "3 000", icon: "🇭🇺" },
       { name: "Annual Adult-pass", price: "6 550", icon: "📆" },
       {
-        name: "Discounted annual Budapest-pass",
+        name: "Discounted annual Prague",
         price: "4 250",
         icon: "💸",
       },
@@ -91,7 +91,7 @@ export default function PassesPage({ process, setProcessPurchase }) {
         {location.pathname !== "/tickets/single" ? (
           <div className="info-box">
             <p>
-              <strong>Information:</strong> The Block of 10 tickets is now
+              <strong>ℹ️</strong> The Block of 10 tickets is now
               available digitally in selected apps.
             </p>
           </div>
@@ -112,6 +112,8 @@ export default function PassesPage({ process, setProcessPurchase }) {
                   name={pass.name}
                   icon={pass.icon}
                   price={pass.price}
+                  duration={pass.duration}
+                  type={true}
                 />
               </>
             ))}

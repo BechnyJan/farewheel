@@ -1,12 +1,23 @@
 import BottomNavBar from "../components/BottomNavBar";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./MorePage.css";
 
 export default function MorePage({ isSignedIn, setIsSignedIn }) {
   const navigate = useNavigate();
   // const [isSignedIn, setIsSignedIn] = useState(false); // Track sign-in status
+
+  const [account, setAccount] = useState(null);
+
+  useEffect(() => {
+    let acc = localStorage?.getItem("account");
+    if (acc) {
+      setAccount(JSON.parse(acc));
+    }
+  }, []);
+
+  console.log(account?.firstName);
 
   const menuItems = [
     { title: "Settings", icon: "⚙️", path: "/settings" },
@@ -17,6 +28,7 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
   ];
 
   const handleNavigation = (path) => {
+    return;
     navigate(path);
   };
 
@@ -40,10 +52,14 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
         <h1 className="more-title">More</h1>
         <div className="account-section">
           <h2>Account</h2>
-          {isSignedIn ? (
+          {account ? (
             <div className="account-actions">
-              <NavLink to='/account' >👤 Detail</NavLink>
-              <p>Welcome, User!</p>
+              <p to="/account">👤 {account?.firstName}</p>
+              <p>Welcome, {account?.firstName}!</p>
+              <div>
+                <p>Email</p>
+                <p>{account?.email}</p>
+              </div>
               <div className="account-btn_cotainer">
                 <button className="account-btn" onClick={handleSignOut}>
                   Sign Out

@@ -54,8 +54,6 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  
-
   const firstNameHandler = (e) => {
     setFormData((prev) => ({ ...prev, firstName: e.target.value }));
   };
@@ -87,7 +85,7 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     setIsSignedIn();
     navigate("/more");
   };
-console.log(location);
+  console.log(location);
 
   const toggleForm = () => {
     console.log(formData);
@@ -100,7 +98,6 @@ console.log(location);
     });
     setErrors({});
     setIsSignUp(!isSignUp);
-    
   };
 
   console.log(errors);
@@ -147,6 +144,7 @@ console.log(location);
                   id="dob"
                   value={formData.dob}
                   min="1940-01-01"
+                  max="2010-01-01"
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, dob: e.target.value }))
                   }
@@ -193,4 +191,3 @@ console.log(location);
     </>
   );
 }
-

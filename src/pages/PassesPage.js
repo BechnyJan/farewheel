@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import SingleTicketDetail from "../components/SingleTicketDetail";
@@ -6,6 +6,7 @@ import "./PassesPage.css";
 
 export default function PassesPage({ process, setProcessPurchase }) {
   const [activeTab, setActiveTab] = useState("individual");
+  const [err, setErr] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location.pathname);
@@ -53,6 +54,10 @@ export default function PassesPage({ process, setProcessPurchase }) {
     { name: "Block of 10 tickets", price: "130", icon: "🔟", duration: "" },
   ];
 
+  useEffect(() => {
+    // setInterval()
+  });
+
   const handleDetails = (pass) => {
     navigate(`/passes/${pass.name}`, { state: pass });
   };
@@ -60,6 +65,14 @@ export default function PassesPage({ process, setProcessPurchase }) {
   const processingHandler = () => {
     console.log("hhhh");
     setProcessPurchase();
+  };
+  const errHandler = () => {
+    setErr(true);
+  };
+
+  const signInHandler = () => {
+    navigate("/signin");
+    setErr(false);
   };
 
   const ticketPage = true;
@@ -89,11 +102,21 @@ export default function PassesPage({ process, setProcessPurchase }) {
           </button>
         </div>
         {location.pathname !== "/tickets/single" ? (
-          <div className="info-box">
-            <p>
-              <strong>ℹ️</strong> The Block of 10 tickets is now
-              available digitally in selected apps.
-            </p>
+          <div className={err ? "info-box_active" : "info-box"}>
+            {!err && (
+              <p className={""}>
+                <strong>ℹ️</strong> The Passes might be purchased only if you
+                have
+                <span onClick={signInHandler}> signed in.</span>
+              </p>
+            )}
+            {err && (
+              <p className={err ? "info-err" : ""}>
+                <strong>🚀</strong> The Passes might be purchased only if you
+                are
+                <span onClick={signInHandler}> signed in.</span>
+              </p>
+            )}
           </div>
         ) : (
           <div className="info-box">
@@ -114,6 +137,7 @@ export default function PassesPage({ process, setProcessPurchase }) {
                   price={pass.price}
                   duration={pass.duration}
                   type={true}
+                  onErr={errHandler}
                 />
               </>
             ))}

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ticketArrow from "../icons/ticket_arrow.svg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./SingleTicketDetai.css";
 
 export default function SingleTicketDetail({
@@ -10,12 +10,25 @@ export default function SingleTicketDetail({
   duration,
   id,
   type,
+  onErr,
 }) {
   const navigate = useNavigate();
-  // const logged = localStorage.getItem('token')
+  const location = useLocation();
+  const [logged, setLogged] = useState(null);
+
+  useEffect(() => {
+    const account = localStorage.getItem("account");
+    setLogged(account);
+  }, []);
   // console.log(id, icon);
 
-  const ticketHandler = () => {
+  const ticketHandler = (e) => {
+    console.log(e, type);
+
+    if (type && !logged) {
+      onErr();
+      return;
+    }
     if (!type) {
       navigate(`/tickets/details/${id}`, {
         state: { id, icon, name, price, duration },

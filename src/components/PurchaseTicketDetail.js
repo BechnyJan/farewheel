@@ -56,6 +56,8 @@ export default function PurchaseTicketDetail({}) {
     }
   }; // Přesměrování na potvrzovací stránku
 
+  console.log(location);
+
   const btn = `Purchase ${quantity > 1 ? "tickets" : "ticket"} (${
     price * quantity
   }
@@ -68,7 +70,7 @@ export default function PurchaseTicketDetail({}) {
       </div>
       <div className="ticket-info">
         <div className="info-section">
-          {/* {!type &&(  */}
+          {/* {!location.state.type && ( */}
           <>
             <label htmlFor="quantity">Number of tickets:</label>
             <input
@@ -76,7 +78,7 @@ export default function PurchaseTicketDetail({}) {
               type="range"
               id="quantity"
               min="1"
-              max="10"
+              max={!location.state.type ? "10" : "2"}
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
             />

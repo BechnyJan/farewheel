@@ -18,7 +18,7 @@ function TrafficLines({ tram, metro }) {
   return (
     <>
       <h2>Dopravní linky</h2>
-      <section className="traffic-section">
+      <section>
         <h3 className="traffic-type">Metro</h3>
         <div className="routes-grid">
           {metro.map((route) => (

@@ -24,13 +24,14 @@ export default function Extras() {
     <>
       <Header />
       <div className="extras-container">
-        <h1>Extras</h1>
-        <article className="extras-container">
-          <TrafficLines metro={metroRoutes} tram={tramRoutes} />
-        </article>
+        <h1>Ticket Control & Lines</h1>
         <article className="extras-container">
           <TicketControle />
         </article>
+        <article className="extras-container">
+          <TrafficLines metro={metroRoutes} tram={tramRoutes} />
+        </article>
+        
         <BottomNavBar />
       </div>
     </>

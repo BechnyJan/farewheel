@@ -25,8 +25,9 @@
   box-shadow: 0 4px 8px rgba(0, 64, 128, 0.2);
 }
 
-.ticket-control h2 {
+.ticket-heading {
   color: black;
+  margin-top: 0;
 }
 
 .control-section {

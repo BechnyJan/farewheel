@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "./SignIn.css";
 import BackButton from "./../components/BackButton";
+import "./SignIn.css";
 
 export default function SignUpSignInPage({ setIsSignedIn }) {
   const location = useLocation();
@@ -29,12 +29,12 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     if (isSignUp && !trimmedFirstName) {
       newErrors.firstName = "Name is required";
     } else if (isSignUp && !/^[a-zA-Z\s]+$/.test(trimmedFirstName)) {
-      newErrors.firstName = "Name can only contain letters and spaces";
+      newErrors.firstName = "Name can only contain letters";
     }
     if (isSignUp && !trimmedLastName) {
       newErrors.lastName = "Name is required";
     } else if (isSignUp && !/^[a-zA-Z\s]+$/.test(trimmedLastName)) {
-      newErrors.lastName = "Name can only contain letters and spaces";
+      newErrors.lastName = "Name can only contain letters";
     }
     if (isSignUp && !formData.dob) {
       newErrors.dob = "Date of birth is required";
@@ -43,7 +43,7 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     if (!trimmedEmail) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(trimmedEmail)) {
-      newErrors.email = "Invalid email format";
+      newErrors.email = "Invalid email format, it should be xxx@xxx.xx";
     }
     if (!trimmedPassword) {
       newErrors.password = "Password is required";
@@ -101,12 +101,11 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
   };
 
   console.log(errors);
-
+  const titleAuth = isSignUp ? "Sign Up" : "Sign In";
   return (
     <>
-      <BackButton />
+      <BackButton title={titleAuth} />
       <div className="auth-page">
-        <h1>{isSignUp ? "Sign Up" : "Sign In"}</h1>
         <form onSubmit={handleSubmit} className="auth-form">
           {isSignUp && (
             <>

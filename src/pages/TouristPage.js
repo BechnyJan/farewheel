@@ -10,10 +10,16 @@ import {
   touristSpots,
 } from "../data/textData";
 import "./TouristPage.css";
+import Header from "../components/Header";
 
 function TouristPage() {
   const navigate = useNavigate();
   const currentLocation = "Hlavní nádraží"; // Hardcoded current location for prototype
+
+  const localeTime = new Date().toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  })
 
   const handleNavigate = (destination) => {
     // details/1
@@ -22,7 +28,7 @@ function TouristPage() {
         from: currentLocation,
         to: destination,
         results: mockResults,
-        time: new Date().getTime(),
+        time: localeTime,
         data: ticketOptions
       },
     });
@@ -50,12 +56,7 @@ function TouristPage() {
   return (
     <>
       <>
-        <header>
-          <h1>FareWheel</h1>
-          <>
-            <img src={Tourist} alt="account" />
-          </>
-        </header>
+      <Header />
       </>
       <div className="tourist-page">
         <h1>Tourist Spots</h1>

@@ -17,7 +17,7 @@ function TrafficLines({ tram, metro }) {
   };
   return (
     <>
-      <h2>Dopravní linky</h2>
+      <h2>Transport Lines</h2>
       <section>
         <h3 className="traffic-type">Metro</h3>
         <div className="routes-grid">
@@ -26,7 +26,7 @@ function TrafficLines({ tram, metro }) {
               key={route.route_id}
               className="traffic-card"
               style={{ backgroundColor: route.route_color }}
-              title={route.route_long_name} // Tooltip pro celý název linky 
+              title={route.route_long_name} 
               onClick={() => handleRouteClick(route)}
             >
               <span>{route.route_short_name}</span>
@@ -35,14 +35,14 @@ function TrafficLines({ tram, metro }) {
         </div>
       </section>
       <section className="traffic-section">
-        <h3 className="traffic-type">Tramvaj</h3>
+        <h3 className="traffic-type">Tram</h3>
         <div className="routes-grid">
           {tram.map((route, index) => (
             <div
               key={route.route_id}
               className="traffic-card"
               style={{ backgroundColor: getTramColor(index) }}
-              title={route.route_long_name} // Tooltip pro celý název linky
+              title={route.route_long_name} 
               onClick={() => handleRouteClick(route)}
             >
               <span>{route.route_short_name}</span>

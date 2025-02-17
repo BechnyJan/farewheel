@@ -95,7 +95,8 @@ export default function SearchBar() {
 
     // errText = "";
     const filteredResults = filterResults();
-
+    console.log(timeHour);
+    
     navigate("/route-results", {
       state: {
         from: fromQuery,

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./ResultDetail.css";
 
-export default function ResultDetail({ route, from, to, data, index }) {
+export default function ResultDetail({ route, from, to, data, index, time }) {
   const navigate = useNavigate();
   const { state } = useLocation();
   console.log(data);
@@ -47,24 +47,99 @@ export default function ResultDetail({ route, from, to, data, index }) {
     //  navigate(navigation, { state: { line: route.line, price: val } });
   };
 
+  // const calculateArrivalTime = (departureTime, duration) => {
+  //   if (!departureTime) return "Unknown";
+
+  //   // Rozdělení uživatelem zadaného času na hodiny a minuty
+  //   const [hours, minutes] = departureTime.split(":").map(Number);
+
+  //   // Vytvoření objektu Date podle uživatelského času
+  //   const departure = new Date();
+  //   departure.setHours(hours);
+  //   departure.setMinutes(minutes);
+  //   departure.setSeconds(0);
+
+  //   // Přičtení doby jízdy
+  //   departure.setMinutes(departure.getMinutes() + duration);
+
+  //   // Formátování na HH:MM
+  //   const arrivalHours = departure.getHours().toString().padStart(2, "0");
+  //   const arrivalMinutes = departure.getMinutes().toString().padStart(2, "0");
+
+  //   return `${arrivalHours}:${arrivalMinutes}`;
+  // };
+
+  const calculateArrivalTime = (departureTime, duration) => {
+    let departure;
+
+    if (!departureTime) {
+      // Use the current local time if no time is provided
+      departure = new Date();
+    } else {
+      // Parse the provided departure time (e.g., "12:46")
+      const [hours, minutes] = departureTime?.split(":").map(Number);
+
+      departure = new Date();
+      departure.setHours(hours);
+      departure.setMinutes(minutes);
+      departure.setSeconds(0);
+    }
+
+    console.log(
+      departure,
+      // minutes,
+      departureTime,
+      duration,
+      +departure.getMinutes() + +duration
+    );
+    // Add the duration in minutes
+    departure.setMinutes(+departure.getMinutes() + +duration);
+
+    // Format arrival time as HH:MM
+    return departure.toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
+  const noEnteredTime = new Date().toLocaleTimeString("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  console.log(noEnteredTime);
+
   return (
     <li className="detailed-result-card">
       <div className="result-summary">
         <p>
-          <strong>Čas:</strong> {route.duration}
+          <strong>Time of ride:</strong> {route.duration} min
         </p>
         <div className="result-travel-time">
           <p>
-            <strong>Odjezd:</strong> {from}
+            <strong>Departure:</strong> {from}
           </p>
           <p>
-            <strong>Příjezd:</strong> {to}
+            <strong>Arrival:</strong> {to}
           </p>
+          {/* {time && ( */}
+          <p>
+            <strong>Departure Time:</strong>
+            {time ? time : noEnteredTime}
+            {/* {time ||
+                } */}
+          </p>
+          {/* )} */}
+          {/* {time && ( */}
+          <p>
+            <strong>Arrival Time:</strong>{" "}
+            {calculateArrivalTime(time || noEnteredTime, route.duration)}
+          </p>
+          {/* )}  */}
         </div>
       </div>
       <div className="line-details">
         <p>
-          <strong>Linka:</strong> {route.line}
+          <strong>Line:</strong> {route.line}
           {route.accessibility && <span className="accessible-icon">♿</span>}
         </p>
       </div>
@@ -76,7 +151,7 @@ export default function ResultDetail({ route, from, to, data, index }) {
             handleBuyTicket(e);
           }}
         >
-          Koupit jízdenku <span>{+route.duration > 20 ? 30 : 20} CZK</span>
+          Buy ticket <span>{+route.duration > 20 ? 30 : 20} CZK</span>
         </button>
       </div>
     </li>

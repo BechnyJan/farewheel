@@ -1,12 +1,15 @@
-import BottomNavBar from "../components/BottomNavBar";
-
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import BottomNavBar from "../components/BottomNavBar";
+import Settings from "../icons/path2.png";
+import Question_Mark from "../icons/g10.png";
+import Information from "../icons/g1474.png";
+import Terms from "../icons/terms.png";
+import Lock from "../icons/lock.png";
 import "./MorePage.css";
 
 export default function MorePage({ isSignedIn, setIsSignedIn }) {
   const navigate = useNavigate();
-  // const [isSignedIn, setIsSignedIn] = useState(false); // Track sign-in status
 
   const [account, setAccount] = useState(null);
 
@@ -20,16 +23,18 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
   console.log(account?.firstName);
 
   const menuItems = [
-    { title: "Settings", icon: "⚙️", path: "/settings" },
-    { title: "Support", icon: "❓", path: "/support" },
-    { title: "About", icon: "ℹ️", path: "/about" },
-    { title: "Terms & Conditions", icon: "📜", path: "/terms" },
-    { title: "Privacy Policy", icon: "🔒", path: "/privacy" },
+    { title: "Settings", icon: Settings, path: "/settings" },
+    { title: "Support", icon: Question_Mark, path: "/support" },
+    { title: "About", icon: Information, path: "/about" },
+    { title: "Terms & Conditions", icon: Terms, path: "/terms" },
+    { title: "Privacy Policy", icon: Lock, path: "/privacy" },
   ];
+
+  const setting = <Settings />;
+  console.log(setting);
 
   const handleNavigation = (path) => {
     return;
-    navigate(path);
   };
 
   const handleSignUp = () => {
@@ -41,7 +46,6 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
   };
 
   const handleSignOut = () => {
-    // Mock sign-out logic
     setIsSignedIn();
     alert("You have signed out!");
   };
@@ -84,7 +88,9 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
               className="more-menu-item"
               onClick={() => handleNavigation(item.path)}
             >
-              <span className="menu-icon">{item.icon}</span>
+              <span className="menu-icon">
+                <img src={item.icon} alt={item.title} />
+              </span>
               <span className="menu-title">{item.title}</span>
             </li>
           ))}

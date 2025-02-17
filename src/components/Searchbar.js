@@ -54,7 +54,6 @@ export default function SearchBar() {
       to: "Karlův most",
     },
   ];
-  // console.log(classes);
 
   const handleTransportChange = (e) => {
     const { id, checked } = e.target;
@@ -79,24 +78,20 @@ export default function SearchBar() {
       return true;
     });
   };
-  let errText = "";
-  let err = <p>{errText}</p>;
+
   const handleSearch = () => {
-    if (fromQuery === toQuery) {
-      alert("Please select different starting and final destination.");
-      // errText = "Please select both starting and destination stations.";
-      return;
-    }
     if (!fromQuery || !toQuery) {
       alert("Please select both starting and final destination.");
-      // errText = "Please select both starting and destination stations.";
+      return;
+    }
+    if (fromQuery === toQuery) {
+      alert("Please select different starting and final destination.");
       return;
     }
 
-    // errText = "";
     const filteredResults = filterResults();
     console.log(timeHour);
-    
+
     navigate("/route-results", {
       state: {
         from: fromQuery,
@@ -124,25 +119,25 @@ export default function SearchBar() {
   return (
     <div className={classes["search-bar"]}>
       <div className={classes["search-container"]}>
-        <label>Nástupní stanice:</label>
+        <label>Departure station:</label>
         <input
           type="text"
           value={fromQuery}
           readOnly
           onClick={() => setModalType("from")}
-          placeholder="Vyberte nástupní stanici..."
+          placeholder="Select a departure station.."
           className={classes["search-input"]}
         />
       </div>
 
       <div className={classes["search-container"]}>
-        <label>Výstupní stanice:</label>
+        <label>Arrival station:</label>
         <input
           type="text"
           value={toQuery}
           readOnly
           onClick={() => setModalType("to")}
-          placeholder="Vyberte výstupní stanici..."
+          placeholder="Select an arrival station..."
           className={classes["search-input"]}
         />
       </div>
@@ -187,7 +182,7 @@ export default function SearchBar() {
               </div>
             </div>
             <div className={classes["filter-item_container"]}>
-              <label htmlFor="accessibleOnly">Bezbariérový vstup</label>
+              <label htmlFor="accessibleOnly">Barrier-free entrance</label>
               <input
                 id="accessibleOnly"
                 type="checkbox"
@@ -196,13 +191,13 @@ export default function SearchBar() {
               />
             </div>
             <div>
-              <label>Vyloučené stanice:</label>
+              <label>Excluded station:</label>
               <input
                 type="text"
                 value={excludedStations.join(", ")}
                 readOnly
                 onClick={() => setModalType("exclude")}
-                placeholder="Vyberte vyloučené stanice..."
+                placeholder="Excluded station..."
                 className={classes["search-input"]}
               />
             </div>
@@ -210,7 +205,7 @@ export default function SearchBar() {
               <button onClick={() => setExcludedStations([])}>Reset</button>
             )}
             <div className={classes["filter-section_time"]}>
-              <label htmlFor="time">Čas odjezdu:</label>
+              <label htmlFor="time">Time Departure:</label>
               <input
                 id="time"
                 type="time"
@@ -222,7 +217,6 @@ export default function SearchBar() {
           </div>
         )}
       </div>
-
       {modalType && (
         <StationSelectModal
           onClose={() => setModalType(null)}
@@ -230,11 +224,9 @@ export default function SearchBar() {
           onExclude={modalType === "exclude" ? excludedStations : undefined}
         />
       )}
-
       <button className={classes["searchbar-btn"]} onClick={handleSearch}>
-        Hledat spojení
+        Search for connection
       </button>
-      {/* {err} */}
     </div>
   );
 }

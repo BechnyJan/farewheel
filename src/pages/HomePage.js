@@ -8,7 +8,7 @@ function HomePage() {
     <>
       <Header />
       <div className="homepage">
-        <h1>Vyhledávání spojení</h1>
+        <h1>Search for connection</h1>
         <SearchBar />
         <BottomNavBar />
       </div>

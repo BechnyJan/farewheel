@@ -69,7 +69,6 @@
 
 .more-menu-item {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   background: #ffffff;
   padding: 12px 16px;
@@ -87,6 +86,12 @@
 
 .menu-icon {
   font-size: 20px;
+  margin-right: 12px;
+}
+
+.menu-icon img {
+  height: 20px;
+  width: 20px;
   margin-right: 12px;
 }
 

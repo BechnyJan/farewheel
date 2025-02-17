@@ -51,8 +51,7 @@ export default function ConfirmationPage({ ticket, onClose }) {
           activationTime: Date.now() + delayTime,
           validUntil: Date.now() + val + delayTime,
         }));
-      } 
-      else {
+      } else {
         newPasses = Array.from({ length: state.quantity }).map((_, i) => ({
           ...state,
           id: `${state.name}-${Date.now()}-${i}`,
@@ -75,11 +74,16 @@ export default function ConfirmationPage({ ticket, onClose }) {
       <h1 className="confirmation">Purchase Confirmation</h1>
       <p>Your payment has been successful:</p>
       <h2>{state.name}</h2>
+      {state.quantity > 1 && (
+        <p>
+          Total Amount of tickets: <strong>{state.quantity}</strong>
+        </p>
+      )}
       <p>
         Total Price: <strong>{state.total} CZK</strong>
       </p>
       <p>
-        {state.duration
+        {+state.duration > 1
           ? `Valid for: ${state.duration} minutes`
           : `Ticket is for single journey.`}
       </p>

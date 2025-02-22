@@ -11,7 +11,7 @@ export default function TicketsList({ type }) {
     setTickets(savedTickets);
     setPasses(savedPasses);
   }, []);
-  console.log(tickets, passes);
+
   const handleActivate = (instanceId) => {
     const updatedTickets = tickets.map((ticket) => {
       if (instanceId.startsWith(ticket.id)) {
@@ -59,9 +59,21 @@ export default function TicketsList({ type }) {
   };
 
   const handleRemoveExpired = (id) => {
+    const expiredTicket = tickets.find((ticket) => ticket.id === id);
+
+    if (!expiredTicket) return;
+
     const updatedTickets = tickets.filter((ticket) => ticket.id !== id);
     setTickets(updatedTickets);
     localStorage.setItem("tickets", JSON.stringify(updatedTickets)); // Keep localStorage in sync
+
+    const ticketHistory =
+      JSON.parse(localStorage.getItem("ticketHistory")) || [];
+    ticketHistory.push({
+      ...expiredTicket,
+      expiredAt: new Date().toISOString(),
+    });
+    localStorage.setItem("ticketHistory", JSON.stringify(ticketHistory));
   };
 
   return (

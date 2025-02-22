@@ -8,10 +8,8 @@ import Header from "../components/Header";
 export default function TicketsPage({ process, setProcessPurchase }) {
   const [ticketType, setTicketType] = useState("single");
   const [showInfo, setShowInfo] = useState(true);
-  // const []
-  // const navigate = useNavigate();
 
-  const tickets = localStorage.getItem("tickets");
+  const tickets = localStorage?.getItem("tickets");
    const passes = localStorage?.getItem("passes");
   
   // if(!tickets) {
@@ -29,7 +27,6 @@ export default function TicketsPage({ process, setProcessPurchase }) {
 
   const ticketOptions = [
     { name: "Single ticket", price: "15", icon: "🚌", duration: "" },
-    // { name: "Heritage service single ticket", price: "500 CZK", icon: "🏛️" },
     { name: "30minutes ticket", price: "20", icon: "⏱️", duration: "30" },
     { name: "90minutes ticket", price: "30", icon: "⏳", duration: "90" },
     { name: "Airport shuttle", price: "100", icon: "✈️", duration: "" },

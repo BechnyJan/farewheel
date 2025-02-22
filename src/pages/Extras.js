@@ -4,8 +4,7 @@ import TicketControle from "../components/TicketControle";
 import TrafficLines from "../components/TrafficLines";
 import routesData from "../data/pid_routes.json";
 import BottomNavBar from "./../components/BottomNavBar";
-import "./Extras.css"; // Stylování
-// console.log(routes.json());
+import "./Extras.css";
 
 export default function Extras() {
   // {
@@ -31,7 +30,7 @@ export default function Extras() {
         <article className="extras-container">
           <TrafficLines metro={metroRoutes} tram={tramRoutes} />
         </article>
-        
+
         <BottomNavBar />
       </div>
     </>

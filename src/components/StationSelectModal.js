@@ -12,7 +12,6 @@ export default function StationSelectModal({
   const [query, setQuery] = useState("");
   const inputRef = useRef(null);
 
-  // Filtrujeme stanice na základě dotazu a režimu (onExclude)
   const filteredStations = stations.filter((station) => {
     const matchesQuery = station.name
       .toLowerCase()

@@ -1,16 +1,15 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Tourist from "../icons/tourist.svg";
 import BottomNavBar from "../components/BottomNavBar";
-import castle from "../icons/prague_cas.png";
+import Header from "../components/Header";
 import {
   mockResults,
   recommendedTickets,
   ticketOptions,
-  touristSpots,
+  touristSpots
 } from "../data/textData";
+import castle from "../icons/prague_cas.png";
 import "./TouristPage.css";
-import Header from "../components/Header";
 
 function TouristPage() {
   const navigate = useNavigate();
@@ -22,7 +21,6 @@ function TouristPage() {
   })
 
   const handleNavigate = (destination) => {
-    // details/1
     navigate("/route-results", {
       state: {
         from: currentLocation,
@@ -34,13 +32,9 @@ function TouristPage() {
     });
   };
 
-  // console.log("zde");
 
   const handleTouristTicket = (ticket, index) => {
-    //  navigate("/confirmation", {
-
-    // state: { id, icon, name, price, duration, quantity, total: price })
-
+    
     navigate(`/tickets/details/${ticket.id}${index}`, {
       state: {
         id: ticket.id,

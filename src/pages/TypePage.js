@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import SingleTicketDetail from "../components/SingleTicketDetail";
-import "./PassesPage.css";
+import "./TypePage.css";
 
-export default function PassesPage({ process, setProcessPurchase }) {
+export default function TypePage({ process, setProcessPurchase }) {
   const [activeTab, setActiveTab] = useState("individual");
   const [err, setErr] = useState(false);
   const navigate = useNavigate();

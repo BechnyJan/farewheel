@@ -6,7 +6,7 @@ export default function ConfirmationPage({ ticket, onClose }) {
 
   console.log(state);
   const saveToStorage = () => {
-    const savedTickets = JSON.parse(localStorage.getItem("tickets")) || []; //tady
+    const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
     const savedPasses = JSON.parse(localStorage.getItem("passes")) || [];
     if (!state.type) {
       let val = 0;

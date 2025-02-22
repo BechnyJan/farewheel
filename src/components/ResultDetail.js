@@ -1,13 +1,10 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./ResultDetail.css";
 
 export default function ResultDetail({ route, from, to, data, index, time }) {
   const navigate = useNavigate();
-  const { state } = useLocation();
-  console.log(data);
 
   const handleBuyTicket = (e) => {
-    // const navigation = `/tickets/details/${+route.duration > 20 ? 2 : 1}`;
     const buttonText = e.target.innerText;
     const extractedPrice = parseInt(buttonText.match(/\d+/)[0], 10);
 
@@ -17,7 +14,6 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
       for (let i = 0; i < data?.length; i++) {
         if (+data[i].price === extractedPrice) {
           indexData = i;
-          // return indexData
         }
       }
     }
@@ -42,41 +38,17 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
     // if (+data.price) {
     // }
     // /tickets/details/${ticket.id}${index}
-    console.log(data);
+
     const val = +route.duration > 20 ? 30 : 20;
     //  navigate(navigation, { state: { line: route.line, price: val } });
   };
-
-  // const calculateArrivalTime = (departureTime, duration) => {
-  //   if (!departureTime) return "Unknown";
-
-  //   // Rozdělení uživatelem zadaného času na hodiny a minuty
-  //   const [hours, minutes] = departureTime.split(":").map(Number);
-
-  //   // Vytvoření objektu Date podle uživatelského času
-  //   const departure = new Date();
-  //   departure.setHours(hours);
-  //   departure.setMinutes(minutes);
-  //   departure.setSeconds(0);
-
-  //   // Přičtení doby jízdy
-  //   departure.setMinutes(departure.getMinutes() + duration);
-
-  //   // Formátování na HH:MM
-  //   const arrivalHours = departure.getHours().toString().padStart(2, "0");
-  //   const arrivalMinutes = departure.getMinutes().toString().padStart(2, "0");
-
-  //   return `${arrivalHours}:${arrivalMinutes}`;
-  // };
 
   const calculateArrivalTime = (departureTime, duration) => {
     let departure;
 
     if (!departureTime) {
-      // Use the current local time if no time is provided
       departure = new Date();
     } else {
-      // Parse the provided departure time (e.g., "12:46")
       const [hours, minutes] = departureTime?.split(":").map(Number);
 
       departure = new Date();
@@ -85,17 +57,8 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
       departure.setSeconds(0);
     }
 
-    console.log(
-      departure,
-      // minutes,
-      departureTime,
-      duration,
-      +departure.getMinutes() + +duration
-    );
-    // Add the duration in minutes
     departure.setMinutes(+departure.getMinutes() + +duration);
 
-    // Format arrival time as HH:MM
     return departure.toLocaleTimeString("en-GB", {
       hour: "2-digit",
       minute: "2-digit",
@@ -125,13 +88,9 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
           <p>
             <strong>Departure Time:</strong>
             {time ? time : noEnteredTime}
-            {/* {time ||
-                } */}
           </p>
-          {/* )} */}
-          {/* {time && ( */}
           <p>
-            <strong>Arrival Time:</strong>{" "}
+            <strong>Arrival Time:</strong>
             {calculateArrivalTime(time || noEnteredTime, route.duration)}
           </p>
           {/* )}  */}
@@ -157,26 +116,3 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
     </li>
   );
 }
-
-// const handleNavigate = (destination, id) => {
-//     // details/1
-//     let ticket = ticketOptions[id];
-//     if (id === 2) {
-//       ticket = ticketOptions[1];
-//     }
-
-//   navigate(`/tickets/details/${id}`, {
-//     state: {
-//       id: ticket.id,
-//       name: ticket.name,
-//       price: ticket.price,
-//       duration: ticket.duration,
-//       quantity: 1,
-//       total: ticket.price,
-//       // from: currentLocation,
-//       // to: destination,
-//       // results: mockResults,
-//       time: new Date().getTime(),
-//     },
-//   });
-// };

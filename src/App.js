@@ -14,7 +14,7 @@ import ConfirmationPage from "./pages/ConfirmationPage";
 import Extras from "./pages/Extras";
 import HomePage from "./pages/HomePage";
 import MorePage from "./pages/MorePage";
-import PassesPage from "./pages/PassesPage";
+import TypePage from "./pages/TypePage";
 import SignUpSignInPage from "./pages/SignIn";
 import TicketsPage from "./pages/TicketsPage";
 import TouristPage from "./pages/TouristPage";
@@ -77,7 +77,7 @@ function App() {
         <Route
           path="/tickets/:id"
           element={
-            <PassesPage
+            <TypePage
               process={processPurchase}
               setProcessPurchase={processUpdate}
             />

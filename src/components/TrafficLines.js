@@ -2,16 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./TraffiLines.css";
 
-function TrafficLines({ tram, metro }) {
+export default function TrafficLines({ tram, metro }) {
   const navigate = useNavigate();
 
   const getTramColor = (index) => {
     const colors = ["#FF5733", "#33FF57", "#3357FF", "#FF33A5", "#F3FF33"];
-    return colors[index % colors.length]; // Cyklování barev
+    return colors[index % colors.length];
   };
 
-  // console.log(metro);
-  
   const handleRouteClick = (route) => {
     navigate("/extras/route-detail", { state: { route } });
   };
@@ -26,7 +24,7 @@ function TrafficLines({ tram, metro }) {
               key={route.route_id}
               className="traffic-card"
               style={{ backgroundColor: route.route_color }}
-              title={route.route_long_name} 
+              title={route.route_long_name}
               onClick={() => handleRouteClick(route)}
             >
               <span>{route.route_short_name}</span>
@@ -42,7 +40,7 @@ function TrafficLines({ tram, metro }) {
               key={route.route_id}
               className="traffic-card"
               style={{ backgroundColor: getTramColor(index) }}
-              title={route.route_long_name} 
+              title={route.route_long_name}
               onClick={() => handleRouteClick(route)}
             >
               <span>{route.route_short_name}</span>
@@ -53,5 +51,3 @@ function TrafficLines({ tram, metro }) {
     </>
   );
 }
-
-export default TrafficLines;

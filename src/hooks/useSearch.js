@@ -1,10 +1,10 @@
-import Fuse from 'fuse.js';
-import { useState } from 'react';
-import { stations } from '../data';
+import Fuse from "fuse.js";
+import { useState } from "react";
+import { stations } from "../data";
 
 const options = {
-  keys: ['name'],
-  threshold: 0.3, // Nastavení míry tolerance chyb
+  keys: ["name"],
+  threshold: 0.3,
 };
 
 const fuse = new Fuse(stations, options);

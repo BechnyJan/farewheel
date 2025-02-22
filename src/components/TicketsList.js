@@ -15,7 +15,7 @@ export default function TicketsList({ type }) {
   const handleActivate = (instanceId) => {
     const updatedTickets = tickets.map((ticket) => {
       if (instanceId.startsWith(ticket.id)) {
-        const instanceIndex = instanceId.split("-").pop(); // Get the index from the ID
+        const instanceIndex = instanceId.split("-").pop();
         if (instanceIndex < ticket.quantity) {
           const now = Date.now();
           const val = ticket.duration ? +ticket.duration * 60 * 1000 : 60;
@@ -38,7 +38,7 @@ export default function TicketsList({ type }) {
   const handlePassActivate = (instanceId) => {
     const updatedPasses = passes.map((pass) => {
       if (instanceId.startsWith(pass.id)) {
-        const instanceIndex = instanceId.split("-").pop(); // Get the index from the ID
+        const instanceIndex = instanceId.split("-").pop();
         if (instanceIndex < pass.quantity) {
           const now = Date.now();
           const val = pass.duration ? +pass.duration * 60 * 1000 : 60;
@@ -58,22 +58,23 @@ export default function TicketsList({ type }) {
     localStorage.setItem("passes", JSON.stringify(updatedPasses));
   };
 
-  const handleRemoveExpired = (id) => {
-    const expiredTicket = tickets.find((ticket) => ticket.id === id);
+  const handleRemoveExpired = (id, type) => {
+    if (type) {
+      const expiredTicket = tickets.find((ticket) => ticket.id === id);
 
-    if (!expiredTicket) return;
+      if (!expiredTicket) return;
 
-    const updatedTickets = tickets.filter((ticket) => ticket.id !== id);
-    setTickets(updatedTickets);
-    localStorage.setItem("tickets", JSON.stringify(updatedTickets)); // Keep localStorage in sync
-
-    const ticketHistory =
-      JSON.parse(localStorage.getItem("ticketHistory")) || [];
-    ticketHistory.push({
-      ...expiredTicket,
-      expiredAt: new Date().toISOString(),
-    });
-    localStorage.setItem("ticketHistory", JSON.stringify(ticketHistory));
+      const updatedTickets = tickets.filter((ticket) => ticket.id !== id);
+      setTickets(updatedTickets);
+      localStorage.setItem("tickets", JSON.stringify(updatedTickets));
+      const ticketHistory =
+        JSON.parse(localStorage.getItem("ticketHistory")) || [];
+      ticketHistory.push({
+        ...expiredTicket,
+        expiredAt: new Date().toISOString(),
+      });
+      localStorage.setItem("ticketHistory", JSON.stringify(ticketHistory));
+    }
   };
 
   return (
@@ -99,7 +100,7 @@ export default function TicketsList({ type }) {
                 activationTime={ticket.activationTime}
                 validTime={ticket.validUntil}
                 onActivate={handleActivate}
-                onExpire={() => handleRemoveExpired(ticket.id)}
+                onExpire={() => handleRemoveExpired(ticket.id, "ticket")}
               />
             ))
           )

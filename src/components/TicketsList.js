@@ -58,6 +58,12 @@ export default function TicketsList({ type }) {
     localStorage.setItem("passes", JSON.stringify(updatedPasses));
   };
 
+  const handleRemoveExpired = (id) => {
+    const updatedTickets = tickets.filter((ticket) => ticket.id !== id);
+    setTickets(updatedTickets);
+    localStorage.setItem("tickets", JSON.stringify(updatedTickets)); // Keep localStorage in sync
+  };
+
   return (
     <>
       {type === "single" ? (
@@ -81,6 +87,7 @@ export default function TicketsList({ type }) {
                 activationTime={ticket.activationTime}
                 validTime={ticket.validUntil}
                 onActivate={handleActivate}
+                onExpire={() => handleRemoveExpired(ticket.id)}
               />
             ))
           )

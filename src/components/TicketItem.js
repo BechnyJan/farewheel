@@ -12,7 +12,7 @@ export default function TicketItem({
   index,
   onActivate,
   validTime,
-  activationTime,
+  activationTime,onExpire
 }) {
   // jsem pridat descrease time
   // console.log(activationTime, validTime);
@@ -70,14 +70,18 @@ export default function TicketItem({
 
       if (validTime - Date.now() <= 0) {
         clearInterval(interval);
+        onExpire();
       }
     }, 1000);
 
     return () => clearInterval(interval);
   }, [activationTime, validTime, isPending, protectionTime]);
 
-  const formatTime = (ms) => {
-    if (ms <= 0) return "Expired";
+  const formatTime = (ms, id, index) => {
+    if (ms <= 0) {
+      //  tady, call funkce expirated() id nebo index
+      return "Expired";
+    }
 
     const totalSeconds = Math.floor(ms / 1000);
     const days = Math.floor(totalSeconds / 86400);

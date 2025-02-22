@@ -7,28 +7,36 @@ import "./RouteResultPage.css";
 export default function RouteResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { from, to, results,means, data,time } = location.state || {};
+  const { from, to, results, means, data, time } = location.state || {};
   // console.log(location.state.results,results);
-  useEffect(() => {
+  useEffect(() => {}, [location.state, results]);
 
-      
-  }, [location.state, results]);
-
-console.log( data, location.state);
+  console.log(data, location.state);
+  const stations = { from: from, to: to };
 
   return (
     <div className="route-results-modal">
-      <BackButton title={'Connection'} /> 
+      <BackButton title={"Connection"} state={stations} />
       <p className="route-results-description">
         {from} → {to}
       </p>
-      <div className="results-list">{results  ? (
-        results.map((route, index) => (
-          <ResultDetail key={index} index={index} data={data}route={route} time={time} from={from} to={to}/>
-        ))
-      ) : (
-        <p>Žádné dostupné spojení.</p>
-      )}</div>
+      <div className="results-list">
+        {results ? (
+          results.map((route, index) => (
+            <ResultDetail
+              key={index}
+              index={index}
+              data={data}
+              route={route}
+              time={time}
+              from={from}
+              to={to}
+            />
+          ))
+        ) : (
+          <p>Žádné dostupné spojení.</p>
+        )}
+      </div>
     </div>
   );
 }

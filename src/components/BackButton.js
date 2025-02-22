@@ -8,6 +8,7 @@ export default function BackButton({
   ticketPage,
   returnNum = -1,
   onPress,
+  state
 }) {
   const navigate = useNavigate();
 
@@ -18,10 +19,16 @@ export default function BackButton({
     if (onPress) {
       onPress();
     }
-    if (!onPress) {
+    if (state) {
+      navigate('/', {state});
+    }
+    if (!onPress && !state) {
       navigate(returnNum);
     }
   };
+
+  console.log(state);
+  
 
   return (
     <div className="back">

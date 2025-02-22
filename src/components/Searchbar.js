@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import classes from "./Searchbar.module.css";
 import StationSelectModal from "./StationSelectModal";
 import { ticketOptions } from "../data/textData";
 
 export default function SearchBar() {
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [fromQuery, setFromQuery] = useState("");
-  const [toQuery, setToQuery] = useState("");
+  const from = location?.state ? location?.state?.from : "";
+  const to = location?.state ? location?.state?.to : "";
+
+  const [fromQuery, setFromQuery] = useState(from);
+  const [toQuery, setToQuery] = useState(to);
   const [meansOfTransport, setMeansOfTransport] = useState({
     metro: true,
     tram: true,

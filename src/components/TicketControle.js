@@ -1,10 +1,19 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
+import BackButton from "./BackButton";
 import "./TicketControle.css";
 
 function TicketControle() {
+  const location = useLocation();
+  console.log(location);
   return (
-    <>
-      <h2 className="ticket-heading">Ticket controle</h2>
+    <div className="ticket-container">
+      {location.pathname !== "/control" && (
+        <h2 className="ticket-heading">Ticket controle</h2>
+      )}
+      {location.pathname === "/control" && (
+        <BackButton title={"Ticket controle"} />
+      )}
 
       <section className="ticket-control">
         <p>
@@ -48,7 +57,7 @@ function TicketControle() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

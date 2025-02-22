@@ -4,6 +4,14 @@
   text-align: center;
 }
 
+.extras-container h2 {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 24px;
+  text-align: center;
+  color: #007bff;
+}
+
 .routes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
@@ -14,7 +22,6 @@
 .extras-container_item {
   /* padding-bottom: 4rem; */
 }
-
 
 .route-card:hover {
   transform: scale(1.1);

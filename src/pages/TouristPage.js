@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
 import Header from "../components/Header";
+import TicketControle from "../components/TicketControle";
 import {
   mockResults,
   recommendedTickets,
@@ -53,7 +54,7 @@ function TouristPage() {
       <Header />
       </>
       <div className="tourist-page">
-        <h1>Tourist Spots</h1>
+        <h2>Tourist Spots</h2>
         <div className="tourist-spots-list">
           {touristSpots.map((spot) => (
             <div className="tourist-spot-card">
@@ -74,6 +75,7 @@ function TouristPage() {
             </div>
           ))}
         </div>
+        <TicketControle/>
         {/* tourist-tickets-container */}
         <h2>Recommended Tickets for Tourists</h2>
         <div className="tourist-tickets-container">

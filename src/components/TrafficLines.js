@@ -15,7 +15,7 @@ export default function TrafficLines({ tram, metro }) {
   };
   return (
     <>
-      <h2>Transport Lines</h2>
+      {/* <h3>Transport Lines</h3> */}
       <section>
         <h3 className="traffic-type">Metro</h3>
         <div className="routes-grid">

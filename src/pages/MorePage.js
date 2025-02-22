@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
-import Settings from "../icons/path2.png";
 import Question_Mark from "../icons/g10.png";
 import Information from "../icons/g1474.png";
-import Terms from "../icons/terms.png";
 import Lock from "../icons/lock.png";
+import Settings from "../icons/path2.png";
+import Terms from "../icons/terms.png";
+import TicketControle from "./../components/TicketControle";
 import "./MorePage.css";
 
 export default function MorePage({ isSignedIn, setIsSignedIn }) {
@@ -25,6 +26,7 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
   const menuItems = [
     { title: "Settings", icon: Settings, path: "/settings" },
     { title: "Support", icon: Question_Mark, path: "/support" },
+    { title: "Control", icon: Question_Mark, path: "/control" },
     { title: "About", icon: Information, path: "/about" },
     { title: "Terms & Conditions", icon: Terms, path: "/terms" },
     { title: "Privacy Policy", icon: Lock, path: "/privacy" },
@@ -34,7 +36,8 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
   console.log(setting);
 
   const handleNavigation = (path) => {
-    return;
+    navigate("/control");
+    // return;
   };
 
   const handleSignUp = () => {

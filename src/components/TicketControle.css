@@ -12,6 +12,12 @@
 .ticket-control {
 }
 
+.ticket-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
 .ticket-control {
   margin-top: 20px;
   margin-bottom: 20px;

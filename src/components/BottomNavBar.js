@@ -23,7 +23,7 @@ function BottomNavBar() {
         <img src={tourist} alt="Person" /> <h4>Tourist</h4>
       </NavLink>
       <NavLink to="/extras" className={classes["nav-item"]}>
-        <img src={extras} alt="info" /> <h4>Control</h4>
+        <img src={extras} alt="info" /> <h4>Lines</h4>
       </NavLink>
       <NavLink to="/more" className={classes["nav-item"]}>
         <img src={more} alt="Dots" /> <h4>More</h4>

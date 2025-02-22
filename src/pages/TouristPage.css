@@ -6,6 +6,16 @@
   overflow-y: auto;
 }
 
+.tourist-page h2 {
+  margin-top: 8px;
+  font-size: 24px;
+  text-align: center;
+  color: #007bff;
+}
+
+/* width: 80%;
+margin: 0 auto; */
+
 .tourist-spots-list {
   display: grid;
   grid-template-columns: 1fr;

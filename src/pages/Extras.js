@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Header from "../components/Header";
-import TicketControle from "../components/TicketControle";
 import TrafficLines from "../components/TrafficLines";
 import routesData from "../data/pid_routes.json";
 import BottomNavBar from "./../components/BottomNavBar";
@@ -23,10 +22,8 @@ export default function Extras() {
     <>
       <Header />
       <div className="extras-container">
-        <h1>Ticket Control & Lines</h1>
-        <article className="extras-container">
-          <TicketControle />
-        </article>
+        <h2>Ticket Control & Lines</h2>
+        {/* <TicketControle /> */}
         <article className="extras-container">
           <TrafficLines metro={metroRoutes} tram={tramRoutes} />
         </article>

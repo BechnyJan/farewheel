@@ -2,23 +2,23 @@ import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
-  Routes,
-  useLocation,
+  Routes
 } from "react-router-dom";
 import "./App.css";
 import AccountSetting from "./components/AccountSetting";
 import PurchaseTicketDetail from "./components/PurchaseTicketDetail";
 import RouteExtraDetailPage from "./components/RouteExtraDetailPage";
 import RouteResultPage from "./components/RouteResultPage";
+import TicketControle from "./components/TicketControle";
 import ConfirmationPage from "./pages/ConfirmationPage";
 import Extras from "./pages/Extras";
 import HomePage from "./pages/HomePage";
 import MorePage from "./pages/MorePage";
-import TypePage from "./pages/TypePage";
 import SignUpSignInPage from "./pages/SignIn";
+import TicketDetailPage from "./pages/TicketDetailPage";
 import TicketsPage from "./pages/TicketsPage";
 import TouristPage from "./pages/TouristPage";
-import TicketDetailPage from "./pages/TicketDetailPage";
+import TypePage from "./pages/TypePage";
 
 function App() {
   const [processPurchase, setProcessPurchase] = useState(false);
@@ -102,6 +102,7 @@ function App() {
           element={<SignUpSignInPage setIsSignedIn={loginHandler} />}
         />
         <Route path="/tourist" element={<TouristPage />} />
+        <Route path="/control" element={<TicketControle />} />
       </Routes>
     </Router>
   );

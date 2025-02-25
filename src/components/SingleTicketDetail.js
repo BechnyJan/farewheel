@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ticketArrow from "../icons/ticket_arrow.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./SingleTicketDetai.css";
+import Bus from "../icons/bus.png";
 
 export default function SingleTicketDetail({
   icon,
@@ -22,6 +23,8 @@ export default function SingleTicketDetail({
   }, []);
   // console.log(id, icon);
 
+  const icons = [Bus, <Bus />, <Bus />, <Bus />, <Bus />];
+
   const ticketHandler = (e) => {
     console.log(e, type);
 
@@ -40,6 +43,8 @@ export default function SingleTicketDetail({
     }
   };
 
+  console.log(icon);
+
   return (
     <>
       <div className="ticket-options" key={id}>
@@ -48,7 +53,10 @@ export default function SingleTicketDetail({
           className="ticket-option"
           onClick={ticketHandler}
         >
-          <div className="ticket-icon">{icon}</div>
+          <div className="ticket-icon">
+            <img src={icon} alt="" />
+            {/* {icon} */}
+          </div>
           <div className="ticket-details">
             <span className="ticket-name">{name}</span>
             <span>{price} CZK</span>

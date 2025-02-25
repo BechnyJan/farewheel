@@ -3,6 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import SingleTicketDetail from "../components/SingleTicketDetail";
 import "./TypePage.css";
+import Bus from "../icons/bus.png";
+import Airplane from "../icons/airplane.png";
+import Stopwatch from "../icons/stopwatch.png";
+import SandTimer from "../icons/sand_timer.png";
+import Block from "../icons/block.png";
 
 export default function TypePage({ process, setProcessPurchase }) {
   const [activeTab, setActiveTab] = useState("individual");
@@ -54,6 +59,8 @@ export default function TypePage({ process, setProcessPurchase }) {
     { name: "Block of 10 tickets", price: "130", icon: "🔟", duration: "" },
   ];
 
+  const icons = [Bus, Stopwatch, SandTimer, Airplane, Block];
+  console.log(icons[0]);
   useEffect(() => {
     // setInterval()
   });
@@ -147,7 +154,7 @@ export default function TypePage({ process, setProcessPurchase }) {
                 id={index}
                 name={option.name}
                 price={option.price}
-                icon={option.icon}
+                icon={icons[index]}
                 duration={option.duration}
               />
             ))}

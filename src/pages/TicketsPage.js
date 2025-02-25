@@ -1,21 +1,20 @@
 import { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
+import Header from "../components/Header";
 import TicketsList from "../components/TicketsList";
 import "./TicketsPage.css";
-import Header from "../components/Header";
 
 export default function TicketsPage({ process, setProcessPurchase }) {
   const [ticketType, setTicketType] = useState("single");
   const [showInfo, setShowInfo] = useState(true);
 
   const tickets = localStorage?.getItem("tickets");
-   const passes = localStorage?.getItem("passes");
-  
+  const passes = localStorage?.getItem("passes");
+
   // if(!tickets) {
   //   setShowInfo(false)
   // }
-
 
   // const handleNavigation = (category) => {
   //   navigate(`/tickets/${category}`);
@@ -95,13 +94,15 @@ export default function TicketsPage({ process, setProcessPurchase }) {
           </div>
           <TicketsList type={ticketType} />
         </div>
-        <NavLink
-          className="tickets-navigation_link-purchase"
-          onClick={handlePurchase}
-          to={ticketType === "single" ? "/tickets/single" : "/tickets/passes"}
-        >
-          Purchase
-        </NavLink>
+        <div className="purchase-contaner">
+          <NavLink
+            className="tickets-navigation_link-purchase"
+            onClick={handlePurchase}
+            to={ticketType === "single" ? "/tickets/single" : "/tickets/passes"}
+          >
+            Purchase
+          </NavLink>
+        </div>
         <BottomNavBar />
       </div>
     </>

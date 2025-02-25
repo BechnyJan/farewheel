@@ -58,11 +58,16 @@ header h1 {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
+.purchase-contaner {
+  display: flex;
+  justify-content: center;
+}
+
 .tickets-navigation_link-purchase {
   position: fixed;
   z-index: 100;
   top: 83%;
-  width: 80%;
+  width: 70%;
 }
 
 .tickets-navigation_link-purchase:hover,

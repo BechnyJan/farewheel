@@ -1,9 +1,7 @@
 .result-detail-btn {
     display: flex;
     flex-direction: row;
-    /* background-color: inherit; */
     justify-content: end;
-    /* overflow-x: hidden; */
 }
 
 .buy-ticket-btn {

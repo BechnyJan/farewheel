@@ -16,11 +16,9 @@ export default function Header() {
   return (
     <header>
       <h1 onClick={homeHandler}>FareWheel</h1>
-      {/* <div> */}
-        <label onClick={accountHandler} htmlFor="auth">
-          <img src={Tourist} id="auth" alt="account" />
-        </label>
-      {/* </div> */}
+      <label onClick={accountHandler} htmlFor="auth">
+        <img src={Tourist} id="auth" alt="account" />
+      </label>
     </header>
   );
 }

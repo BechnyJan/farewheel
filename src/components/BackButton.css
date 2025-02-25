@@ -4,7 +4,7 @@
   justify-content: center;
   position: relative;
   padding: 1rem 0;
-  background-color: inherit;;
+  background-color: inherit;
 }
 
 .back-btn {
@@ -28,10 +28,22 @@
 
 @media (max-width: 768px) {
   .back-btn {
-    font-size: 1.2rem; /* Adjust button size */
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .header-title {
+    font-size: 1.75rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .back-btn {
+    font-weight: bold;
   }
 
   .header-title {
-    /* font-size: 1.2rem;  */
+    font-size: 1.875rem;
   }
 }

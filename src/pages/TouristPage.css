@@ -54,21 +54,6 @@
   /* transform: scale(1.02); */
 }
 
-/* .recommended-tickets-list {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-
-.recommended-ticket-card {
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  text-align: left;
-} */
-
 .buy-ticket-btn {
   margin-top: 10px;
   padding: 10px 15px;
@@ -136,9 +121,30 @@
   background-color: #0056b3;
 }
 
-@media screen and (min-width: 700px) {
+@media only screen and (min-width: 700px) {
   .tourist-spots-list {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .tourist-ticket-card {
+    width: 300px;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .tourist-spots-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tourist-tickets-container {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .tourist-ticket-card {
+    width: 200px;
+    margin: 0 auto;
   }
 }
 /* pridat pro tablet do gridu  */

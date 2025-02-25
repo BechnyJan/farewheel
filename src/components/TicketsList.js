@@ -87,23 +87,25 @@ export default function TicketsList({ type }) {
             </p>
           </>
         ) : (
-          tickets.flatMap((ticket) =>
-            Array.from({ length: ticket.quantity }).map((_, index) => (
-              <TicketItem
-                duration={ticket.duration}
-                id={ticket.id}
-                name={ticket.name}
-                index={index}
-                price={ticket.price}
-                key={`${ticket.id}-${index}`}
-                activated={ticket.activated}
-                activationTime={ticket.activationTime}
-                validTime={ticket.validUntil}
-                onActivate={handleActivate}
-                onExpire={() => handleRemoveExpired(ticket.id, "ticket")}
-              />
-            ))
-          )
+          <div className="tickets-container">
+            {tickets.flatMap((ticket) =>
+              Array.from({ length: ticket.quantity }).map((_, index) => (
+                <TicketItem
+                  duration={ticket.duration}
+                  id={ticket.id}
+                  name={ticket.name}
+                  index={index}
+                  price={ticket.price}
+                  key={`${ticket.id}-${index}`}
+                  activated={ticket.activated}
+                  activationTime={ticket.activationTime}
+                  validTime={ticket.validUntil}
+                  onActivate={handleActivate}
+                  onExpire={() => handleRemoveExpired(ticket.id, "ticket")}
+                />
+              ))
+            )}
+          </div>
         )
       ) : passes.length === 0 ? (
         <>

@@ -86,10 +86,10 @@ export default function TicketsPage({ process, setProcessPurchase }) {
           {ticketType === "single" ? <h1>My Tickets</h1> : <h1>My Passes</h1>}
           <div className="tickets-content">
             <button onClick={contentSingleHandler} className={btnClassesSingle}>
-              Single tickets state
+              Single ticket status
             </button>
             <button onClick={contentPassHandler} className={btnClassesPass}>
-              Passes State
+              Passes Status
             </button>
           </div>
           <TicketsList type={ticketType} />

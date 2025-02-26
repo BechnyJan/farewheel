@@ -59,7 +59,7 @@ export default function TypePage({ process, setProcessPurchase }) {
     { name: "Block of 10 tickets", price: "130", icon: "🔟", duration: "" },
   ];
 
-  const icons = [Bus, Stopwatch, SandTimer, Airplane, Block];
+  const icons = [Bus, Stopwatch, SandTimer, Airplane, Block, SandTimer];
   console.log(icons[0]);
   useEffect(() => {
     // setInterval()
@@ -140,7 +140,7 @@ export default function TypePage({ process, setProcessPurchase }) {
                 <SingleTicketDetail
                   id={index}
                   name={pass.name}
-                  icon={pass.icon}
+                  icon={icons[index]}
                   price={pass.price}
                   duration={pass.duration}
                   type={true}

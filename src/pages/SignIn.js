@@ -16,9 +16,10 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     password: "",
   });
   const [errors, setErrors] = useState({});
+  const [newErr, setNewErr] = useState({});
 
   const validateForm = () => {
-    const newErrors = {};
+    let newErrors = {};
     const trimmedFirstName = formData.firstName.trim();
     const trimmedLastName = formData.lastName.trim();
     const trimmedEmail = formData.email.trim();
@@ -27,15 +28,28 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     const yearOfBirth = parseInt(formData.dob.split("-")[0]);
 
     if (isSignUp && !trimmedFirstName) {
-      newErrors.firstName = "Name is required";
+      console.log(trimmedFirstName);
+
+      newErrors.firstName =
+        "Name is required and you need to enter at least two characters";
     } else if (isSignUp && !/^[a-zA-Z\s]+$/.test(trimmedFirstName)) {
       newErrors.firstName = "Name can only contain letters";
+    } else if (isSignUp && trimmedFirstName.length < 2) {
+      newErrors.firstName = "Name is required to have at least two characters";
+    } else {
+      newErrors.firstName = "";
     }
+
     if (isSignUp && !trimmedLastName) {
       newErrors.lastName = "Name is required";
     } else if (isSignUp && !/^[a-zA-Z\s]+$/.test(trimmedLastName)) {
       newErrors.lastName = "Name can only contain letters";
+    } else if (isSignUp && trimmedLastName.length < 2) {
+      newErrors.lastName = "Name is required to have at least two characters";
+    } else {
+      newErrors.lastName = "";
     }
+
     if (isSignUp && !formData.dob) {
       newErrors.dob = "Date of birth is required";
     } else if (yearOfBirth < 1940)
@@ -85,7 +99,6 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     setIsSignedIn();
     navigate("/more");
   };
-  console.log(location);
 
   const toggleForm = () => {
     console.log(formData);

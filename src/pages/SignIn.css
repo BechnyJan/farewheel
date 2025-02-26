@@ -60,6 +60,7 @@
   border-radius: 4px;
   cursor: pointer;
   width: 100%;
+  margin-top: 1rem;
   transition: background-color 0.3s;
 }
 
@@ -68,7 +69,7 @@
 }
 
 .auth-toogle {
-    text-align: center;
+  text-align: center;
 }
 
 .toggle-link {
@@ -79,4 +80,3 @@
   margin-top: 8px;
   display: inline-block;
 }
-

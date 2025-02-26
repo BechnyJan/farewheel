@@ -77,6 +77,9 @@ export default function TicketsList({ type }) {
     }
   };
 
+  const classes =
+    tickets.length > 4 ? "tickets-container_grid" : "tickets-container";
+
   return (
     <>
       {type === "single" ? (
@@ -87,7 +90,7 @@ export default function TicketsList({ type }) {
             </p>
           </>
         ) : (
-          <div className="tickets-container">
+          <div className={classes}>
             {tickets.flatMap((ticket) =>
               Array.from({ length: ticket.quantity }).map((_, index) => (
                 <TicketItem

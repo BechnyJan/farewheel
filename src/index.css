@@ -44,3 +44,10 @@ ul li {
 ul li:hover {
   background-color: #f0f0f0;
 }
+
+h1 {
+  margin-top: 0.5rem;
+  font-size: 24px;
+  text-align: center;
+  color: #007bff;
+}

@@ -30,7 +30,6 @@
 
 .tourist-spot-img {
   width: 100%;
-  /* height: auto;  */
   height: 180px;
   object-fit: cover;
   border-radius: 4px;
@@ -51,7 +50,6 @@
 
 .tourist-spot-img:hover {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-  /* transform: scale(1.02); */
 }
 
 .buy-ticket-btn {
@@ -78,6 +76,10 @@
 }
 
 .tourist-ticket-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 15px;
@@ -94,7 +96,7 @@
 
 .tourist-ticket-price {
   font-size: 16px;
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   font-weight: bold;
   color: #444;
 }
@@ -114,11 +116,23 @@
   font-size: 16px;
   cursor: pointer;
   width: 100%;
+  margin-top: 0;
   transition: background-color 0.3s ease;
 }
 
 .tourist-ticket-btn:hover {
   background-color: #0056b3;
+}
+
+@media only screen and (min-width: 445px) {
+  .tourist-spots-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tourist-ticket-card {
+    width: 250px;
+    margin: 0 auto;
+  }
 }
 
 @media only screen and (min-width: 700px) {
@@ -127,8 +141,14 @@
   }
 
   .tourist-ticket-card {
-    width: 300px;
+    width: 200px;
+
     margin: 0 auto;
+  }
+
+  .tourist-tickets-container {
+    flex-direction: row;
+    gap: 10px;
   }
 }
 
@@ -143,7 +163,7 @@
   }
 
   .tourist-ticket-card {
-    width: 200px;
+    width: 250px;
     margin: 0 auto;
   }
 }

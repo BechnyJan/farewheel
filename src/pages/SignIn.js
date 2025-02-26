@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import BackButton from "./../components/BackButton";
 import "./SignIn.css";
@@ -27,17 +27,21 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
 
     const yearOfBirth = parseInt(formData.dob.split("-")[0]);
 
-    if (isSignUp && !trimmedFirstName) {
-      console.log(trimmedFirstName);
+    console.log(trimmedFirstName);
+    console.log(
+      trimmedEmail.includes("@"),
+      "tady",
+      !trimmedEmail,
+      trimmedEmail
+    );
 
+    if (isSignUp && !trimmedFirstName) {
       newErrors.firstName =
         "Name is required and you need to enter at least two characters";
     } else if (isSignUp && !/^[a-zA-Z\s]+$/.test(trimmedFirstName)) {
       newErrors.firstName = "Name can only contain letters";
     } else if (isSignUp && trimmedFirstName.length < 2) {
       newErrors.firstName = "Name is required to have at least two characters";
-    } else {
-      newErrors.firstName = "";
     }
 
     if (isSignUp && !trimmedLastName) {
@@ -46,10 +50,7 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
       newErrors.lastName = "Name can only contain letters";
     } else if (isSignUp && trimmedLastName.length < 2) {
       newErrors.lastName = "Name is required to have at least two characters";
-    } else {
-      newErrors.lastName = "";
     }
-
     if (isSignUp && !formData.dob) {
       newErrors.dob = "Date of birth is required";
     } else if (yearOfBirth < 1940)
@@ -73,10 +74,13 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
   };
 
   const handleSubmit = (e) => {
+    console.log("asdsd");
     e.preventDefault();
     let cleanedData = {};
-    if (!validateForm()) return;
-
+    if (!validateForm()) {
+      return;
+    }
+    console.log("BBBB");
     if (validateForm()) {
       cleanedData = {
         ...formData,
@@ -101,7 +105,6 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
   };
 
   const toggleForm = () => {
-    console.log(formData);
     setFormData({
       firstName: "",
       lastName: "",
@@ -113,7 +116,7 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     setIsSignUp(!isSignUp);
   };
 
-  console.log(errors);
+  console.log(errors, newErr);
   const titleAuth = isSignUp ? "Sign Up" : "Sign In";
   return (
     <>
@@ -168,7 +171,7 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
-              type="email"
+              type="text"
               id="email"
               value={formData.email}
               onChange={(e) =>

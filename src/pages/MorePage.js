@@ -17,8 +17,12 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
     let acc = localStorage?.getItem("account");
     if (acc) {
       setAccount(JSON.parse(acc));
+    } else {
+      setAccount(null);
     }
-  }, []);
+  }, [setIsSignedIn]);
+
+  useEffect(() => {}, [setIsSignedIn]);
 
   console.log(account?.firstName);
 
@@ -47,6 +51,7 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
 
   const handleSignOut = () => {
     setIsSignedIn();
+    localStorage.removeItem("account");
     alert("You have signed out!");
   };
 

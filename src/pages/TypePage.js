@@ -78,7 +78,7 @@ export default function TypePage({ process, setProcessPurchase }) {
   };
 
   const signInHandler = () => {
-    navigate("/signin");
+    navigate("/signin", { state: { page: "/tickets/passes" } });
     setErr(false);
   };
 

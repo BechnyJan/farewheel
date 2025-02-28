@@ -8,6 +8,10 @@ export default function RouteExtraDetailPage() {
   const { route } = location.state;
   console.log(route);
 
+
+
+  
+
   return (
     <>
       <div className="route-detail-container">

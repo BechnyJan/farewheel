@@ -6,8 +6,8 @@ import "./SignIn.css";
 export default function SignUpSignInPage({ setIsSignedIn }) {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location, navigate);
-  const [isSignUp, setIsSignUp] = useState(true); // Toggle between Sign Up and Sign In
+  console.log(location.state, navigate);
+  const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,7 +16,6 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const [newErr, setNewErr] = useState({});
 
   const validateForm = () => {
     let newErrors = {};
@@ -36,8 +35,7 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     );
 
     if (isSignUp && !trimmedFirstName) {
-      newErrors.firstName =
-        "Name is required and you need to enter at least two characters";
+      newErrors.firstName = "Name is required";
     } else if (isSignUp && !/^[a-zA-Z\s]+$/.test(trimmedFirstName)) {
       newErrors.firstName = "Name can only contain letters";
     } else if (isSignUp && trimmedFirstName.length < 2) {
@@ -45,11 +43,12 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     }
 
     if (isSignUp && !trimmedLastName) {
-      newErrors.lastName = "Name is required";
+      newErrors.lastName = "Surname is required";
     } else if (isSignUp && !/^[a-zA-Z\s]+$/.test(trimmedLastName)) {
-      newErrors.lastName = "Name can only contain letters";
+      newErrors.lastName = "Surname can only contain letters";
     } else if (isSignUp && trimmedLastName.length < 2) {
-      newErrors.lastName = "Name is required to have at least two characters";
+      newErrors.lastName =
+        "Surname is required to have at least two characters";
     }
     if (isSignUp && !formData.dob) {
       newErrors.dob = "Date of birth is required";
@@ -80,7 +79,6 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     if (!validateForm()) {
       return;
     }
-    console.log("BBBB");
     if (validateForm()) {
       cleanedData = {
         ...formData,
@@ -101,7 +99,11 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     }
 
     setIsSignedIn();
-    navigate("/more");
+    if (!location.state.page) {
+      navigate("/more");
+    } else {
+      navigate(`${location.state.page}`);
+    }
   };
 
   const toggleForm = () => {
@@ -116,8 +118,47 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     setIsSignUp(!isSignUp);
   };
 
-  console.log(errors, newErr);
+  // const handlePaste = (e) => {
+  //   e.preventDefault();
+  //   const pastedText = e.clipboardData.getData("text").trim();
+
+  //   // Podporované formáty: dd/mm/yyyy, dd-mm-yyyy, yyyy-mm-dd
+  //   let formattedDate = pastedText.replace(/[^\d]/g, ""); // Odebere nečíselné znaky
+
+  //   if (formattedDate.length === 8) {
+  //     let day, month, year;
+
+  //     // Detekce formátu podle pozice roku
+  //     if (formattedDate.substring(4, 8) > "1900") {
+  //       // yyyy-mm-dd
+  //       year = formattedDate.substring(0, 4);
+  //       month = formattedDate.substring(4, 6);
+  //       day = formattedDate.substring(6, 8);
+  //     } else {
+  //       // dd-mm-yyyy nebo dd/mm/yyyy
+  //       day = formattedDate.substring(0, 2);
+  //       month = formattedDate.substring(2, 4);
+  //       year = formattedDate.substring(4, 8);
+  //     }
+
+  //     // Ověření platnosti data
+  //     if (
+  //       parseInt(month) > 0 &&
+  //       parseInt(month) <= 12 &&
+  //       parseInt(day) > 0 &&
+  //       parseInt(day) <= 31
+  //     ) {
+  //       const formatted = `${year}/${month}/${day}`; // Nastavení pro `<input type="date">`
+  //       setFormData((prev) => ({
+  //         ...prev,
+  //         dob: formatted,
+  //       }));
+  //     }
+  //   }
+  // };
+
   const titleAuth = isSignUp ? "Sign Up" : "Sign In";
+
   return (
     <>
       <BackButton title={titleAuth} />
@@ -163,6 +204,7 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
                   onChange={(e) =>
                     setFormData((prev) => ({ ...prev, dob: e.target.value }))
                   }
+                  // onPaste={handlePaste}
                 />
                 {errors.dob && <p className="error">{errors.dob}</p>}
               </div>

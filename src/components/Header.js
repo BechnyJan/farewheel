@@ -1,13 +1,15 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Tourist from "../icons/tourist.svg";
 import classes from "./Header.module.css";
 
 export default function Header() {
   const navigate = useNavigate();
-
+  const location = useLocation();
+console.log(location.pathname)
   const accountHandler = () => {
-    navigate("/signin");
+    // navigate("/signin");
+    navigate("/signin", { state: { page: `${location.pathname}` } });
   };
 
   const homeHandler = () => {

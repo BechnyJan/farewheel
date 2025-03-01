@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
 import Settings from "../icons/path2.png";
 import Question_Mark from "../icons/g10.png";
@@ -12,6 +12,7 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
   const navigate = useNavigate();
 
   const [account, setAccount] = useState(null);
+  console.log(isSignedIn);
 
   useEffect(() => {
     let acc = localStorage?.getItem("account");
@@ -22,10 +23,6 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
     }
   }, [setIsSignedIn]);
 
-  useEffect(() => {}, [setIsSignedIn]);
-
-  console.log(account?.firstName);
-
   const menuItems = [
     { title: "Settings", icon: Settings, path: "/settings" },
     { title: "Support", icon: Question_Mark, path: "/support" },
@@ -34,27 +31,22 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
     { title: "Privacy Policy", icon: Lock, path: "/privacy" },
   ];
 
-  const setting = <Settings />;
-  console.log(setting);
-
   const handleNavigation = (path) => {
     return;
   };
 
   const handleSignUp = () => {
-    // Mock sign-up logic
-    // setIsSignedIn(true);
-    // alert("You have signed up!");
-
     navigate("/signin");
   };
 
   const handleSignOut = () => {
     setIsSignedIn();
+    setAccount(null);
     localStorage.removeItem("account");
-    alert("You have signed out!");
+    navigate("/");
   };
 
+  let emailIn = account?.email;
   return (
     <>
       <div className="more-page">
@@ -67,7 +59,7 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
               <p>Welcome, {account?.firstName}!</p>
               <div>
                 <p>Email</p>
-                <p>{account?.email}</p>
+                <p>{emailIn}</p>
               </div>
               <div className="account-btn_cotainer">
                 <button className="account-btn" onClick={handleSignOut}>

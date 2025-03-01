@@ -16,6 +16,8 @@ export default function TypePage({ process, setProcessPurchase }) {
   const location = useLocation();
   console.log(location.pathname);
 
+  const acc = localStorage?.getItem("account");
+
   const passesData = {
     individual: [
       {
@@ -114,7 +116,10 @@ export default function TypePage({ process, setProcessPurchase }) {
               <p className={""}>
                 <strong>ℹ️</strong> The Passes might be purchased only if you
                 have
-                <span className="info-span" onClick={signInHandler}> signed in.</span>
+                <span className="info-span" onClick={signInHandler}>
+                  {" "}
+                  signed in.
+                </span>
               </p>
             )}
             {err && (

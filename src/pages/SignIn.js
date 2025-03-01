@@ -25,14 +25,6 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
 
     const yearOfBirth = parseInt(formData.dob.split("/")[2]);
 
-    console.log(trimmedFirstName, yearOfBirth);
-    console.log(
-      trimmedEmail.includes("@"),
-      "tady",
-      !trimmedEmail,
-      trimmedEmail
-    );
-
     if (isSignUp && !trimmedFirstName) {
       newErrors.firstName = "Name is required";
     } else if (isSignUp && !/^[a-zA-Z\s]+$/.test(trimmedFirstName)) {
@@ -63,6 +55,9 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     } else if (trimmedPassword.length < 6) {
       newErrors.password = "Password must be at least 6 characters long";
     }
+
+    console.log("tady", newErrors);
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -102,15 +97,36 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     e.preventDefault();
     if (!validateForm()) return;
 
+    console.log("rafss");
+
     const cleanedData = { ...formData, email: formData.email.trim(), token: 1 };
 
     if (isSignUp) {
       localStorage.setItem("account", JSON.stringify(cleanedData));
       localStorage.setItem("loggedin", cleanedData.token);
+    } else {
+      // Mock data for sign in
+      const mockAccount = {
+        firstName: "Mark",
+        lastName: "Tester",
+        email: formData.email.trim(), // Můžeš použít co uživatel zadal, nebo fixní mock email
+        token: 1,
+      };
+      localStorage.setItem("account", JSON.stringify(mockAccount));
+      localStorage.setItem("loggedin", "1");
     }
 
     setIsSignedIn();
-    navigate(location.state?.page || "/more");
+    navigate(
+      location.state?.page || "/more"
+      //   {
+      //   state: {
+      //     path: location?.pathname,
+      //     status: isSignUp,
+      //     email: formData.email.trim(),
+      //   },
+      // }
+    );
   };
 
   const toggleForm = () => {
@@ -151,10 +167,11 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
         <form onSubmit={handleSubmit} className="auth-form">
           {isSignUp && (
             <>
-              {["FirstName", "LastName"].map((field) => (
+              {["firstName", "lastName"].map((field) => (
                 <div key={field} className="form-group">
                   <label htmlFor={field}>
-                    {field.replace("Name", " Name")}
+                    {field.charAt(0).toUpperCase() +
+                      field.slice(1).replace("Name", " Name")}
                   </label>
                   <input
                     type="text"

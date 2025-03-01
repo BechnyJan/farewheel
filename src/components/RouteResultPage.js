@@ -12,7 +12,7 @@ export default function RouteResultPage() {
   useEffect(() => {}, [location.state, results]);
 
   console.log(data, location.state);
-  const stations = { from: from, to: to };
+  const stations = { from: from, to: to, page: location?.state.page };
 
   return (
     <div className="route-results-modal">

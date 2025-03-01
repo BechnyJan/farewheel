@@ -1,24 +1,25 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
 import Header from "../components/Header";
 import {
   mockResults,
   recommendedTickets,
   ticketOptions,
-  touristSpots
+  touristSpots,
 } from "../data/textData";
 import castle from "../icons/prague_cas.png";
 import "./TouristPage.css";
 
 function TouristPage() {
   const navigate = useNavigate();
+  const location = useLocation();
   const currentLocation = "Hlavní nádraží"; // Hardcoded current location for prototype
 
   const localeTime = new Date().toLocaleTimeString("en-GB", {
     hour: "2-digit",
     minute: "2-digit",
-  })
+  });
 
   const handleNavigate = (destination) => {
     navigate("/route-results", {
@@ -27,14 +28,13 @@ function TouristPage() {
         to: destination,
         results: mockResults,
         time: localeTime,
-        data: ticketOptions
+        data: ticketOptions,
+        page: location.pathname,
       },
     });
   };
 
-
   const handleTouristTicket = (ticket, index) => {
-    
     navigate(`/tickets/details/${ticket.id}${index}`, {
       state: {
         id: ticket.id,
@@ -50,7 +50,7 @@ function TouristPage() {
   return (
     <>
       <>
-      <Header />
+        <Header />
       </>
       <div className="tourist-page">
         <h1>Tourist Spots</h1>

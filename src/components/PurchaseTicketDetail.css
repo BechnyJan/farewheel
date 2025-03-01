@@ -31,7 +31,15 @@
   text-align: center;
 }
 
-.buy-btn {
+.purchase-btn_container {
+  margin-top: 0.25rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.buy-btn,
+.purchase_range_plus,
+.purchase_range_minus {
   background-color: #007bff;
   color: white;
   border: none;
@@ -39,6 +47,10 @@
   padding: 12px 24px;
   font-size: 16px;
   cursor: pointer;
+}
+
+.purchase_range_plus {
+  background-color: #0b417c;
 }
 
 .buy-btn:hover {

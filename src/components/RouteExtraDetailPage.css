@@ -5,17 +5,17 @@
 
 .route-direction_container {
   display: flex;
-  justify-content: space-around;
-  margin: 0 auto;
-  padding-bottom:3rem;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-bottom: 3rem;
 }
 
 .route-direction_item {
-  width: 35%;
+  width: 40%;
 }
 
 .route-direction_item h2 {
-  font-size: 1.15rem;
+  font-size: 1rem;
   color: #007bff;
   margin: 0.25rem 0;
 }
@@ -28,9 +28,24 @@
 }
 
 .route-direction_item ul li {
+  font-size: 0.875rem;
   margin-bottom: 1rem;
 }
 
 .route-detail-container p {
   margin: 10px 0;
+}
+
+@media only screen and (min-width: 1024px) {
+  .route-detail-container {
+    padding: 20px 3rem;
+  }
+
+  .route-direction_item h2 {
+    font-size: 1.15rem;
+  }
+
+  .route-direction_item ul li {
+    font-size: 1rem;
+  }
 }

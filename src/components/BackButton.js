@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./BackButton.css";
+// import BackBtn from '../icons/backbtn2.png'
+import BackBtn from "../icons/backbtn3.png";
 
 export default function BackButton({
   title,
@@ -8,7 +10,7 @@ export default function BackButton({
   ticketPage,
   returnNum = -1,
   onPress,
-  state
+  state,
 }) {
   const navigate = useNavigate();
 
@@ -19,21 +21,26 @@ export default function BackButton({
     if (onPress) {
       onPress();
     }
+
+    if (state?.page === "/tourist") {
+      navigate(`${state.page}`, { state });
+      return;
+    }
     if (state) {
-      navigate('/', {state});
+      navigate("/", { state });
     }
     if (!onPress && !state) {
       navigate(returnNum);
     }
   };
 
-  console.log(state);
-  
-
   return (
     <div className="back">
-      <button className="back-btn" onClick={actionHandler}>
+      {/* <button className="back-btn" onClick={actionHandler}>
         ←
+      </button> */}
+      <button className="back-btn" onClick={actionHandler}>
+        <img src={BackBtn} alt="" />
       </button>
       {title && <h1 className="header-title">{title}</h1>}
     </div>

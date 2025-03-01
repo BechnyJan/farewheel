@@ -57,7 +57,11 @@ export default function TicketsPage({ process, setProcessPurchase }) {
           <NavLink to="/tickets/single" className="tickets-navigation_link">
             Get Single Ticket
           </NavLink>
-          <NavLink to="/tickets/passes" className="tickets-navigation_link">
+          <NavLink
+            to="/tickets/passes"
+            id={"pass"}
+            className="tickets-navigation_link"
+          >
             Get Your Pass
           </NavLink>
         </div>

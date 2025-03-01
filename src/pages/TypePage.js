@@ -114,7 +114,7 @@ export default function TypePage({ process, setProcessPurchase }) {
               <p className={""}>
                 <strong>ℹ️</strong> The Passes might be purchased only if you
                 have
-                <span onClick={signInHandler}> signed in.</span>
+                <span className="info-span" onClick={signInHandler}> signed in.</span>
               </p>
             )}
             {err && (

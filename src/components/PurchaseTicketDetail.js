@@ -23,9 +23,6 @@ export default function PurchaseTicketDetail({}) {
       result
     );
     const activationState = activationType === "manual" ? false : true;
-    // activated: true,
-    //         activationTime: Date.now() + delayTime,
-    //         validUntil: Date.now() + val + delayTime
     if (!type) {
       navigate(`/confirmation`, {
         state: {
@@ -54,14 +51,26 @@ export default function PurchaseTicketDetail({}) {
         },
       });
     }
-  }; // Přesměrování na potvrzovací stránku
-
-  console.log(location);
+  };
 
   const btn = `Purchase ${quantity > 1 ? "tickets" : "ticket"} (${
     price * quantity
   }
           CZK)`;
+
+  const handleQuantityChange = (change) => {
+    setQuantity((prev) => {
+        const min = 1;
+        const max = !location.state.type ? 10 : 2;
+        let newQuantity = Number(prev) + change;
+
+        if (newQuantity < min) newQuantity = min;
+        if (newQuantity > max) newQuantity = max;
+
+        return newQuantity;
+    });
+};
+
 
   return (
     <div className="purchase-ticket_detail">
@@ -82,6 +91,10 @@ export default function PurchaseTicketDetail({}) {
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
             />
+            <div className="purchase-btn_container">
+              <button onClick={() => handleQuantityChange(-1)} className="purchase_range_minus">-</button>
+              <button  onClick={() => handleQuantityChange(1)} className="purchase_range_plus">+</button>
+            </div>
           </>
           {/* )} */}
           <p>

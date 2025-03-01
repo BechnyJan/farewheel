@@ -8,14 +8,10 @@ export default function RouteExtraDetailPage() {
   const { route } = location.state;
   console.log(route);
 
-
-
-  
-
   return (
     <>
+      <BackButton title={`Detail linky: ${route.route_short_name}`} />
       <div className="route-detail-container">
-        <BackButton title={`Detail linky: ${route.route_short_name}`} />
         <p>
           <strong>Název linky:</strong> {route.route_long_name}
         </p>

@@ -11,20 +11,17 @@ export default function TicketDetail() {
   const [remainingTime, setRemainingTime] = useState(null);
 
   useEffect(() => {
-    // Fetch ticket details from localStorage
     const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
     const selectedTicket = savedTickets.find((ticket) => ticket.id === id);
     setTicket(selectedTicket);
 
     if (selectedTicket) {
-      // Generate a random verification code
       const randomCode = Math.random()
         .toString(36)
         .substring(2, 10)
         .toUpperCase();
       setVerificationCode(randomCode);
 
-      // Set initial remaining time
       if (selectedTicket.validUntil) {
         setRemainingTime(selectedTicket.validUntil - Date.now());
       }

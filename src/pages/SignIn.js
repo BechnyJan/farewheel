@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import BackButton from "./../components/BackButton";
 import "./SignIn.css";
@@ -6,7 +6,6 @@ import "./SignIn.css";
 export default function SignUpSignInPage({ setIsSignedIn }) {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location.state, navigate);
   const [isSignUp, setIsSignUp] = useState(true);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -24,9 +23,9 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     const trimmedEmail = formData.email.trim();
     const trimmedPassword = formData.password.trim();
 
-    const yearOfBirth = parseInt(formData.dob.split("-")[0]);
+    const yearOfBirth = parseInt(formData.dob.split("/")[2]);
 
-    console.log(trimmedFirstName);
+    console.log(trimmedFirstName, yearOfBirth);
     console.log(
       trimmedEmail.includes("@"),
       "tady",
@@ -68,42 +67,50 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const firstNameHandler = (e) => {
-    setFormData((prev) => ({ ...prev, firstName: e.target.value }));
+  const handlePaste = (e) => {
+    e.preventDefault();
+    let text = e.clipboardData.getData("text").trim().replace(/[^\d]/g, "");
+
+    if (text.length === 8) {
+      text = `${text.slice(0, 2)}/${text.slice(2, 4)}/${text.slice(4)}`;
+      setFormData((prev) => ({ ...prev, dob: text }));
+    }
+
+    const dateRegex = /(\d{1,4})[\/\-.](\d{1,2})[\/\-.](\d{1,4})/;
+    const match = text.match(dateRegex);
+
+    if (!match) return;
+    let [_, part1, part2, part3] = match;
+
+    let day, month, year;
+
+    if (part1.length === 4) {
+      year = part1;
+      month = part2.padStart(2, "0");
+      day = part3.padStart(2, "0");
+    } else {
+      day = part1.padStart(2, "0");
+      month = part2.padStart(2, "0");
+      year = part3;
+    }
+
+    const formattedDate = `${day}/${month}/${year}`;
+    setFormData((prev) => ({ ...prev, dob: formattedDate }));
   };
 
   const handleSubmit = (e) => {
-    console.log("asdsd");
     e.preventDefault();
-    let cleanedData = {};
-    if (!validateForm()) {
-      return;
-    }
-    if (validateForm()) {
-      cleanedData = {
-        ...formData,
-        firstName: formData.firstName.trim(),
-        lastName: formData.lastName.trim(),
-        email: formData.email.trim(),
-        token: 1,
-      };
-    }
+    if (!validateForm()) return;
+
+    const cleanedData = { ...formData, email: formData.email.trim(), token: 1 };
+
     if (isSignUp) {
-      console.log("Sign Up successful:", cleanedData);
-      //   alert("Account created successfully!");
       localStorage.setItem("account", JSON.stringify(cleanedData));
       localStorage.setItem("loggedin", cleanedData.token);
-    } else {
-      console.log("Sign In successful:", cleanedData);
-      //   alert("Signed in successfully!");
     }
 
     setIsSignedIn();
-    if (!location.state.page) {
-      navigate("/more");
-    } else {
-      navigate(`${location.state.page}`);
-    }
+    navigate(location.state?.page || "/more");
   };
 
   const toggleForm = () => {
@@ -118,46 +125,24 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     setIsSignUp(!isSignUp);
   };
 
-  // const handlePaste = (e) => {
-  //   e.preventDefault();
-  //   const pastedText = e.clipboardData.getData("text").trim();
-
-  //   // Podporované formáty: dd/mm/yyyy, dd-mm-yyyy, yyyy-mm-dd
-  //   let formattedDate = pastedText.replace(/[^\d]/g, ""); // Odebere nečíselné znaky
-
-  //   if (formattedDate.length === 8) {
-  //     let day, month, year;
-
-  //     // Detekce formátu podle pozice roku
-  //     if (formattedDate.substring(4, 8) > "1900") {
-  //       // yyyy-mm-dd
-  //       year = formattedDate.substring(0, 4);
-  //       month = formattedDate.substring(4, 6);
-  //       day = formattedDate.substring(6, 8);
-  //     } else {
-  //       // dd-mm-yyyy nebo dd/mm/yyyy
-  //       day = formattedDate.substring(0, 2);
-  //       month = formattedDate.substring(2, 4);
-  //       year = formattedDate.substring(4, 8);
-  //     }
-
-  //     // Ověření platnosti data
-  //     if (
-  //       parseInt(month) > 0 &&
-  //       parseInt(month) <= 12 &&
-  //       parseInt(day) > 0 &&
-  //       parseInt(day) <= 31
-  //     ) {
-  //       const formatted = `${year}/${month}/${day}`; // Nastavení pro `<input type="date">`
-  //       setFormData((prev) => ({
-  //         ...prev,
-  //         dob: formatted,
-  //       }));
-  //     }
-  //   }
-  // };
-
   const titleAuth = isSignUp ? "Sign Up" : "Sign In";
+
+  const handleDobChange = (e) => {
+    let value = e.target.value.replace(/[^\d]/g, ""); // povolí pouze čísla
+
+    if (value.length > 8) {
+      return; // víc než 8 číslic je neplatné
+    }
+
+    if (value.length >= 2) {
+      value = `${value.slice(0, 2)}/${value.slice(2)}`;
+    }
+    if (value.length >= 5) {
+      value = `${value.slice(0, 5)}/${value.slice(5)}`;
+    }
+
+    setFormData((prev) => ({ ...prev, dob: value }));
+  };
 
   return (
     <>
@@ -166,79 +151,57 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
         <form onSubmit={handleSubmit} className="auth-form">
           {isSignUp && (
             <>
+              {["FirstName", "LastName"].map((field) => (
+                <div key={field} className="form-group">
+                  <label htmlFor={field}>
+                    {field.replace("Name", " Name")}
+                  </label>
+                  <input
+                    type="text"
+                    id={field}
+                    value={formData[field]}
+                    onChange={(e) =>
+                      setFormData({ ...formData, [field]: e.target.value })
+                    }
+                  />
+                  {errors[field] && <p className="error">{errors[field]}</p>}
+                </div>
+              ))}
               <div className="form-group">
-                <label htmlFor="firstName">First Name</label>
+                <label htmlFor="dob">Date of Birth (dd/mm/yyyy)</label>
                 <input
                   type="text"
-                  id="firstName"
-                  value={formData.firstName}
-                  onChange={firstNameHandler}
-                />
-                {errors.firstName && (
-                  <p className="error">{errors.firstName}</p>
-                )}
-              </div>
-              <div className="form-group">
-                <label htmlFor="lastName">Last Name</label>
-                <input
-                  type="text"
-                  id="lastName"
-                  value={formData.lastName}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      lastName: e.target.value,
-                    }))
-                  }
-                />
-                {errors.lastName && <p className="error">{errors.lastName}</p>}
-              </div>
-              <div className="form-group">
-                <label htmlFor="dob">Date of Birth</label>
-                <input
-                  type="date"
                   id="dob"
+                  placeholder="dd/mm/yyyy"
                   value={formData.dob}
-                  min="1940-01-01"
-                  max="2010-01-01"
-                  onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, dob: e.target.value }))
-                  }
-                  // onPaste={handlePaste}
+                  onChange={handleDobChange}
+                  onPaste={handlePaste}
                 />
                 {errors.dob && <p className="error">{errors.dob}</p>}
               </div>
             </>
           )}
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              id="email"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, email: e.target.value }))
-              }
-            />
-            {errors.email && <p className="error">{errors.email}</p>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              value={formData.password}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, password: e.target.value }))
-              }
-            />
-            {errors.password && <p className="error">{errors.password}</p>}
-          </div>
+          {["email", "password"].map((field) => (
+            <div key={field} className="form-group">
+              <label htmlFor={field}>
+                {field.charAt(0).toUpperCase() + field.slice(1)}
+              </label>
+              <input
+                type={field === "password" ? "password" : "text"}
+                id={field}
+                value={formData[field]}
+                onChange={(e) =>
+                  setFormData({ ...formData, [field]: e.target.value })
+                }
+              />
+              {errors[field] && <p className="error">{errors[field]}</p>}
+            </div>
+          ))}
           <button type="submit" className="auth-btn">
-            {isSignUp ? "Sign Up" : "Sign In"}
+            {titleAuth}
           </button>
         </form>
-        <p className="auth-toogle">
+        <p className="auth-toggle">
           {isSignUp ? "Already have an account?" : "Don't have an account?"}{" "}
           <span className="toggle-link" onClick={toggleForm}>
             {isSignUp ? "Sign In" : "Sign Up"}

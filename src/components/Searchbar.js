@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import classes from "./Searchbar.module.css";
 import StationSelectModal from "./StationSelectModal";
 import { ticketOptions } from "../data/textData";
+import Dropdown from "../icons/drop.png";
+import Dropdown2 from "../icons/drop2.png";
+import Switch from "../icons/switch.png";
 
 export default function SearchBar() {
   const navigate = useNavigate();
@@ -11,8 +14,12 @@ export default function SearchBar() {
   const from = location?.state ? location?.state?.from : "";
   const to = location?.state ? location?.state?.to : "";
 
-  const [fromQuery, setFromQuery] = useState(from);
-  const [toQuery, setToQuery] = useState(to);
+  // const [fromQuery, setFromQuery] = useState(from);
+  // const [toQuery, setToQuery] = useState(to);
+  const [compoundStations, setCompoundStations] = useState({
+    from: "",
+    to: "",
+  });
   const [meansOfTransport, setMeansOfTransport] = useState({
     metro: true,
     tram: true,
@@ -22,6 +29,13 @@ export default function SearchBar() {
   const [timeHour, setTimeHour] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [modalType, setModalType] = useState(null);
+
+  useEffect(() => {
+    setCompoundStations({
+      from: location?.state?.from || "",
+      to: location?.state?.to || "",
+    });
+  }, [location.state]);
 
   const mockResults = [
     {
@@ -84,11 +98,11 @@ export default function SearchBar() {
   };
 
   const handleSearch = () => {
-    if (!fromQuery || !toQuery) {
+    if (!compoundStations.from || !compoundStations.to) {
       alert("Please select both starting and final destination.");
       return;
     }
-    if (fromQuery === toQuery) {
+    if (compoundStations.from === compoundStations.to) {
       alert("Please select different starting and final destination.");
       return;
     }
@@ -98,8 +112,8 @@ export default function SearchBar() {
 
     navigate("/route-results", {
       state: {
-        from: fromQuery,
-        to: toQuery,
+        from: compoundStations.from,
+        to: compoundStations.to,
         excluded: excludedStations,
         means: meansOfTransport,
         time: timeHour,
@@ -110,8 +124,13 @@ export default function SearchBar() {
   };
 
   const handleModalSelect = (station) => {
-    if (modalType === "from") setFromQuery(station);
-    if (modalType === "to") setToQuery(station);
+    // if (modalType === "from") setFromQuery(station);
+    // if (modalType === "to") setToQuery(station);
+    setCompoundStations((prev) => {
+      if (modalType === "from") return { ...prev, from: station };
+      if (modalType === "to") return { ...prev, to: station };
+      return prev;
+    });
     if (modalType === "exclude") {
       setExcludedStations((prev) =>
         prev.includes(station) ? prev : [...prev, station]
@@ -120,31 +139,54 @@ export default function SearchBar() {
     setModalType(null);
   };
 
+  const swithStationHandler = () => {
+    setCompoundStations((prev) => ({
+      from: prev.to,
+      to: prev.from,
+    }));
+  };
+
+  const asyncUpdate = () => {
+    // setFromQuery(compoundStations.to);
+    // setToQuery(compoundStations.from);
+  };
+
+  // console.log(compoundStations, to, from);
+
   return (
     <div className={classes["search-bar"]}>
-      <div className={classes["search-container"]}>
-        <label>Departure station:</label>
-        <input
-          type="text"
-          value={fromQuery}
-          readOnly
-          onClick={() => setModalType("from")}
-          placeholder="Select a departure station.."
-          className={classes["search-input"]}
-        />
-      </div>
-
-      <div className={classes["search-container"]}>
-        <label>Arrival station:</label>
-        <input
-          type="text"
-          value={toQuery}
-          readOnly
-          onClick={() => setModalType("to")}
-          placeholder="Select an arrival station..."
-          className={classes["search-input"]}
-        />
-      </div>
+      <section>
+        <div className={classes["search-container"]}>
+          <label>Departure station:</label>
+          <input
+            type="text"
+            value={compoundStations.from}
+            readOnly
+            onClick={() => setModalType("from")}
+            placeholder="Select a departure station.."
+            className={classes["search-input"]}
+          />
+        </div>
+        <button
+          className={classes["search-switch"]}
+          onClick={() => {
+            swithStationHandler();
+          }}
+        >
+          <img src={Switch} alt="" />
+        </button>
+        <div className={classes["search-container"]}>
+          <label>Arrival station:</label>
+          <input
+            type="text"
+            value={compoundStations.to}
+            readOnly
+            onClick={() => setModalType("to")}
+            placeholder="Select an arrival station..."
+            className={classes["search-input"]}
+          />
+        </div>
+      </section>
 
       <div className={classes["filter-section"]}>
         <div
@@ -153,8 +195,11 @@ export default function SearchBar() {
           }
           onClick={() => setShowFilters(!showFilters)}
         >
-          <p>Extended Filter</p>
-          <span>{showFilters ? "▲" : "▼"}</span>
+          <p>{showFilters ? "" : "Filter"} </p>
+          {/* <span>{showFilters ? "▲" : "▼"}</span> */}
+          <span>
+            <img src={!showFilters ? Dropdown : Dropdown2} alt="" />
+          </span>
         </div>
         {showFilters && (
           <div className={classes.filters}>

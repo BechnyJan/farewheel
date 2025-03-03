@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
 import Settings from "../icons/path2.png";
 import Question_Mark from "../icons/g10.png";

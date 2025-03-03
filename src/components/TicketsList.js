@@ -130,6 +130,7 @@ export default function TicketsList({ type }) {
               activationTime={ticket.activationTime}
               validTime={ticket.validUntil}
               onActivate={handlePassActivate}
+              onExpire={() => handleRemoveExpired(ticket.id, "ticket")}
             />
           ))
         )

@@ -49,13 +49,11 @@ export default function SingleTicketDetail({
     <>
       <div className="ticket-options" key={id}>
         <div
-          // key={inde}
           className="ticket-option"
           onClick={ticketHandler}
         >
           <div className="ticket-icon">
             <img src={icon} alt="" />
-            {/* {icon} */}
           </div>
           <div className="ticket-details">
             <span className="ticket-name">{name}</span>

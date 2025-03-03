@@ -163,30 +163,3 @@ export const stations = [
   { name: "Zvonařka" },
   { name: "Újezd" },
 ];
-
-// 1
-// Sídliště Petřiny
-// Petřiny
-// Větrník
-// Vojenská nemocnice
-// Baterie
-// Ořechovka
-// Sibeliova
-// Vozovna Střešovice (Muzeum MHD)
-// Prašný most
-// Hradčanská
-// Sparta
-// Letenské náměstí
-// Kamenická
-// Strossmayerovo náměstí
-// Vltavská
-// Holešovická tržnice
-// Dělnická
-// U Průhonu
-// Ortenovo náměstí
-// Nádraží Holešovice
-// Nádraží Holešovice (ul. Partyzánská)
-// Trojská
-// Nad Trojou
-// Hercovka
-// Ke Stírce

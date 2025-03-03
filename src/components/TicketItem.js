@@ -15,8 +15,8 @@ export default function TicketItem({
   activationTime,
   onExpire,
 }) {
-  // jsem pridat descrease time
-  // console.log(activationTime, validTime);
+  
+  
   const [ticket, setTicket] = useState([]);
   const [protectionTime, setProtectionTime] = useState(null);
   const [remainingTime, setRemainingTime] = useState(null);
@@ -132,7 +132,6 @@ export default function TicketItem({
         <h2>{name}</h2>
         <p>Price: {price} CZK</p>
         <p>{formatDuration(duration)}</p>
-        {/* <p>{!duration ? "One way ticket" : `Duration: ${duration} min`}</p> */}
         {activated ? (
           <div>
             {isPending ? (

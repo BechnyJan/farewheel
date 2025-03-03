@@ -71,10 +71,10 @@ export default function TypePage({ process, setProcessPurchase }) {
     navigate(`/passes/${pass.name}`, { state: pass });
   };
 
-  const processingHandler = () => {
-    console.log("hhhh");
-    setProcessPurchase();
-  };
+  // const processingHandler = () => {
+  //   console.log("hhhh");
+  //   setProcessPurchase();
+  // };
   const errHandler = () => {
     setErr(true);
   };
@@ -93,7 +93,6 @@ export default function TypePage({ process, setProcessPurchase }) {
         title={location.pathname !== "/tickets/single" ? "Passes" : "Single"}
       />
       <div className="passes-page">
-        {/* <h1>Passes</h1> */}
         <div className="tab-container">
           <button
             className={activeTab === "individual" ? "active" : ""}

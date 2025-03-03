@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import AccountSetting from "./components/AccountSetting";
 import PurchaseTicketDetail from "./components/PurchaseTicketDetail";
@@ -24,18 +19,16 @@ function App() {
   const [processPurchase, setProcessPurchase] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
 
-  useEffect(() => {
-    // console.log(localStorage.account);
-    // const account = JSON.parse(localStorage.getItem("account"));
-    // console.log(account);
-  }, [isSignedIn]);
+  // useEffect(() => {
+
+  // }, [isSignedIn]);
 
   useEffect(() => {
     try {
       const storedAccount = localStorage.getItem("account");
       if (storedAccount) {
         const account = JSON.parse(storedAccount);
-        console.log(account); // Zde bude načtený objekt, pokud je JSON validní
+        console.log(account);
       } else {
         // console.log("Žádná data v localStorage.");
       }
@@ -83,7 +76,6 @@ function App() {
             />
           }
         />
-        {/* <Route path="/tickets/single" element={<PassesPage process={processPurchase}/>} /> */}
         <Route path="/extras" element={<Extras />} />
         <Route path="extras/route-detail" element={<RouteExtraDetailPage />} />
         <Route path="/tickets/details/:id" element={<PurchaseTicketDetail />} />

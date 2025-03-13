@@ -7,7 +7,6 @@ import BottomNavBar from "./../components/BottomNavBar";
 import "./Extras.css";
 
 export default function Extras() {
-  // {
   const [routes, setRoutes] = useState(routesData);
 
   const metroRoutes = routes.filter((route) =>

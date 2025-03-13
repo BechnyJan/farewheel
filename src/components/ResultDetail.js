@@ -8,7 +8,6 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
     const buttonText = e.target.innerText;
     const extractedPrice = parseInt(buttonText.match(/\d+/)[0], 10);
 
-    console.log(extractedPrice);
     let indexData = 0;
     if (data) {
       for (let i = 0; i < data?.length; i++) {
@@ -28,19 +27,12 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
           duration: ticket.duration,
           quantity: 1,
           total: ticket.price,
-          // time: new Date().getTime(),
         },
       });
     } else {
       console.error("No matching ticket found for price:", extractedPrice);
     }
-    // let navigation = `/tickets/single`;
-    // if (+data.price) {
-    // }
-    // /tickets/details/${ticket.id}${index}
-
     const val = +route.duration > 20 ? 30 : 20;
-    //  navigate(navigation, { state: { line: route.line, price: val } });
   };
 
   const calculateArrivalTime = (departureTime, duration) => {
@@ -69,7 +61,6 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
     hour: "2-digit",
     minute: "2-digit",
   });
-  console.log(noEnteredTime);
 
   return (
     <li className="detailed-result-card">
@@ -84,7 +75,6 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
           <p>
             <strong>Arrival:</strong> {to}
           </p>
-          {/* {time && ( */}
           <p>
             <strong>Departure Time:</strong>
             {time ? time : noEnteredTime}
@@ -93,7 +83,6 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
             <strong>Arrival Time:</strong>
             {calculateArrivalTime(time || noEnteredTime, route.duration)}
           </p>
-          {/* )}  */}
         </div>
       </div>
       <div className="line-details">
@@ -106,7 +95,6 @@ export default function ResultDetail({ route, from, to, data, index, time }) {
         <button
           className="buy-ticket-btn"
           onClick={(e) => {
-            console.log(e.target.innerText);
             handleBuyTicket(e);
           }}
         >

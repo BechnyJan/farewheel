@@ -1,6 +1,5 @@
 .auth-page {
   padding: 16px;
-  /* text-align: center; */
   background-color: #f9f9f9;
   min-height: 100vh;
 }
@@ -79,4 +78,5 @@
   font-size: 14px;
   margin-top: 8px;
   display: inline-block;
+  font-weight: bold;
 }

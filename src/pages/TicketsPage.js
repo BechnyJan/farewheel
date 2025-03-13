@@ -1,43 +1,39 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
 import Header from "../components/Header";
 import TicketsList from "../components/TicketsList";
 import "./TicketsPage.css";
 
 export default function TicketsPage({ process, setProcessPurchase }) {
-  const [ticketType, setTicketType] = useState("single");
+  const location = useLocation();
+  const [ticketType, setTicketType] = useState(
+    sessionStorage.getItem("ticketType") || "single"
+  );
+
+  useEffect(() => {
+    if (location.state?.passesEntered) {
+      setTicketType("pass");
+      sessionStorage.setItem("ticketType", "pass");
+    } else {
+      setTicketType("single");
+      sessionStorage.setItem("ticketType", "single");
+    }
+  }, [location.state]);
+
+
   const [showInfo, setShowInfo] = useState(true);
 
-  const tickets = localStorage?.getItem("tickets");
-  const passes = localStorage?.getItem("passes");
-
-  // if(!tickets) {
-  //   setShowInfo(false)
-  // }
-
-  // const handleNavigation = (category) => {
-  //   navigate(`/tickets/${category}`);
-  // };
+  const tickets = localStorage.getItem("tickets");
+  const passes = localStorage.getItem("passes");
 
   const handlePurchase = () => {
-    setProcessPurchase(); // Simulace zakoupení všech dostupných jízdenek
+    setProcessPurchase();
   };
 
-  const ticketOptions = [
-    { name: "Single ticket", price: "15", icon: "🚌", duration: "" },
-    { name: "30minutes ticket", price: "20", icon: "⏱️", duration: "30" },
-    { name: "90minutes ticket", price: "30", icon: "⏳", duration: "90" },
-    { name: "Airport shuttle", price: "100", icon: "✈️", duration: "" },
-    { name: "Block of 10 tickets", price: "130", icon: "🔟", duration: "" },
-  ];
-
-  const contentSingleHandler = () => {
-    setTicketType("single");
-  };
-
-  const contentPassHandler = () => {
-    setTicketType("pass");
+  const handleTicketTypeChange = (type) => {
+    setTicketType(type);
+    sessionStorage.setItem("ticketType", type);
   };
 
   const btnClassesSingle =
@@ -45,9 +41,10 @@ export default function TicketsPage({ process, setProcessPurchase }) {
       ? "tickets-content-btn_active"
       : "tickets-content-btn";
   const btnClassesPass =
-    ticketType !== "single"
+    ticketType === "pass"
       ? "tickets-content-btn_active"
       : "tickets-content-btn";
+
   return (
     <>
       <Header />
@@ -57,11 +54,7 @@ export default function TicketsPage({ process, setProcessPurchase }) {
           <NavLink to="/tickets/single" className="tickets-navigation_link">
             Get Single Ticket
           </NavLink>
-          <NavLink
-            to="/tickets/passes"
-            id={"pass"}
-            className="tickets-navigation_link"
-          >
+          <NavLink to="/tickets/passes" className="tickets-navigation_link">
             Get Your Pass
           </NavLink>
         </div>
@@ -70,13 +63,13 @@ export default function TicketsPage({ process, setProcessPurchase }) {
           <div className="info-box">
             <span>ℹ️</span>
             <p>
-              Tickets are neccessary to be activated before the usage. There is
-              a protection during that time the ticket is invalid.
+              Tickets are necessary to be activated before the usage. There is a
+              protection during that time the ticket is invalid.
             </p>
           </div>
         )}
 
-        {showInfo && passes?.length > 0 && ticketType !== "single" && (
+        {showInfo && passes?.length > 0 && ticketType === "pass" && (
           <div className="info-box">
             <p>
               <strong>ℹ️</strong> The Block of 10 tickets is now available
@@ -85,19 +78,25 @@ export default function TicketsPage({ process, setProcessPurchase }) {
           </div>
         )}
 
-        {/* udelat zavreni */}
         <div className="tickets-list">
-          {ticketType === "single" ? <h1>My Tickets</h1> : <h1>My Passes</h1>}
+          <h1>{ticketType === "single" ? "My Tickets" : "My Passes"}</h1>
           <div className="tickets-content">
-            <button onClick={contentSingleHandler} className={btnClassesSingle}>
+            <button
+              onClick={() => handleTicketTypeChange("single")}
+              className={btnClassesSingle}
+            >
               Single ticket status
             </button>
-            <button onClick={contentPassHandler} className={btnClassesPass}>
+            <button
+              onClick={() => handleTicketTypeChange("pass")}
+              className={btnClassesPass}
+            >
               Passes Status
             </button>
           </div>
           <TicketsList type={ticketType} />
         </div>
+
         <div className="purchase-contaner">
           <NavLink
             className="tickets-navigation_link-purchase"

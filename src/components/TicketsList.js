@@ -136,6 +136,5 @@ export default function TicketsList({ type }) {
         )
       )}
     </>
-    // </div>
   );
 }

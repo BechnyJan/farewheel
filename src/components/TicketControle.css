@@ -1,24 +1,8 @@
-/* .ticket-control {
-  text-align: center; 
-
-  padding: 15px; 
-  font-size: 16px; 
-  line-height: 1.8; 
-  background-color: #e6f2ff;
-  border-radius: 10px; 
-  box-shadow: 0 4px 8px rgba(0, 64, 128, 0.1); /* Jemný modrý stín 
-} */
-
-.ticket-control {
-}
-
 .ticket-control {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 20px;
   padding-bottom: 5rem;
-
-  /* background-color: #f0f8ff; */
   background-color: #e6f2ff;
   color: #003366;
   border-radius: 10px;

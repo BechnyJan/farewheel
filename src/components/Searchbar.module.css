@@ -39,7 +39,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* padding-left: 0.5rem; */
 }
 
 .search-input {
@@ -94,16 +93,10 @@
 .filter-active > span {
   color: white;
   border-radius: 50%;
-  /* background-color: #007bff; */
   width: 22px;
   text-align: center;
 }
-
-.filter-toggle:hover > span,
-.filter-active > span {
-  /* background-color: #0b417c; */
-}
-
+ 
 .filter-toggle > span > img,
 .filter-active > span > img {
   object-fit: contain;
@@ -208,10 +201,6 @@
 @media only screen and (min-width: 600px) {
   .search-bar {
     width: 80%;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
   }
 }
 

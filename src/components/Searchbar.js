@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import classes from "./Searchbar.module.css";
-import StationSelectModal from "./StationSelectModal";
 import { ticketOptions } from "../data/textData";
 import Dropdown from "../icons/drop.png";
 import Dropdown2 from "../icons/drop2.png";
 import Switch from "../icons/switch.png";
+import classes from "./Searchbar.module.css";
+import StationSelectModal from "./StationSelectModal";
 
 export default function SearchBar() {
   const navigate = useNavigate();
@@ -14,8 +14,6 @@ export default function SearchBar() {
   const from = location?.state ? location?.state?.from : "";
   const to = location?.state ? location?.state?.to : "";
 
-  // const [fromQuery, setFromQuery] = useState(from);
-  // const [toQuery, setToQuery] = useState(to);
   const [compoundStations, setCompoundStations] = useState({
     from: "",
     to: "",
@@ -108,7 +106,6 @@ export default function SearchBar() {
     }
 
     const filteredResults = filterResults();
-    console.log(timeHour);
 
     navigate("/route-results", {
       state: {
@@ -124,8 +121,6 @@ export default function SearchBar() {
   };
 
   const handleModalSelect = (station) => {
-    // if (modalType === "from") setFromQuery(station);
-    // if (modalType === "to") setToQuery(station);
     setCompoundStations((prev) => {
       if (modalType === "from") return { ...prev, from: station };
       if (modalType === "to") return { ...prev, to: station };
@@ -145,13 +140,6 @@ export default function SearchBar() {
       to: prev.from,
     }));
   };
-
-  const asyncUpdate = () => {
-    // setFromQuery(compoundStations.to);
-    // setToQuery(compoundStations.from);
-  };
-
-  // console.log(compoundStations, to, from);
 
   return (
     <div className={classes["search-bar"]}>
@@ -196,7 +184,6 @@ export default function SearchBar() {
           onClick={() => setShowFilters(!showFilters)}
         >
           <p>{showFilters ? "" : "Filter"} </p>
-          {/* <span>{showFilters ? "▲" : "▼"}</span> */}
           <span>
             <img src={!showFilters ? Dropdown : Dropdown2} alt="" />
           </span>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import "./TicketItem.css";
 
@@ -15,8 +15,6 @@ export default function TicketItem({
   activationTime,
   onExpire,
 }) {
-  
-  
   const [ticket, setTicket] = useState([]);
   const [protectionTime, setProtectionTime] = useState(null);
   const [remainingTime, setRemainingTime] = useState(null);
@@ -24,22 +22,10 @@ export default function TicketItem({
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch ticket details from localStorage
     const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
     const selectedTicket = savedTickets.find((ticket) => ticket.id === id);
     setTicket(selectedTicket);
-    // const savedPasses = JSON.parse(localStorage.getItem("passes")) || [];
-    // const selectedPass = savedTickets.find((ticket) => ticket.id === id);
-    // setTicket(selectedTicket);
-
-    //   // Set initial remaining time
-    //   if (selectedTicket.validUntil) {
-    //     setRemainingTime(selectedTicket.validUntil - Date.now());
-    //   }
-    // }
   }, [id]);
-
-  // console.log(duration / 60, id, index);
 
   const detainHandler = () => {
     navigate(`/ticket/${id}`);
@@ -48,35 +34,28 @@ export default function TicketItem({
   useEffect(() => {
     if (!activationTime || !validTime) return;
 
-    // Calculate pending status
     const checkPendingStatus = activationTime - Date.now();
     setIsPending(checkPendingStatus > 0);
 
-    // If the ticket is pending, set the protection timer
     if (checkPendingStatus > 0) {
       setProtectionTime(checkPendingStatus);
     } else {
       setRemainingTime(Math.max(validTime - Date.now(), 0));
     }
 
-    // Create a countdown interval
     const interval = setInterval(() => {
-      setProtectionTime((prev) => Math.max(prev - 1000, 0)); // Decrease protection time
+      setProtectionTime((prev) => Math.max(prev - 1000, 0));
 
       setRemainingTime((prev) => {
         const timeLeft = validTime - Date.now();
-        // return isPending ? prev : Math.max(timeLeft, 0);
         return isPending ? protectionTime : Math.max(timeLeft, 0);
       });
 
       if (validTime - Date.now() <= 0) {
         clearInterval(interval);
-        // onExpire(name, price, duration, validTime);
         onExpire();
       }
     }, 1000);
-
-    // location update na searchbaru, expirovany ticket odstranen
 
     return () => clearInterval(interval);
   }, [activationTime, validTime, isPending, protectionTime, onExpire]);

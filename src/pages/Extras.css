@@ -11,25 +11,15 @@
   margin-top: 20px;
 }
 
-.extras-container_item {
-  /* padding-bottom: 4rem; */
-}
-
-
 .route-card:hover {
   transform: scale(1.1);
   transition: transform 0.2s;
 }
 
-
 @media only screen and (min-width: 768px) {
   .extras-container {
     width: 90%;
     margin: 0 auto;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
   }
 }
 
@@ -37,9 +27,5 @@
   .extras-container {
     width: 80%;
     margin: 0 auto;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
   }
 }

@@ -9,19 +9,10 @@ export default function PurchaseTicketDetail({}) {
   const [quantity, setQuantity] = useState(1);
   const [activationType, setActivationType] = useState("manual");
   const navigate = useNavigate();
-  console.log(type);
 
   const handlePayment = () => {
     let result = price * quantity;
-    console.log(
-      "Payment processed for:",
-      //   ticket.name,
-      name,
-      quantity,
-      activationType,
-      duration,
-      result
-    );
+
     const activationState = activationType === "manual" ? false : true;
     if (!type) {
       navigate(`/confirmation`, {
@@ -60,17 +51,16 @@ export default function PurchaseTicketDetail({}) {
 
   const handleQuantityChange = (change) => {
     setQuantity((prev) => {
-        const min = 1;
-        const max = !location.state.type ? 10 : 2;
-        let newQuantity = Number(prev) + change;
+      const min = 1;
+      const max = !location.state.type ? 10 : 2;
+      let newQuantity = Number(prev) + change;
 
-        if (newQuantity < min) newQuantity = min;
-        if (newQuantity > max) newQuantity = max;
+      if (newQuantity < min) newQuantity = min;
+      if (newQuantity > max) newQuantity = max;
 
-        return newQuantity;
+      return newQuantity;
     });
-};
-
+  };
 
   return (
     <div className="purchase-ticket_detail">
@@ -79,7 +69,6 @@ export default function PurchaseTicketDetail({}) {
       </div>
       <div className="ticket-info">
         <div className="info-section">
-          {/* {!location.state.type && ( */}
           <>
             <label htmlFor="quantity">Number of tickets:</label>
             <input
@@ -92,11 +81,20 @@ export default function PurchaseTicketDetail({}) {
               onChange={(e) => setQuantity(e.target.value)}
             />
             <div className="purchase-btn_container">
-              <button onClick={() => handleQuantityChange(-1)} className="purchase_range_minus">-</button>
-              <button  onClick={() => handleQuantityChange(1)} className="purchase_range_plus">+</button>
+              <button
+                onClick={() => handleQuantityChange(-1)}
+                className="purchase_range_minus"
+              >
+                -
+              </button>
+              <button
+                onClick={() => handleQuantityChange(1)}
+                className="purchase_range_plus"
+              >
+                +
+              </button>
             </div>
           </>
-          {/* )} */}
           <p>
             {quantity} piece{quantity > 1 ? "s" : ""}
           </p>

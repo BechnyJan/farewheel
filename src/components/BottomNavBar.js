@@ -7,12 +7,8 @@ import tourist from "../icons/tourist.svg";
 import more from "../icons/more.svg";
 
 function BottomNavBar() {
-
-  // dodelat active stay
-
-
   return (
-      <nav className={classes["bottom-nav"]}>
+    <nav className={classes["bottom-nav"]}>
       <NavLink to="/" className={classes["nav-item"]}>
         <img src={search} alt="Search" /> <h4>Search</h4>
       </NavLink>

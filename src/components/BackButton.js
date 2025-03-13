@@ -1,23 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./BackButton.css";
-// import BackBtn from '../icons/backbtn2.png'
 import BackBtn from "../icons/backbtn3.png";
 
-export default function BackButton({
-  title,
-  setProcessPurchase,
-  ticketPage,
-  returnNum = -1,
-  onPress,
-  state,
-}) {
+export default function BackButton({ title, returnNum = -1, onPress, state }) {
   const navigate = useNavigate();
 
   const actionHandler = () => {
-    if (ticketPage) {
-      console.log("assd", setProcessPurchase);
-    }
     if (onPress) {
       onPress();
     }
@@ -36,9 +25,6 @@ export default function BackButton({
 
   return (
     <div className="back">
-      {/* <button className="back-btn" onClick={actionHandler}>
-        ←
-      </button> */}
       <button className="back-btn" onClick={actionHandler}>
         <img src={BackBtn} alt="" />
       </button>

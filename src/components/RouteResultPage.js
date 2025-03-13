@@ -1,17 +1,14 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import BackButton from "./BackButton";
 import ResultDetail from "./ResultDetail";
 import "./RouteResultPage.css";
 
 export default function RouteResultPage() {
   const location = useLocation();
-  const navigate = useNavigate();
-  const { from, to, results, means, data, time } = location.state || {};
-  // console.log(location.state.results,results);
+  const { from, to, results,   data, time } = location.state || {};
   useEffect(() => {}, [location.state, results]);
 
-  console.log(data, location.state);
   const stations = { from: from, to: to, page: location?.state.page };
 
   return (

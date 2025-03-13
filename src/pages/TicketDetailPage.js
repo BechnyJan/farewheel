@@ -55,7 +55,6 @@ export default function TicketDetail() {
 
   return (
     <div className="ticket-detail-page">
-      {/* <button onClick={() => navigate(-1)}>← Back</button> */}
       <BackButton title={"Ticket Detail"} />
       <div className="ticket-info">
         <h2>{ticket.name}</h2>

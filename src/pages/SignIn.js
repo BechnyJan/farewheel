@@ -6,7 +6,7 @@ import "./SignIn.css";
 export default function SignUpSignInPage({ setIsSignedIn }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isSignUp, setIsSignUp] = useState(true);
+  const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -56,8 +56,6 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
       newErrors.password = "Password must be at least 6 characters long";
     }
 
-    console.log("tady", newErrors);
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -97,19 +95,16 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     e.preventDefault();
     if (!validateForm()) return;
 
-    console.log("rafss");
-
     const cleanedData = { ...formData, email: formData.email.trim(), token: 1 };
 
     if (isSignUp) {
       localStorage.setItem("account", JSON.stringify(cleanedData));
       localStorage.setItem("loggedin", cleanedData.token);
     } else {
-      // Mock data for sign in
       const mockAccount = {
         firstName: "Mark",
         lastName: "Tester",
-        email: formData.email.trim(), // Můžeš použít co uživatel zadal, nebo fixní mock email
+        email: formData.email.trim(),
         token: 1,
       };
       localStorage.setItem("account", JSON.stringify(mockAccount));
@@ -117,16 +112,7 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
     }
 
     setIsSignedIn();
-    navigate(
-      location.state?.page || "/more"
-      //   {
-      //   state: {
-      //     path: location?.pathname,
-      //     status: isSignUp,
-      //     email: formData.email.trim(),
-      //   },
-      // }
-    );
+    navigate(location.state?.page || "/more");
   };
 
   const toggleForm = () => {
@@ -144,10 +130,10 @@ export default function SignUpSignInPage({ setIsSignedIn }) {
   const titleAuth = isSignUp ? "Sign Up" : "Sign In";
 
   const handleDobChange = (e) => {
-    let value = e.target.value.replace(/[^\d]/g, ""); // povolí pouze čísla
+    let value = e.target.value.replace(/[^\d]/g, "");
 
     if (value.length > 8) {
-      return; // víc než 8 číslic je neplatné
+      return;
     }
 
     if (value.length >= 2) {

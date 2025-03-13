@@ -74,7 +74,6 @@ function TouristPage() {
             </div>
           ))}
         </div>
-        {/* tourist-tickets-container */}
         <h2>Recommended Tickets for Tourists</h2>
         <div className="tourist-tickets-container">
           {recommendedTickets.map((ticket, index) => (

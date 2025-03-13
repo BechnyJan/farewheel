@@ -1,12 +1,10 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import "./RouteExtraDetailPage.css";
+import { useLocation } from "react-router-dom";
 import BackButton from "./BackButton";
+import "./RouteExtraDetailPage.css";
 
 export default function RouteExtraDetailPage() {
-  const navigate = useNavigate();
   const location = useLocation();
   const { route } = location.state;
-  console.log(route);
 
   return (
     <>

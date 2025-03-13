@@ -9,35 +9,29 @@ import ConfirmationPage from "./pages/ConfirmationPage";
 import Extras from "./pages/Extras";
 import HomePage from "./pages/HomePage";
 import MorePage from "./pages/MorePage";
-import TypePage from "./pages/TypePage";
 import SignUpSignInPage from "./pages/SignIn";
+import TicketDetailPage from "./pages/TicketDetailPage";
 import TicketsPage from "./pages/TicketsPage";
 import TouristPage from "./pages/TouristPage";
-import TicketDetailPage from "./pages/TicketDetailPage";
+import TypePage from "./pages/TypePage";
 
 function App() {
   const [processPurchase, setProcessPurchase] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
-
-  // useEffect(() => {
-
-  // }, [isSignedIn]);
 
   useEffect(() => {
     try {
       const storedAccount = localStorage.getItem("account");
       if (storedAccount) {
         const account = JSON.parse(storedAccount);
-        console.log(account);
       } else {
-        // console.log("Žádná data v localStorage.");
+        console.log("Žádná data v localStorage.");
       }
     } catch (error) {
       console.error("Chyba při parsování JSON:", error);
     }
   }, [isSignedIn]);
 
-  console.log(isSignedIn);
   const processUpdate = () => {
     setProcessPurchase((prev) => !prev);
   };

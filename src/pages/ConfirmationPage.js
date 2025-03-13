@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./ConfirmationPage.css";
+
 export default function ConfirmationPage({ ticket, onClose }) {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  console.log(state);
   const saveToStorage = () => {
     const savedTickets = JSON.parse(localStorage.getItem("tickets")) || [];
     const savedPasses = JSON.parse(localStorage.getItem("passes")) || [];
@@ -28,8 +28,6 @@ export default function ConfirmationPage({ ticket, onClose }) {
           ...state,
           id: `${state.name}-${Date.now()}-${i}`,
           quantity: 1,
-          // activationTime: Date.now() + delayTime,
-          // validUntil: Date.now() + val + delayTime,
         }));
       }
 
@@ -64,13 +62,15 @@ export default function ConfirmationPage({ ticket, onClose }) {
       const updatedTickets = [...savedPasses, ...newPasses];
       localStorage.setItem("passes", JSON.stringify(updatedTickets));
     }
-    navigate("/tickets");
+    if (!state.type) {
+      navigate("/tickets");
+    } else {
+      navigate("/tickets", { state: { passesEntered: true } });
+    }
   };
 
   return (
     <div className="confirmation-page">
-      {/* <div className="confirmation-modal"> */}
-
       <h1 className="confirmation">Purchase Confirmation</h1>
       <p>Your payment has been successful:</p>
       <h2>{state.name}</h2>

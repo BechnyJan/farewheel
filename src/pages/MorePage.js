@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BottomNavBar from "../components/BottomNavBar";
-import Settings from "../icons/path2.png";
 import Question_Mark from "../icons/g10.png";
 import Information from "../icons/g1474.png";
-import Terms from "../icons/terms.png";
 import Lock from "../icons/lock.png";
+import Settings from "../icons/path2.png";
+import Terms from "../icons/terms.png";
 import "./MorePage.css";
 
 export default function MorePage({ isSignedIn, setIsSignedIn }) {
   const navigate = useNavigate();
 
   const [account, setAccount] = useState(null);
-  console.log(isSignedIn);
 
   useEffect(() => {
     let acc = localStorage?.getItem("account");
@@ -35,7 +34,7 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
     return;
   };
 
-  const handleSignUp = () => {
+  const handleSignIn = () => {
     navigate("/signin");
   };
 
@@ -71,8 +70,8 @@ export default function MorePage({ isSignedIn, setIsSignedIn }) {
             <div className="account-actions">
               <p>You are not signed in.</p>
               <div className="account-btn_cotainer">
-                <button className="account-btn" onClick={handleSignUp}>
-                  Sign Up
+                <button className="account-btn" onClick={handleSignIn}>
+                  Sign In
                 </button>
               </div>
             </div>
